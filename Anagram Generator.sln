@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anagram Generator", "Anagram Generator\Anagram Generator.csproj", "{C508A4D9-EB5A-4029-A414-A453AB28E956}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implementation", "Implementation\Implementation.csproj", "{869CC936-4AD6-426C-B553-B2E379244228}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{869CC936-4AD6-426C-B553-B2E379244228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{869CC936-4AD6-426C-B553-B2E379244228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{869CC936-4AD6-426C-B553-B2E379244228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{869CC936-4AD6-426C-B553-B2E379244228}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37BC6587-D1E3-4408-9637-3813EA231634}
+	EndGlobalSection
+EndGlobal
