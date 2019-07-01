@@ -6,10 +6,14 @@ namespace Implementation
 {
     class Word
     {
+        public string word;
+
         public Dictionary<char, int> letterRegistry = new Dictionary<char, int>();
 
         public Word(string word)
         {
+            this.word = word;
+
             foreach (char letter in word)
             {
                 if (letterRegistry.ContainsKey(letter))

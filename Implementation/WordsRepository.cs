@@ -8,14 +8,20 @@ namespace Implementation
     {
         public List<Word> words = new List<Word>();
 
+        public List<string> wordList = new List<string>();
         public void AddWord(string wordFromInput)
         {
-            Word word = new Word(wordFromInput);
 
-            foreach (KeyValuePair<char, int> kvp in word.letterRegistry)
+            if(!wordList.Contains(wordFromInput))
             {
-                Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                wordList.Add(wordFromInput);
+                Word word = new Word(wordFromInput);
 
+                foreach (KeyValuePair<char, int> kvp in word.letterRegistry)
+                {
+                    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+
+                }
             }
         }
     }
