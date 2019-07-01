@@ -1,4 +1,5 @@
 ﻿using System;
+using Implementation;
 
 namespace Implementation
 {
@@ -11,6 +12,8 @@ namespace Implementation
             foreach (string line in lines)
             {
                 Console.WriteLine(line);
+                WordsRepository wordsRepository = new WordsRepository();
+                wordsRepository.AddWord(line);
             }
         }
     }
