@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Implementation;
 
 namespace Implementation
@@ -7,13 +8,21 @@ namespace Implementation
     {
         public static void ReadFile()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\jonas\Desktop\tasks\Anagram generator\zodynas.txt");
+            WordsRepository wordsRepository = new WordsRepository();
 
-            foreach (string line in lines)
+            using (StreamReader sr = new StreamReader(@"C:\Users\jonas\Desktop\tasks\Anagram generator\zodynas.txt"))
             {
-                Console.WriteLine(line);
-                WordsRepository wordsRepository = new WordsRepository();
-                wordsRepository.AddWord(line);
+                string line;
+                string[] words;
+
+                while((line = sr.ReadLine().Trim()) != null)
+                {
+                    Console.WriteLine(line);
+                    words = line.Split(new[] { '\t' });
+                    wordsRepository.AddWord(words[0]);
+                    wordsRepository.AddWord(words[2]);
+
+                }
             }
         }
     }

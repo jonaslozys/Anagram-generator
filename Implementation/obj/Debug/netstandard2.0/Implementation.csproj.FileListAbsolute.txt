@@ -6,3 +6,4 @@ C:\Users\jonas\Desktop\tasks\Anagram Generator\Implementation\obj\Debug\netstand
 C:\Users\jonas\Desktop\tasks\Anagram Generator\Implementation\obj\Debug\netstandard2.0\Implementation.AssemblyInfo.cs
 C:\Users\jonas\Desktop\tasks\Anagram Generator\Implementation\obj\Debug\netstandard2.0\Implementation.dll
 C:\Users\jonas\Desktop\tasks\Anagram Generator\Implementation\obj\Debug\netstandard2.0\Implementation.pdb
+C:\Users\jonas\Desktop\tasks\Anagram Generator\Implementation\obj\Debug\netstandard2.0\Implementation.csprojAssemblyReference.cache
