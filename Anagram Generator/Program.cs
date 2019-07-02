@@ -13,17 +13,23 @@ namespace Anagram_Generator
     {
         static void Main(string[] args)
         {
+            string userInputString = "";
+
             foreach(string word in args)
             {
-                Console.WriteLine(word);
+                userInputString += word;
             }
 
             IWordsRepository wordsRepository = new WordsRepository();
 
-            IAnagramSolver anagramSolver = new AnagramSolver(wordsRepository);
+            IAnagramSolver anagramSolver = new AnagramSolver(wordsRepository, userInputString);
 
-            HashSet<Word> words = anagramSolver.GetAnagrams();
+            List<string> anagrams = anagramSolver.GetAnagrams();
 
+            foreach(string anagram in anagrams)
+            {
+                Console.WriteLine(anagram);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Interfaces
 {
     public interface IAnagramSolver
     {
-        HashSet<Word> GetAnagrams();
+        List<string> GetAnagrams();
 
     }
 }
