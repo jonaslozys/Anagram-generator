@@ -19,6 +19,7 @@ namespace Implementation
                 string line;
                 string[] words;
 
+
                 while((line = sr.ReadLine().Trim()) != null)
                 {
                     //Console.WriteLine(line);
