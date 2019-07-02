@@ -6,8 +6,22 @@ namespace Interfaces
 {
     public class Word
     {
-        string word;
+        public string word;
 
-        Dictionary<string, int> letterRegistry;
+        public Word(string word)
+        {
+            this.word = word;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.word.GetHashCode();
+        }
+
     }
 }

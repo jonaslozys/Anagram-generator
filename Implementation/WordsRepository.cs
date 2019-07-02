@@ -1,47 +1,48 @@
-﻿using Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Threading;
+using Implementation;
+using Interfaces;
 
 namespace Implementation
 {
-    class WordsRepository : IWordsRepository
+    public class WordsRepository : IWordsRepository
     {
-        public List<Word> words = new List<Word>();
-
-        public List<string> wordList = new List<string>();
-        public void AddWord(string wordFromInput)
+        public HashSet<Word> GetLines()
         {
-            if(!wordList.Contains(wordFromInput))
+            HashSet<Word> wordList = new HashSet<Word>();
+
+            string target = @"C:\Users\jonas\Desktop\tasks\Anagram Generator";
+
+            Environment.CurrentDirectory = target;
+
+            using (StreamReader sr = new StreamReader($@"{target}/zodynas.txt"))
             {
-                Word word = new Word(wordFromInput);
-                words.Add(word);
-                wordList.Add(wordFromInput);
+                string line;
 
-                Console.WriteLine(wordFromInput);
-
-                foreach (KeyValuePair<char, int> kvp in word.letterRegistry)
+                while (sr.Peek() >= 0)
                 {
-                    Console.WriteLine("Key = {0}, Value = {1} ", kvp.Key, kvp.Value);
+                    line = sr.ReadLine().Trim();
+                    string[] words = line.Split(new[] { '\t' });
+                    Word word1 = new Word(words[0]);
+                    Word word2 = new Word(words[0]);
+
+                    
+                    if (!wordList.Contains(word1))
+                    {
+                        wordList.Add(word1);
+                    }
+
+                    if (!wordList.Contains(word2))
+                    {
+                        wordList.Add(word2);
+                    }
 
                 }
             }
-        }
 
-        public List<Word> GetWords()
-        {
-            return this.words;
-        } 
-
-        public List<string> GetRawWordList()
-        {
-            return this.wordList;
-        }
-
-        List<Interfaces.Word> IWordsRepository.GetWords()
-        {
-            throw new NotImplementedException();
+            return wordList;
         }
     }
 }

@@ -5,11 +5,7 @@ namespace Interfaces
 {
     public interface IWordsRepository
     {
-        void AddWord(string word);
+        HashSet<Word> GetLines();
 
-        List<Word> GetWords();
-
-        List<string> GetRawWordList();
-        
     }
 }

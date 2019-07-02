@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Implementation;
+using Interfaces;
 
 namespace Anagram_Generator
 {
@@ -11,8 +13,17 @@ namespace Anagram_Generator
     {
         static void Main(string[] args)
         {
-            FileReader.ReadFile();
-            
+            foreach(string word in args)
+            {
+                Console.WriteLine(word);
+            }
+
+            IWordsRepository wordsRepository = new WordsRepository();
+
+            IAnagramSolver anagramSolver = new AnagramSolver(wordsRepository);
+
+            HashSet<Word> words = anagramSolver.GetAnagrams();
+
         }
     }
 }
