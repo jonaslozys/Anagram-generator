@@ -8,16 +8,20 @@ namespace Implementation
     {
         public static void ReadFile()
         {
+            string target = @"C:\Users\jonas\Desktop\tasks\Anagram Generator";
+
+            Environment.CurrentDirectory = target;
+
             WordsRepository wordsRepository = new WordsRepository();
 
-            using (StreamReader sr = new StreamReader(@"C:\Users\jonas\Desktop\tasks\Anagram generator\zodynas.txt"))
+            using (StreamReader sr = new StreamReader($@"{target}/zodynas.txt"))
             {
                 string line;
                 string[] words;
 
                 while((line = sr.ReadLine().Trim()) != null)
                 {
-                    Console.WriteLine(line);
+                    //Console.WriteLine(line);
                     words = line.Split(new[] { '\t' });
                     wordsRepository.AddWord(words[0]);
                     wordsRepository.AddWord(words[2]);

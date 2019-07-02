@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Implementation
@@ -11,11 +12,12 @@ namespace Implementation
         public List<string> wordList = new List<string>();
         public void AddWord(string wordFromInput)
         {
-
             if(!wordList.Contains(wordFromInput))
             {
                 wordList.Add(wordFromInput);
                 Word word = new Word(wordFromInput);
+
+                Console.WriteLine(wordFromInput);
 
                 foreach (KeyValuePair<char, int> kvp in word.letterRegistry)
                 {
