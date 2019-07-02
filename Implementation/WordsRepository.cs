@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
 namespace Implementation
 {
-    class WordsRepository
+    class WordsRepository : IWordsRepository
     {
         public List<Word> words = new List<Word>();
 
@@ -14,8 +15,9 @@ namespace Implementation
         {
             if(!wordList.Contains(wordFromInput))
             {
-                wordList.Add(wordFromInput);
                 Word word = new Word(wordFromInput);
+                words.Add(word);
+                wordList.Add(wordFromInput);
 
                 Console.WriteLine(wordFromInput);
 
@@ -25,6 +27,21 @@ namespace Implementation
 
                 }
             }
+        }
+
+        public List<Word> GetWords()
+        {
+            return this.words;
+        } 
+
+        public List<string> GetRawWordList()
+        {
+            return this.wordList;
+        }
+
+        List<Interfaces.Word> IWordsRepository.GetWords()
+        {
+            throw new NotImplementedException();
         }
     }
 }

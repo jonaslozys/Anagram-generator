@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Interfaces
 {
     public interface IWordsRepository
     {
-        bool CompareWords(string word1, string word2);
+        void AddWord(string word);
+
+        List<Word> GetWords();
+
+        List<string> GetRawWordList();
+        
     }
 }
