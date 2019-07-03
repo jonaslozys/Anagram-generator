@@ -11,14 +11,17 @@ namespace AnagramLogic
     {
         private IWordsRepository _wordsRepository;
 
+        private AnagramConfiguration _configuration;
+
         private HashSet<Word> _words;
 
         private Word _userInput;
 
         private List<string> _anagrams;
-        public AnagramSolver(IWordsRepository wordsRepository)
+        public AnagramSolver(IWordsRepository wordsRepository, AnagramConfiguration configuration)
         {
             _wordsRepository = wordsRepository;
+            _configuration = configuration;
             _anagrams = new List<string>();
             _words = wordsRepository.GetWords();
         }
@@ -48,7 +51,7 @@ namespace AnagramLogic
         {
             foreach(Word word in _words)
             {
-                if(CompareWords(_userInput, word))
+                if(CompareWords(_userInput, word) && word.word.Length >= _configuration.minWordLength && _anagrams.Count < _configuration.maxResultsLength)
                 {
                     if(_userInput.word != word.word)
                     {
