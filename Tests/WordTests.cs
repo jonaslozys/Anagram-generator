@@ -62,23 +62,5 @@ namespace Tests
             wordObject = new Word(testWord);
             Assert.AreEqual(wordObject.word, testWord);
         }
-
-        static Dictionary<char, int> DummyDictionary(string word)
-        {
-            Dictionary<char, int> dummyDictionary = new Dictionary<char, int>();
-            foreach (char letter in word)
-            {
-                if (dummyDictionary.ContainsKey(letter))
-                {
-                    dummyDictionary[letter] += 1;
-                }
-                else
-                {
-                    dummyDictionary[letter] = 1;
-                }
-            }
-
-            return dummyDictionary;
-        }
     }
 }
