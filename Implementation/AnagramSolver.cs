@@ -51,7 +51,10 @@ namespace Implementation
             {
                 if(CompareWords(userInput, word))
                 {
-                    anagrams.Add(word.word);
+                    if(userInput.word != word.word)
+                    {
+                        anagrams.Add(word.word);
+                    }
                 }
             }
         }

@@ -26,9 +26,8 @@ namespace Implementation
                     line = sr.ReadLine().Trim();
                     string[] words = line.Split(new[] { '\t' });
                     Word word1 = new Word(words[0]);
-                    Word word2 = new Word(words[0]);
+                    Word word2 = new Word(words[2]);
 
-                    
                     if (!wordList.Contains(word1))
                     {
                         wordList.Add(word1);
@@ -38,7 +37,6 @@ namespace Implementation
                     {
                         wordList.Add(word2);
                     }
-
                 }
             }
 
