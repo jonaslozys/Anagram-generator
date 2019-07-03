@@ -13,7 +13,7 @@ namespace Tests
         Dictionary<char, int> letterRegistry;
 
         [SetUp]
-        public void SetupTest1()
+        public void Setup()
         {
             word = "testas";
         }
@@ -33,6 +33,13 @@ namespace Tests
             letterRegistry = new Dictionary<char, int> { { 't', 2 }, { 'r', 1 }, { 's', 2 }, { 'a', 1 } };
             wordObject = new Word(word);
             Assert.AreNotEqual(wordObject.letterRegistry, this.letterRegistry);
+        }
+
+        [Test]
+        public void Should_Correctly_Assign_Word_Property()
+        {
+            wordObject = new Word(word);
+            Assert.AreEqual(wordObject.word, word);
         }
     }
 }
