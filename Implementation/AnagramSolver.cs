@@ -20,7 +20,7 @@ namespace AnagramLogic
         {
             _wordsRepository = wordsRepository;
             _anagrams = new List<string>();
-            _words = wordsRepository.GetLines();
+            _words = wordsRepository.GetWords();
         }
 
         private bool CompareWords(Word word1, Word word2)

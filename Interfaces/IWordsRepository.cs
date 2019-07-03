@@ -5,7 +5,7 @@ namespace Contracts
 {
     public interface IWordsRepository
     {
-        HashSet<Word> GetLines();
+        HashSet<Word> GetWords();
 
     }
 }

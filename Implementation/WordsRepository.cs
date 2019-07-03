@@ -9,7 +9,7 @@ namespace AnagramLogic
 {
     public class WordsRepository : IWordsRepository
     {
-        public HashSet<Word> GetLines()
+        public HashSet<Word> GetWords()
         {
             HashSet<Word> wordList = new HashSet<Word>();
 
