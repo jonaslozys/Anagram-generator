@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Implementation;
-using Interfaces;
+using AnagramLogic;
+using Contracts;
 
-namespace Anagram_Generator
+namespace ConsoleApplication
 {
     class Program
     {

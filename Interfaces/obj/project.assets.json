@@ -185,9 +185,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Interfaces\\Interfaces.csproj",
-      "projectName": "Interfaces",
-      "projectPath": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Interfaces\\Interfaces.csproj",
+      "projectUniqueName": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Interfaces\\Contracts.csproj",
+      "projectName": "Contracts",
+      "projectPath": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Interfaces\\Contracts.csproj",
       "packagesPath": "C:\\Users\\jonas\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Interfaces\\obj\\",
       "projectStyle": "PackageReference",

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using Interfaces;
+using Contracts;
 using System.Linq;
 
-namespace Implementation
+namespace AnagramLogic
 {
     public class AnagramSolver : IAnagramSolver
     {

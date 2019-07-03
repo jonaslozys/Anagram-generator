@@ -49,13 +49,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Implementation\Implementation.csproj">
+    <ProjectReference Include="..\Implementation\AnagramLogic.csproj">
       <Project>{869cc936-4ad6-426c-b553-b2e379244228}</Project>
-      <Name>Implementation</Name>
+      <Name>AnagramLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+    <ProjectReference Include="..\Interfaces\Contracts.csproj">
       <Project>{3cc125c0-7eed-420f-9838-3f0ee64bd04f}</Project>
-      <Name>Interfaces</Name>
+      <Name>Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

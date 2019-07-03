@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Interfaces
+namespace Contracts
 {
     public interface IWordsRepository
     {

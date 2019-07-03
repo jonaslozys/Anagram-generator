@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Implementation\\Implementation.csproj": {}
+    "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Implementation\\AnagramLogic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Implementation\\Implementation.csproj": {
+    "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Implementation\\AnagramLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Implementation\\Implementation.csproj",
-        "projectName": "Implementation",
-        "projectPath": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Implementation\\Implementation.csproj",
+        "projectUniqueName": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Implementation\\AnagramLogic.csproj",
+        "projectName": "AnagramLogic",
+        "projectPath": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Implementation\\AnagramLogic.csproj",
         "packagesPath": "C:\\Users\\jonas\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\jonas\\Desktop\\tasks\\Anagram Generator\\Implementation\\obj\\",
         "projectStyle": "PackageReference",

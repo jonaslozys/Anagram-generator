@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using Implementation;
-using Interfaces;
+using AnagramLogic;
+using Contracts;
 
-namespace Implementation
+namespace AnagramLogic
 {
     public class WordsRepository : IWordsRepository
     {
