@@ -22,9 +22,9 @@ namespace ConsoleApplication
 
             IWordsRepository wordsRepository = new WordsRepository();
 
-            IAnagramSolver anagramSolver = new AnagramSolver(wordsRepository, userInputString);
+            IAnagramSolver anagramSolver = new AnagramSolver(wordsRepository);
 
-            List<string> anagrams = anagramSolver.GetAnagrams();
+            List<string> anagrams = anagramSolver.GetAnagrams(userInputString);
 
             foreach(string anagram in anagrams)
             {

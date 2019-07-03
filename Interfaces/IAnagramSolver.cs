@@ -6,7 +6,7 @@ namespace Contracts
 {
     public interface IAnagramSolver
     {
-        List<string> GetAnagrams();
+        List<string> GetAnagrams(string userInput);
 
     }
 }

@@ -16,12 +16,11 @@ namespace AnagramLogic
         private Word _userInput;
 
         private List<string> _anagrams;
-        public AnagramSolver(IWordsRepository wordsRepository, string userInput)
+        public AnagramSolver(IWordsRepository wordsRepository)
         {
             _wordsRepository = wordsRepository;
             _anagrams = new List<string>();
             _words = wordsRepository.GetLines();
-            _userInput = new Word(userInput);
         }
 
         private bool CompareWords(Word word1, Word word2)
@@ -29,13 +28,13 @@ namespace AnagramLogic
             if (word1.letterRegistry.Count != word2.letterRegistry.Count)
             {
                 return false;
+
             } else
             {
                 return word1.letterRegistry.Keys.All(key => {
                     if(word2.letterRegistry.ContainsKey(key))
                     {
                         return word2.letterRegistry[key] == word1.letterRegistry[key];
-
                     }
                     else
                     {
@@ -58,8 +57,10 @@ namespace AnagramLogic
                 }
             }
         }
-        public List<string> GetAnagrams()
+        public List<string> GetAnagrams(string userInput)
         {
+            _userInput = new Word(userInput);
+
             FindAnagrams();
 
             return _anagrams;
