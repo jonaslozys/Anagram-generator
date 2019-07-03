@@ -30,6 +30,8 @@ namespace Anagram_Generator
             {
                 Console.WriteLine(anagram);
             }
+
+            Thread.Sleep(100000);
         }
     }
 }

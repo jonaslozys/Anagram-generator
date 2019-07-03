@@ -45,7 +45,7 @@ namespace Implementation
             }
         }
 
-        private void FindAnagrams()
+        private void FindSingleWordAnagrams()
         {
             foreach(Word word in words)
             {
@@ -58,9 +58,72 @@ namespace Implementation
                 }
             }
         }
+
+        private bool CompareSubdictionaries(Word userInput, Word word)
+        {
+            if (userInput.letterRegistry.Count < word.letterRegistry.Count)
+            {
+                return false;
+            }
+            else
+            {
+                return word.letterRegistry.Keys.All(key => {
+                    if (userInput.letterRegistry.ContainsKey(key))
+                    {
+                        return userInput.letterRegistry[key] == word.letterRegistry[key];
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                });
+            }
+        }
+
+        private void FindMultipleWordAnagrams()
+        {
+            Word userInputCopy = userInput;
+            string anagram = "";
+
+            Console.WriteLine(userInputCopy.letterRegistry.Count);
+            foreach (Word word in words)
+            {
+                if(CompareSubdictionaries(userInputCopy, word) && word.word.Length > 1)
+                {
+                    anagram += $" {word.word}";
+                    Console.WriteLine(anagram);
+
+                    foreach (KeyValuePair<char, int> letter in word.letterRegistry)
+                    {
+                        if(userInputCopy.letterRegistry[letter.Key] < 1)
+                        {
+                            userInputCopy.letterRegistry.Remove(letter.Key);
+                        } else
+                        {
+                            userInputCopy.letterRegistry[letter.Key] -= letter.Value;
+                            if (userInputCopy.letterRegistry[letter.Key] < 1)
+                            {
+                                userInputCopy.letterRegistry.Remove(letter.Key);
+                            }
+
+
+                        }
+                    }
+                }
+
+                if(userInputCopy.letterRegistry.Count < 1 && anagram.Length > 0)
+                {
+                    anagrams.Add(anagram);
+                    anagram = "";
+                    userInputCopy = userInput;
+                }
+            }
+        }
         public List<string> GetAnagrams()
         {
-            this.FindAnagrams();
+            this.FindSingleWordAnagrams();
+            this.FindMultipleWordAnagrams();
 
             return this.anagrams;
         }
