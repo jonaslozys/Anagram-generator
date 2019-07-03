@@ -9,19 +9,19 @@ namespace AnagramLogic
 {
     public class AnagramSolver : IAnagramSolver
     {
-        IWordsRepository wordsRepository;
+        private IWordsRepository _wordsRepository;
 
-        private HashSet<Word> words;
+        private HashSet<Word> _words;
 
-        private Word userInput;
+        private Word _userInput;
 
-        private List<string> anagrams;
+        private List<string> _anagrams;
         public AnagramSolver(IWordsRepository wordsRepository, string userInput)
         {
-            this.wordsRepository = wordsRepository;
-            this.anagrams = new List<string>();
-            this.words = wordsRepository.GetLines();
-            this.userInput = new Word(userInput);
+            _wordsRepository = wordsRepository;
+            _anagrams = new List<string>();
+            _words = wordsRepository.GetLines();
+            _userInput = new Word(userInput);
         }
 
         private bool CompareWords(Word word1, Word word2)
@@ -47,22 +47,22 @@ namespace AnagramLogic
 
         private void FindAnagrams()
         {
-            foreach(Word word in words)
+            foreach(Word word in _words)
             {
-                if(CompareWords(userInput, word))
+                if(CompareWords(_userInput, word))
                 {
-                    if(userInput.word != word.word)
+                    if(_userInput.word != word.word)
                     {
-                        anagrams.Add(word.word);
+                        _anagrams.Add(word.word);
                     }
                 }
             }
         }
         public List<string> GetAnagrams()
         {
-            this.FindAnagrams();
+            FindAnagrams();
 
-            return this.anagrams;
+            return _anagrams;
         }
 
     }
