@@ -7,5 +7,7 @@ namespace Contracts
     {
         HashSet<Word> GetWords();
 
+        List<string> GetPageOfWords(int pageSize, int pageNumber);
+
     }
 }
