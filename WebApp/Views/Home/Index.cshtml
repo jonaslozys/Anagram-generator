@@ -1,17 +1,33 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Anagram generator";
 }
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <h2>Your word: @ViewBag.Word</h2>
-    <h2>Anagrams:</h2>
-    <ul>
-        @{ if (ViewBag.Words != null)
-            {
-                foreach (var word in ViewBag.Words)
+    <br />
+    <div>
+        <form method="get">
+            <div class="form-group">
+                <label for="word">Enter word:</label>
+                <input type="text" name="word" placeholder="word" class="form-control" />
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Get Anagrams</button>
+            </div>
+        </form>
+    </div>
+
+    @{ if (ViewBag.Words != null)
+        {
+            <h3>Anagrams for <b>@ViewBag.Word</b></h3>
+            <ul class="list-group">
+
+                @foreach (var word in ViewBag.Words)
                 {
-                    <li>@word</li> }
-            }
+                    <li class="list-group-item">@word</li>
+                }
+
+            </ul>
+
         }
-    </ul>
+    }
 </div>
