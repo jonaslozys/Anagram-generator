@@ -6,26 +6,28 @@ using Contracts;
 using AnagramLogic;
 using System.Configuration;
 using System.Linq;
+using Tests.dummy_classes;
 
 namespace Tests
 {
     class AnagramSolverTests
     {
 
-        private string userInput = "";
         private AnagramConfiguration anagramConfiguration;
         private IWordsRepository wordsRepository;
 
         [SetUp]
         public void SetUp()
         {
-            userInput = "menas";
             anagramConfiguration = new AnagramConfiguration(5, 15);
-            wordsRepository = new WordsRepository();
+            wordsRepository = new DummyWordsRepository();
         }
 
         [Test]
-        public void Should_Return_True_Two_Anagrams()
+        [TestCase("menas")]
+        [TestCase("nesam")]
+        [TestCase("senam")]
+        public void Should_Return_Two_Anagrams(string userInput)
         {
             AnagramSolver anagramSolver = new AnagramSolver(wordsRepository, anagramConfiguration);
             List<string> anagrams = anagramSolver.GetAnagrams(userInput);
@@ -33,7 +35,10 @@ namespace Tests
         }
 
         [Test]
-        public void Do_Not_Return_Anagrams_Longer_Then_Specified_By_Config()
+        [TestCase("menas")]
+        [TestCase("nesam")]
+        [TestCase("senam")]
+        public void Should_Not_Return_Anagrams_Longer_Then_Specified_By_Config(string userInput)
         {
             anagramConfiguration = new AnagramConfiguration(6, 15);
             AnagramSolver anagramSolver = new AnagramSolver(wordsRepository, anagramConfiguration);

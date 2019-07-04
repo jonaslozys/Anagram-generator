@@ -5,11 +5,14 @@ using Contracts;
 
 namespace Tests.dummy_classes
 {
-    public class DummyWordsRepository
+    public class DummyWordsRepository : IWordsRepository
     {
         public HashSet<Word> GetWords()
         {
-            string[] words = new string[] { "pakeleivingas", "pakeleivingos", "pakeleivingos", "žvilgsnis", "seminaras", "Semionovičiumi" };
+            string[] words = new string[] {
+                "pakeleivingas", "pakeleivingos", "pakeleivingos", "žvilgsnis", "seminaras", "Semionovičiumi",
+                "menas", "nesam", "senam"
+            };
 
             HashSet<Word> wordObjects= new HashSet<Word>();
 
