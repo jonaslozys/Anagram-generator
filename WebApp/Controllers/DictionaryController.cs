@@ -23,6 +23,7 @@ namespace WebApp.Controllers
             _pageSize = Int32.Parse(config.GetSection("Dictionary:pageSize").Value);
 
         }
+        [Route("Dictionary/{page?}")]
         public IActionResult Index(int page = 1)
         {
             _dictionaryModel.wordsDictionary = _wordsRepository.GetPageOfWords(_pageSize, page);
