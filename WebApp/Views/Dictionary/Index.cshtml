@@ -1,0 +1,17 @@
+﻿@model WebApp.Models.DictionaryModel
+
+@{
+    ViewData["Title"] = "Dictionary";
+}
+
+
+<h2>Dictionary</h2>
+<a href="/dictionary?page=@(Model.page+1)">Previuos page</a>
+<a href="/dictionary?page=@(Model.page+1)">Next page</a>
+<ul class="list-group">
+    @foreach (string word in Model.wordsDictionary)
+    {
+        <li class="list-group-item">@word</li>
+    }
+</ul>
+

@@ -48,9 +48,21 @@ namespace AnagramLogic
         public List<string> GetPageOfWords(int pageSize, int pageNumber)
         {
             List<string> pageOfWords = this.GetWords()
-                .ToList()
-                .GetRange(pageNumber - 1 * pageSize, pageSize)
                 .Select(word => word.word)
+                .ToList();
+               
+            int index = (pageNumber - 1) * pageSize;
+            int count = pageSize;
+
+            if (index < 0) index = 0;
+            if((index + pageSize) > pageOfWords.Count )
+            {
+                index = pageOfWords.Count - pageSize;
+                count = pageSize;
+            }
+
+            pageOfWords = pageOfWords
+                .GetRange(index, count)
                 .ToList();
 
             return pageOfWords;
