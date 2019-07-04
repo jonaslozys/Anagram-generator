@@ -3,5 +3,15 @@
 }
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <h2>Word: @ViewBag.Word</h2>
+    <h2>Your word: @ViewBag.Word</h2>
+    <h2>Anagrams:</h2>
+    <ul>
+        @{ if (ViewBag.Words != null)
+            {
+                foreach (var word in ViewBag.Words)
+                {
+                    <li>@word</li> }
+            }
+        }
+    </ul>
 </div>
