@@ -2,32 +2,38 @@
     ViewData["Title"] = "Anagram generator";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <br />
-    <div>
-        <form method="get">
-            <div class="form-group">
-                <label for="word">Enter word:</label>
-                <input type="text" name="word" placeholder="word" class="form-control" />
-            </div>
-            <div>
-                <button type="submit" class="btn btn-primary">Get Anagrams</button>
-            </div>
-        </form>
-    </div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+        <br />
+        <div>
+            <form method="get">
+                <div class="form-group">
+                    <label for="word">Enter word:</label>
+                    <input type="text" name="word" placeholder="word" class="form-control" />
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Get Anagrams</button>
+                </div>
+            </form>
+        </div>
 
-    @{ if (ViewBag.Words != null)
-        {
-            <h3>Anagrams for <b>@ViewBag.Word</b></h3>
-            <ul class="list-group">
-
-                @foreach (var word in ViewBag.Words)
+        @{ if (ViewBag.Words != null)
+            {
+                @if (ViewBag.Words.Count < 1)
                 {
-                    <li class="list-group-item">@word</li>
+                    <h3>No anagrams for <b>@ViewBag.Word</b> found :(</h3>
                 }
+                else
+                {
+                    <h3>Anagrams for <b>@ViewBag.Word</b></h3>
+                    <ul class="list-group">
 
-            </ul>
+                        @foreach (var word in ViewBag.Words)
+                        {
+                            <li class="list-group-item">@word</li>
+                        }
 
+                    </ul>
+                }
+            }
         }
-    }
-</div>
+    </div>
