@@ -1,5 +1,6 @@
 .vs
 Debug/
 obj/
+bin/
 .vs/Anagram Generator/v16/Server/sqlite3/db.lock
 *.[Cc]ache
