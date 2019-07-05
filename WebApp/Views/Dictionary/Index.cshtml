@@ -7,8 +7,8 @@
 
 <h2>Dictionary</h2>
 <div>
-    <a asp-page=@(Model.page-1) class="btn btn-primary">Previuos page</a>
-    <a asp-page=@(Model.page+1) class="btn btn-primary">Next page</a>
+    <a href="/dictionary/@(Model.page-1)" class="btn btn-primary">Previous page</a>
+    <a href="/dictionary/@(Model.page+1)" class="btn btn-primary">Next page</a>
 </div>
 <br />
 <ul class="list-group">

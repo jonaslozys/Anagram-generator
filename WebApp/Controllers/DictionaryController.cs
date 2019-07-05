@@ -26,12 +26,14 @@ namespace WebApp.Controllers
             _dictionaryModel = new DictionaryModel();
 
         }
+        [Route("Dictionary/")]
         [Route("Dictionary/{page?}")]
         public IActionResult Index(int page = 1)
         {
             _pageSize = _dictionaryConfiguration.pageSize;
             _dictionaryModel.wordsDictionary = _wordsRepository.GetPageOfWords(_pageSize, page);
             _dictionaryModel.page = page;
+            
             return View(_dictionaryModel);
         }
     }
