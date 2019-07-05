@@ -11,6 +11,9 @@
     <a href="/dictionary/@(Model.page+1)" class="btn btn-primary">Next page</a>
 </div>
 <br />
+<a asp-action="download" class="btn btn-success" download>Download dictionary file</a>
+<br />
+<br />
 <ul class="list-group">
     @foreach (string word in Model.wordsDictionary)
     {

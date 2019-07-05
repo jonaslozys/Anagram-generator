@@ -8,6 +8,8 @@ namespace WebApp.Configuration
     public class Dictionary
     {
         public int pageSize { get; set; }
+
+        public string path { get; set; }
         public Dictionary()
         {
             

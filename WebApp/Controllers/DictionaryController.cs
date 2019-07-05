@@ -27,7 +27,7 @@ namespace WebApp.Controllers
 
         }
         [Route("Dictionary/")]
-        [Route("Dictionary/{page?}")]
+        [Route("Dictionary/{page:int?}")]
         public IActionResult Index(int page = 1)
         {
             _pageSize = _dictionaryConfiguration.pageSize;
@@ -35,6 +35,13 @@ namespace WebApp.Controllers
             _dictionaryModel.page = page;
             
             return View(_dictionaryModel);
+        }
+
+        public IActionResult Download()
+        {
+            string target = _dictionaryConfiguration.path;
+            byte[] fileBytes = System.IO.File.ReadAllBytes(target);
+            return File(fileBytes, "application/force-download");
         }
     }
 }
