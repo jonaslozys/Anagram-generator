@@ -41,7 +41,7 @@ namespace WebApp.Controllers
         {
             string target = _dictionaryConfiguration.path;
             byte[] fileBytes = System.IO.File.ReadAllBytes(target);
-            return File(fileBytes, "application/force-download");
+            return File(fileBytes, "text/plain");
         }
     }
 }
