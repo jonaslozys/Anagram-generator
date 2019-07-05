@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApp.Configuration;
 
 namespace WebApp
 {
@@ -31,6 +32,10 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddSingleton(Configuration);
+            services.Configure<Dictionary>(Configuration.GetSection("Dictionary"));
+            services.Configure<AnagramSettings>(Configuration.GetSection("AnagramSettings"));
+
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -9,25 +9,27 @@ using AnagramLogic;
 using Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApp.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IConfiguration _config;
+        private readonly AnagramSettings _anagramSettings;
         private IWordsRepository _wordsRepository;
         private IAnagramSolver _anagramSolver;
         private AnagramConfiguration _anagramConfiguration;
 
         private List<string> _anagrams;
 
-        public HomeController(IConfiguration config)
+        public HomeController(IOptionsMonitor<AnagramSettings> anagramSettings)
         {
-            _config = config;
+            _anagramSettings = anagramSettings.CurrentValue;
             _wordsRepository = new WordsRepository();
             _anagramConfiguration = new AnagramConfiguration(
-                Int32.Parse(config.GetSection("AnagramSettings:minWordLength").Value),
-                Int32.Parse(config.GetSection("AnagramSettings:maxResultsLength").Value)
+                _anagramSettings.minWordLength,
+                _anagramSettings.maxResultsLength
             );
 
             _anagramSolver = new AnagramSolver(_wordsRepository, _anagramConfiguration);

@@ -7,25 +7,29 @@ using WebApp.Models;
 using Contracts;
 using AnagramLogic;
 using Microsoft.Extensions.Configuration;
+using WebApp.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace WebApp.Controllers
 {
     public class DictionaryController : Controller
     {
+        private Dictionary _dictionaryConfiguration;
         private IWordsRepository _wordsRepository;
         private DictionaryModel _dictionaryModel;
         private int _pageSize;
 
-        public DictionaryController(IConfiguration config)
+        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration)
         {
+            _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
             _wordsRepository = new WordsRepository();
             _dictionaryModel = new DictionaryModel();
-            _pageSize = Int32.Parse(config.GetSection("Dictionary:pageSize").Value);
 
         }
         [Route("Dictionary/{page?}")]
         public IActionResult Index(int page = 1)
         {
+            _pageSize = _dictionaryConfiguration.pageSize;
             _dictionaryModel.wordsDictionary = _wordsRepository.GetPageOfWords(_pageSize, page);
             _dictionaryModel.page = page;
             return View(_dictionaryModel);
