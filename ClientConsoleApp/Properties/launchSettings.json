@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ClientConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "sula"
+    }
+  }
+}
