@@ -1,4 +1,6 @@
-﻿@{
+﻿@model  WebApp.Models.AnagramsModel;
+
+@{
     ViewData["Title"] = "Anagram generator";
 }
 
@@ -16,18 +18,18 @@
             </form>
         </div>
 
-        @{ if (ViewBag.Words != null)
+        @{ if (Model.Anagrams != null)
             {
-                @if (ViewBag.Words.Count < 1)
+                @if (Model.Anagrams.Count < 1)
                 {
-                    <h3>No anagrams for <b>@ViewBag.Word</b> found :(</h3>
+                    <h3>No anagrams for <b>@Model.Word</b> found :(</h3>
                 }
                 else
                 {
-                    <h3>Anagrams for <b>@ViewBag.Word</b></h3>
+                    <h3>Anagrams for <b>@Model.Word</b></h3>
                     <ul class="list-group">
 
-                        @foreach (var word in ViewBag.Words)
+                        @foreach (var word in Model.Anagrams)
                         {
                             <li class="list-group-item">@word</li>
                         }

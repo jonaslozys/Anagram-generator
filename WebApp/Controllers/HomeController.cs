@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Configuration;
 using Microsoft.Extensions.Options;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -20,7 +21,7 @@ namespace WebApp.Controllers
         private IWordsRepository _wordsRepository;
         private IAnagramSolver _anagramSolver;
         private AnagramConfiguration _anagramConfiguration;
-
+        private AnagramsModel _anagramsModel;
         private List<string> _anagrams;
 
         public HomeController(IOptionsMonitor<AnagramSettings> anagramSettings)
@@ -31,19 +32,20 @@ namespace WebApp.Controllers
                 _anagramSettings.minWordLength,
                 _anagramSettings.maxResultsLength
             );
-
             _anagramSolver = new AnagramSolver(_wordsRepository, _anagramConfiguration);
         }
         public ActionResult Index(string word)
         {
+            _anagramsModel = new AnagramsModel();
+
             if (word != null)
             {
                 _anagrams = _anagramSolver.GetAnagrams(word);
-                ViewBag.Word = word;
-                ViewBag.Words = _anagrams;
+                _anagramsModel.Anagrams = _anagrams;
+                _anagramsModel.Word = word;
             }
 
-            return View();
+            return View(_anagramsModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
