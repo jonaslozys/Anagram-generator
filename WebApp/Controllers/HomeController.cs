@@ -7,6 +7,7 @@ using AnagramLogic;
 using Contracts;
 using WebApp.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApp.Controllers
 {
@@ -38,8 +39,14 @@ namespace WebApp.Controllers
                 _anagrams = _anagramSolver.GetAnagrams(word);
                 _anagramsModel.Anagrams = _anagrams;
                 _anagramsModel.Word = word;
-            }
 
+                CookieOptions cookieOptions = new CookieOptions();
+                cookieOptions.Expires = DateTime.Now.AddMinutes(10);
+                string searchHistory = Request.Cookies["searchHistory"];
+                searchHistory += $",{word}";
+                
+                Response.Cookies.Append("searchHistory", searchHistory, cookieOptions);
+            }
             return View(_anagramsModel);
         }
 
