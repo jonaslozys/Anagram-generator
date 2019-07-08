@@ -9,5 +9,7 @@ namespace Contracts
 
         List<string> GetPageOfWords(int pageSize, int pageNumber);
 
+        byte[] GetDictionaryFile();
+
     }
 }

@@ -39,8 +39,7 @@ namespace WebApp.Controllers
 
         public IActionResult Download()
         {
-            string target = _dictionaryConfiguration.path;
-            byte[] fileBytes = System.IO.File.ReadAllBytes(target);
+            byte[] fileBytes = _wordsRepository.GetDictionaryFile();
             return File(fileBytes, "text/plain");
         }
     }

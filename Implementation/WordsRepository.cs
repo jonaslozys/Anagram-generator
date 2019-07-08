@@ -11,12 +11,12 @@ namespace AnagramLogic
     public class WordsRepository : IWordsRepository
     {
         private HashSet<Word> _wordList;
+        private string target = @"C:\Users\jonas\Desktop\tasks\Anagram Generator";
 
         public HashSet<Word> GetWords()
         {
             _wordList = new HashSet<Word>();
 
-            string target = @"C:\Users\jonas\Desktop\tasks\Anagram Generator";
 
             Environment.CurrentDirectory = target;
 
@@ -66,6 +66,13 @@ namespace AnagramLogic
                 .ToList();
 
             return pageOfWords;
+        }
+
+        public byte[] GetDictionaryFile()
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes($@"{target}/zodynas.txt");
+            return fileBytes;
+
         }
 
     }
