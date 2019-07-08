@@ -43,8 +43,15 @@ namespace WebApp.Controllers
                 CookieOptions cookieOptions = new CookieOptions();
                 cookieOptions.Expires = DateTime.Now.AddMinutes(10);
                 string searchHistory = Request.Cookies["searchHistory"];
-                searchHistory += $",{word}";
-                
+                if (searchHistory == null)
+                {
+                    searchHistory += $"{word}";
+
+                } else
+                {
+                    searchHistory += $",{word}";
+                }
+
                 Response.Cookies.Append("searchHistory", searchHistory, cookieOptions);
             }
             return View(_anagramsModel);

@@ -1,0 +1,23 @@
+﻿@model  WebApp.Models.HistoryModel
+@{
+    ViewData["Title"] = "History";
+}
+
+<h3>Your search history, parsed from cookies:</h3>
+<ul class="list-group">
+
+    @if (Model.SearchHistory != null)
+    {
+        @foreach (string searchedWord in Model.SearchHistory)
+        {
+            var parameters = new Dictionary<string, string> { { "word", searchedWord } };
+            <li class="list-group-item"><a asp-controller="home" asp-all-route-data="parameters" target="_blank">@searchedWord</a></li>
+        }
+    } else
+    {
+        <div class="alert alert-warning" role="alert">
+            <b>Your history is empty</b>
+        </div>
+    }
+
+</ul>
