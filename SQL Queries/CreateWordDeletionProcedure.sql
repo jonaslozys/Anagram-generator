@@ -1,0 +1,4 @@
+CREATE PROCEDURE deleteWord @Word VARCHAR(255)
+AS
+DELETE FROM Words
+WHERE Word = @Word;
