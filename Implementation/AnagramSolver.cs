@@ -75,6 +75,9 @@ namespace AnagramLogic
                 _userInput = new Word(userInput);
 
                 FindAnagrams();
+
+                _wordsRepository.UpdateAnagramsCache(userInput, _anagrams);
+
             }
 
             return _anagrams;

@@ -121,6 +121,8 @@ namespace AnagramLogic
                     anagramIndexes.Add(reader.GetInt32(1));
                 }
 
+                reader.Close();
+
                 if (anagramIndexes.Count > 0)
                 {
                     foreach (int index in anagramIndexes)
@@ -131,8 +133,10 @@ namespace AnagramLogic
 
                         while (reader.Read())
                         {
-                            anagrams.Add(reader.GetString(0));
+                            anagrams.Add(reader.GetString(1));
                         }
+
+                        reader.Close();
                     }
                 }
 
@@ -140,10 +144,46 @@ namespace AnagramLogic
 
             }
 
-
             return anagrams;
 
-        } 
+        }
+
+        public void UpdateAnagramsCache(string word, List<string> anagrams)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                foreach (string anagram in anagrams)
+                {
+                    string query = $"SELECT Id FROM Words WHERE Word = '{anagram}'";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    int? anagramId = null;
+
+                    while (reader.Read())
+                    {
+                        anagramId = reader.GetInt32(0);
+                    }
+
+                    reader.Close();
+
+                    if (anagramId != null)
+                    {
+                        query = $"INSERT INTO CachedWords VALUES ('{word}', '{anagramId}');";
+
+                        command = new SqlCommand(query, connection);
+
+                        command.ExecuteNonQuery();
+
+                    }
+                }
+
+            }
+        }
 
     }
 }
