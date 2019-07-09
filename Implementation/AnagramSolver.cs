@@ -63,11 +63,19 @@ namespace AnagramLogic
         {
             _anagrams.Clear();
 
-            _configuration = configuration;
+            _anagrams = _wordsRepository.GetCachedAnagrams(userInput);
 
-            _userInput = new Word(userInput);
+            if(_anagrams.Count > 0)
+            {
+                return _anagrams;
+            } else
+            {
+                _configuration = configuration;
 
-            FindAnagrams();
+                _userInput = new Word(userInput);
+
+                FindAnagrams();
+            }
 
             return _anagrams;
         }

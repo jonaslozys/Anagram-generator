@@ -101,5 +101,49 @@ namespace AnagramLogic
             return searchResults;
         }
 
+        public List<string> GetCachedAnagrams(string word)
+        {
+            List<string> anagrams = new List<string>();
+
+            List<int> anagramIndexes = new List<int>();
+
+            string query = $"SELECT * FROM CachedWords WHERE Word = '{word}';";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    anagramIndexes.Add(reader.GetInt32(1));
+                }
+
+                if (anagramIndexes.Count > 0)
+                {
+                    foreach (int index in anagramIndexes)
+                    {
+                        query = $"SELECT * FROM Words WHERE Id = '{index}'";
+                        command = new SqlCommand(query, connection);
+                        reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            anagrams.Add(reader.GetString(0));
+                        }
+                    }
+                }
+
+                reader.Close();
+
+            }
+
+
+            return anagrams;
+
+        } 
+
     }
 }

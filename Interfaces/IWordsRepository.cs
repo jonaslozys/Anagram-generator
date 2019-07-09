@@ -8,8 +8,8 @@ namespace Contracts
         HashSet<Word> GetWords();
 
         List<string> GetPageOfWords(int pageSize, int pageNumber);
-
         List<string> GetSearchedWords(string searchString);
+        List<string> GetCachedAnagrams(string word);
         byte[] GetDictionaryFile();
 
     }
