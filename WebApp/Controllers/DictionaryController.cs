@@ -9,6 +9,7 @@ using AnagramLogic;
 using Microsoft.Extensions.Configuration;
 using WebApp.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApp.Controllers
 {
@@ -49,11 +50,20 @@ namespace WebApp.Controllers
 
             return View(_dictionaryModel);
         }
+
         [HttpGet, Route("download")]
         public IActionResult Download()
         {
             byte[] fileBytes = _wordsRepository.GetDictionaryFile();
             return File(fileBytes, "text/plain");
+        }
+
+        [HttpPost, Route("delete")]
+        public IActionResult Delete(IFormCollection colletion)
+        {
+            string wordToDelete = colletion["word"];
+            _wordsRepository.DeleteWord(wordToDelete);
+            return RedirectToAction("Index");
         }
     }
 }

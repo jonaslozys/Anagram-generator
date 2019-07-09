@@ -20,7 +20,14 @@
         @foreach (string word in Model.wordsDictionary)
         {
             var parameters = new Dictionary<string, string> { { "word", word } };
-            <li class="list-group-item"><a asp-controller="home" asp-all-route-data="parameters" target="_blank">@word</a></li>
+            <li class="list-group-item">
+                <a clas="visible-md-inline" asp-controller="home" asp-all-route-data="parameters" target="_blank">@word</a>
+                    <form asp-action="delete" method="post" class="form-inline">
+                        <input type="hidden" name="word" value=@word />
+                        <input type="submit" class="btn btn-danger" value="Delete" />
+                    </form>
+            </li>
+            
         }
     }
 

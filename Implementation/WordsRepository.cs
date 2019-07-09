@@ -192,7 +192,7 @@ namespace AnagramLogic
             {
                 SqlCommand command = new SqlCommand("deleteWord", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("Word", word);
+                command.Parameters.Add(new SqlParameter("Word", word));
 
                 connection.Open();
 
