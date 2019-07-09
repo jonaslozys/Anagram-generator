@@ -7,12 +7,19 @@
 
 <h2>Dictionary</h2>
 <div>
+    <form method="POST" class="form-inline">
+        <div class="form-group">
+            <input type="text" name="search" placeholder="word" class="form-control" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
+<br/>
+<div class="clearfix">
     <a href="/dictionary/@(Model.page-1)" class="btn btn-primary">Previous page</a>
     <a href="/dictionary/@(Model.page+1)" class="btn btn-primary">Next page</a>
+    <a asp-action="download" class="btn btn-success" download>Download dictionary file</a>
 </div>
-<br />
-<a asp-action="download" class="btn btn-success" download>Download dictionary file</a>
-<br />
 <br />
 <ul class="list-group">
     @foreach (string word in Model.wordsDictionary)

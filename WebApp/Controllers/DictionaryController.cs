@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 
 namespace WebApp.Controllers
 {
+    [Route("dictionary")]
     public class DictionaryController : Controller
     {
         private Dictionary _dictionaryConfiguration;
@@ -26,8 +27,8 @@ namespace WebApp.Controllers
             _dictionaryModel = new DictionaryModel();
 
         }
-        [Route("Dictionary/")]
-        [Route("Dictionary/{page:int?}")]
+        [HttpGet, Route("")]
+        [HttpGet, Route("{page:int?}")]
         public IActionResult Index(int page = 1)
         {
             _pageSize = _dictionaryConfiguration.pageSize;
@@ -36,7 +37,15 @@ namespace WebApp.Controllers
             
             return View(_dictionaryModel);
         }
-
+        [HttpPost, Route("")]
+        [HttpPost, Route("{page:int?}")]
+        public IActionResult Search(string search)
+        {
+            _dictionaryModel.wordsDictionary = new List<string>() { "searchResult1", "word2" };
+            _dictionaryModel.SearchString = search;
+            return View(_dictionaryModel);
+        }
+        [HttpGet, Route("download")]
         public IActionResult Download()
         {
             byte[] fileBytes = _wordsRepository.GetDictionaryFile();

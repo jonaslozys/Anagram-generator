@@ -1,0 +1,15 @@
+﻿@model WebApp.Models.DictionaryModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search results for <b>@Model.SearchString</b></h2>
+<ul class="list-group">
+    @foreach (string word in Model.wordsDictionary)
+    {
+        var parameters = new Dictionary<string, string> { { "word", word } };
+        <li class="list-group-item"><a asp-controller="home" asp-all-route-data="parameters" target="_blank">@word</a></li>
+    }
+</ul>
+
