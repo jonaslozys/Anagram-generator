@@ -30,6 +30,7 @@ namespace AnagramLogic
             if (_wordList.Count > 1)
             {
                 return _wordList;
+
             } else
             {
                 _wordList = new HashSet<Word>();
@@ -84,6 +85,20 @@ namespace AnagramLogic
             byte[] fileBytes = System.IO.File.ReadAllBytes($@"{target}/zodynas.txt");
             return fileBytes;
 
+        }
+
+        public List<string> GetSearchedWords(string searchString)
+        {
+            List<string> searchResults = this.GetWords()
+                .Select(word => word.word)
+                .ToList();
+            
+            if (searchResults != null)
+            {
+                searchResults = searchResults.Where(s => s.Contains(searchString)).ToList();
+            }
+
+            return searchResults;
         }
 
     }

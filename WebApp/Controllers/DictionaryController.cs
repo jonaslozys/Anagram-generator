@@ -41,8 +41,12 @@ namespace WebApp.Controllers
         [HttpPost, Route("{page:int?}")]
         public IActionResult Search(string search)
         {
-            _dictionaryModel.wordsDictionary = new List<string>() { "searchResult1", "word2" };
-            _dictionaryModel.SearchString = search;
+            if (search != null)
+            {
+                _dictionaryModel.wordsDictionary = _wordsRepository.GetSearchedWords(search);
+                _dictionaryModel.SearchString = search;
+            }
+
             return View(_dictionaryModel);
         }
         [HttpGet, Route("download")]

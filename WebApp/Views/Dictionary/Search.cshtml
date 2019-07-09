@@ -4,12 +4,25 @@
     ViewData["Title"] = "Search";
 }
 
+<br/>
+<div>
+    <form method="POST" class="form-inline">
+        <div class="form-group">
+            <input type="text" name="search" placeholder="word" class="form-control" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
 <h2>Search results for <b>@Model.SearchString</b></h2>
 <ul class="list-group">
-    @foreach (string word in Model.wordsDictionary)
+    @if (Model.wordsDictionary != null)
     {
-        var parameters = new Dictionary<string, string> { { "word", word } };
-        <li class="list-group-item"><a asp-controller="home" asp-all-route-data="parameters" target="_blank">@word</a></li>
+        @foreach (string word in Model.wordsDictionary)
+        {
+            var parameters = new Dictionary<string, string> { { "word", word } };
+            <li class="list-group-item"><a asp-controller="home" asp-all-route-data="parameters" target="_blank">@word</a></li>
+        }
     }
+
 </ul>
 
