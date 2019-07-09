@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,12 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Implementation\AnagramLogic.csproj" />
     <ProjectReference Include="..\Interfaces\Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Data.SqlClient">
-      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\system.data.sqlclient\4.5.1\ref\netcoreapp2.1\System.Data.SqlClient.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

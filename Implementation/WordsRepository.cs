@@ -90,13 +90,24 @@ namespace AnagramLogic
 
         public List<string> GetSearchedWords(string searchString)
         {
-            List<string> searchResults = this.GetWords()
-                .Select(word => word.word)
-                .ToList();
-            
-            if (searchResults != null)
+            List<string> searchResults = new List<string>();
+
+            string query = $"SELECT Word FROM Words WHERE Word LIKE '{searchString}%';";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                searchResults = searchResults.Where(s => s.Contains(searchString)).ToList();
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    searchResults.Add(reader.GetString(0));
+                }
+
+                reader.Close();
+
             }
 
             return searchResults;
