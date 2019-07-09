@@ -6,6 +6,7 @@ using AnagramLogic;
 using Contracts;
 using System.Linq;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace AnagramLogic
 {
@@ -182,6 +183,20 @@ namespace AnagramLogic
                     }
                 }
 
+            }
+        }
+
+        public void DeleteWord(string word)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand("deleteWord", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("Word", word);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
             }
         }
 
