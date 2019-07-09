@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using WebApp.Configuration;
 using Contracts;
 using AnagramLogic;
+using Microsoft.Extensions.Options;
 
 namespace WebApp
 {
@@ -34,12 +35,14 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddSingleton(Configuration);
-
             services.AddSingleton<IWordsRepository>(new WordsRepository(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<IAnagramSolver>(
+                new AnagramSolver(
+                    new WordsRepository(Configuration.GetConnectionString("DefaultConnection"))
+                    )
+                );
             services.Configure<Dictionary>(Configuration.GetSection("Dictionary"));
             services.Configure<AnagramSettings>(Configuration.GetSection("AnagramSettings"));
-
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

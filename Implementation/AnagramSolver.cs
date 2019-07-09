@@ -18,12 +18,12 @@ namespace AnagramLogic
         private Word _userInput;
 
         private List<string> _anagrams;
-        public AnagramSolver(IWordsRepository wordsRepository, AnagramConfiguration configuration)
+        public AnagramSolver(IWordsRepository wordsRepository)
         {
             _wordsRepository = wordsRepository;
-            _configuration = configuration;
-            _anagrams = new List<string>();
             _words = wordsRepository.GetWords();
+            _anagrams = new List<string>();
+
         }
 
         private bool CompareWords(Word word1, Word word2)
@@ -60,8 +60,12 @@ namespace AnagramLogic
                 }
             }
         }
-        public List<string> GetAnagrams(string userInput)
+        public List<string> GetAnagrams(string userInput, AnagramConfiguration configuration)
         {
+            _anagrams.Clear();
+
+            _configuration = configuration;
+
             _userInput = new Word(userInput);
 
             FindAnagrams();

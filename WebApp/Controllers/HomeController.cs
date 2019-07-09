@@ -20,7 +20,7 @@ namespace WebApp.Controllers
         private AnagramsModel _anagramsModel;
         private List<string> _anagrams;
 
-        public HomeController(IOptionsMonitor<AnagramSettings> anagramSettings, IWordsRepository wordsRepository)
+        public HomeController(IOptionsMonitor<AnagramSettings> anagramSettings, IWordsRepository wordsRepository, IAnagramSolver anagramSolver)
         {
             _anagramSettings = anagramSettings.CurrentValue;
             _wordsRepository = wordsRepository;
@@ -28,7 +28,7 @@ namespace WebApp.Controllers
                 _anagramSettings.minWordLength,
                 _anagramSettings.maxResultsLength
             );
-            _anagramSolver = new AnagramSolver(_wordsRepository, _anagramConfiguration);
+            _anagramSolver = anagramSolver;
         }
         public ActionResult Index(string word)
         {
@@ -36,7 +36,7 @@ namespace WebApp.Controllers
 
             if (word != null)
             {
-                _anagrams = _anagramSolver.GetAnagrams(word);
+                _anagrams = _anagramSolver.GetAnagrams(word, _anagramConfiguration);
                 _anagramsModel.Anagrams = _anagrams;
                 _anagramsModel.Word = word;
 

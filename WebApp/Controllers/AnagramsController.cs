@@ -31,9 +31,9 @@ namespace WebApp.Controllers
         [HttpGet("{word}")]
         public async Task<ActionResult<List<string>>> GetAnagrams(string word)
         {
-            this._anagramSolver = new AnagramSolver(_wordsRepository, _anagramConfiguration);
+            this._anagramSolver = new AnagramSolver(_wordsRepository);
 
-            List<string> anagrams = this._anagramSolver.GetAnagrams(word);
+            List<string> anagrams = this._anagramSolver.GetAnagrams(word, _anagramConfiguration);
 
             if (anagrams.Count > 0)
             {
