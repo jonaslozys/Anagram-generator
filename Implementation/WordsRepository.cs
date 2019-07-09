@@ -5,6 +5,7 @@ using System.Threading;
 using AnagramLogic;
 using Contracts;
 using System.Linq;
+using System.Data.SqlClient;
 
 namespace AnagramLogic
 {
@@ -12,37 +13,47 @@ namespace AnagramLogic
     {
         private HashSet<Word> _wordList;
         private string target = @"C:\Users\jonas\Desktop\tasks\Anagram Generator";
+        private string _connectionString;
 
+        public WordsRepository()
+        {
+
+        }
+
+        public WordsRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+            _wordList = new HashSet<Word>();
+        }
         public HashSet<Word> GetWords()
         {
-            _wordList = new HashSet<Word>();
-
-
-            Environment.CurrentDirectory = target;
-
-            using (StreamReader sr = new StreamReader($@"{target}/zodynas.txt"))
+            if (_wordList.Count > 1)
             {
-                string line;
-                while (sr.Peek() >= 0)
+                return _wordList;
+            } else
+            {
+                _wordList = new HashSet<Word>();
+
+                string query = "SELECT Word FROM Words;";
+
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    line = sr.ReadLine().Trim();
-                    string[] words = line.Split(new[] { '\t' });
-                    Word word1 = new Word(words[0]);
-                    Word word2 = new Word(words[2]);
+                    SqlCommand command = new SqlCommand(query, connection);
+                    connection.Open();
 
-                    if (!_wordList.Contains(word1))
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
                     {
-                        _wordList.Add(word1);
+                        _wordList.Add(new Word(reader.GetString(0)));
                     }
 
-                    if (!_wordList.Contains(word2))
-                    {
-                        _wordList.Add(word2);
-                    }
+                    reader.Close();
+
                 }
-            }
 
-            return _wordList;
+                return _wordList;
+            }
         }
 
         public List<string> GetPageOfWords(int pageSize, int pageNumber)

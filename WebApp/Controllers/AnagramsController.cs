@@ -21,10 +21,10 @@ namespace WebApp.Controllers
         private IAnagramSolver _anagramSolver;
         private AnagramConfiguration _anagramConfiguration;
 
-        public AnagramsController(IOptionsMonitor<AnagramSettings> anagramSettings)
+        public AnagramsController(IOptionsMonitor<AnagramSettings> anagramSettings, IWordsRepository wordsRepository)
         {
             this._anagramSettings = anagramSettings.CurrentValue;
-            this._wordsRepository = new WordsRepository();
+            this._wordsRepository = wordsRepository;
             this._anagramConfiguration = new AnagramConfiguration(_anagramSettings.minWordLength, _anagramSettings.maxResultsLength);
         }
 

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Configuration;
+using Contracts;
+using AnagramLogic;
 
 namespace WebApp
 {
@@ -32,6 +34,8 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddSingleton(Configuration);
+
+            services.AddSingleton<IWordsRepository>(new WordsRepository(Configuration.GetConnectionString("DefaultConnection")));
             services.Configure<Dictionary>(Configuration.GetSection("Dictionary"));
             services.Configure<AnagramSettings>(Configuration.GetSection("AnagramSettings"));
 

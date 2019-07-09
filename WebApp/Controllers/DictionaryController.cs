@@ -19,10 +19,10 @@ namespace WebApp.Controllers
         private DictionaryModel _dictionaryModel;
         private int _pageSize;
 
-        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration)
+        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, IWordsRepository wordsRepository)
         {
             _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
-            _wordsRepository = new WordsRepository();
+            _wordsRepository = wordsRepository;
             _dictionaryModel = new DictionaryModel();
 
         }

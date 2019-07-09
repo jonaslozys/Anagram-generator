@@ -20,10 +20,10 @@ namespace WebApp.Controllers
         private AnagramsModel _anagramsModel;
         private List<string> _anagrams;
 
-        public HomeController(IOptionsMonitor<AnagramSettings> anagramSettings)
+        public HomeController(IOptionsMonitor<AnagramSettings> anagramSettings, IWordsRepository wordsRepository)
         {
             _anagramSettings = anagramSettings.CurrentValue;
-            _wordsRepository = new WordsRepository();
+            _wordsRepository = wordsRepository;
             _anagramConfiguration = new AnagramConfiguration(
                 _anagramSettings.minWordLength,
                 _anagramSettings.maxResultsLength
