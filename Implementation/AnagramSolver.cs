@@ -65,20 +65,11 @@ namespace AnagramLogic
 
             _anagrams = _wordsRepository.GetCachedAnagrams(userInput);
 
-            if(_anagrams.Count > 0)
-            {
-                return _anagrams;
-            } else
-            {
-                _configuration = configuration;
+            _configuration = configuration;
 
-                _userInput = new Word(userInput);
+            _userInput = new Word(userInput);
 
-                FindAnagrams();
-
-                _wordsRepository.UpdateAnagramsCache(userInput, _anagrams);
-
-            }
+            FindAnagrams();
 
             return _anagrams;
         }

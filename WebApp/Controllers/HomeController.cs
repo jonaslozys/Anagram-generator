@@ -16,14 +16,16 @@ namespace WebApp.Controllers
         private readonly AnagramSettings _anagramSettings;
         private IWordsRepository _wordsRepository;
         private IAnagramSolver _anagramSolver;
+        private ICacheService _cacheService;
         private AnagramConfiguration _anagramConfiguration;
         private AnagramsModel _anagramsModel;
         private List<string> _anagrams;
 
-        public HomeController(IOptionsMonitor<AnagramSettings> anagramSettings, IWordsRepository wordsRepository, IAnagramSolver anagramSolver)
+        public HomeController(IOptionsMonitor<AnagramSettings> anagramSettings, IWordsRepository wordsRepository, IAnagramSolver anagramSolver, ICacheService cacheService)
         {
             _anagramSettings = anagramSettings.CurrentValue;
             _wordsRepository = wordsRepository;
+            _cacheService = cacheService;
             _anagramConfiguration = new AnagramConfiguration(
                 _anagramSettings.minWordLength,
                 _anagramSettings.maxResultsLength
@@ -36,9 +38,17 @@ namespace WebApp.Controllers
 
             if (word != null)
             {
-                _anagrams = _anagramSolver.GetAnagrams(word, _anagramConfiguration);
-                _anagramsModel.Anagrams = _anagrams;
                 _anagramsModel.Word = word;
+
+                if (_cacheService.IsCached(word))
+                {
+                    _anagramsModel.Anagrams = _cacheService.GetCachedAnagrams();
+                } else
+                {
+                    _anagrams = _anagramSolver.GetAnagrams(word, _anagramConfiguration);
+                    _anagramsModel.Anagrams = _anagrams;
+                    _cacheService.UpdateAnagramsCache(word, _anagrams);
+                }
 
                 CookieOptions cookieOptions = new CookieOptions();
                 cookieOptions.Expires = DateTime.Now.AddMinutes(10);

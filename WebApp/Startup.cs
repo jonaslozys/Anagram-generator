@@ -36,6 +36,7 @@ namespace WebApp
             });
             services.AddSingleton(Configuration);
             services.AddSingleton<IWordsRepository>(new WordsRepository(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<ICacheService, CacheService>();
             services.AddSingleton<IAnagramSolver>(
                 new AnagramSolver(
                     new WordsRepository(Configuration.GetConnectionString("DefaultConnection"))
