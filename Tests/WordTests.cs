@@ -8,7 +8,7 @@ namespace Tests
 {
     class WordTests
     {
-        private Word wordObject;
+        private WordModel wordObject;
         Dictionary<char, int> letterRegistry;
 
         [SetUp]
@@ -35,7 +35,7 @@ namespace Tests
                     letterRegistry[letter] = 1;
                 }
             }
-            wordObject = new Word(testWord);
+            wordObject = new WordModel(testWord);
             Assert.AreEqual(wordObject.letterRegistry, letterRegistry);
         }
 
@@ -48,7 +48,7 @@ namespace Tests
         public void Should_Not_Create_Correct_Dictionary(string testWord)
         {
             letterRegistry = new Dictionary<char, int> { { 't', 2 }, { 'r', 1 }, { 's', 2 }, { 'a', 1 } };
-            wordObject = new Word(testWord);
+            wordObject = new WordModel(testWord);
             Assert.AreNotEqual(wordObject.letterRegistry, letterRegistry);
         }
 
@@ -59,7 +59,7 @@ namespace Tests
         [TestCase("Kot Letas")]
         public void Should_Correctly_Assign_Word_Property(string testWord)
         {
-            wordObject = new Word(testWord);
+            wordObject = new WordModel(testWord);
             Assert.AreEqual(wordObject.word, testWord);
         }
     }

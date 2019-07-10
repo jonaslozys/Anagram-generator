@@ -19,7 +19,7 @@ namespace AnagramLogic
             _connection = optionsAccessor.CurrentValue;
         }
 
-        public void AddUserLog(UserLog userLog)
+        public void AddUserLog(UserSearchLogModel userLog)
         {
             string query = "INSERT INTO UserLog (UserIP, WordSearched) VALUES (@UserIP, @WordSearched);";
 
@@ -40,9 +40,9 @@ namespace AnagramLogic
             }
         }
 
-        public List<UserLog> GetUserLogs(string userIP)
+        public List<UserSearchLogModel> GetUserLogs(string userIP)
         {
-            List<UserLog> userLogs = new List<UserLog>();
+            List<UserSearchLogModel> userLogs = new List<UserSearchLogModel>();
 
             string query = "SELECT UserLog.Id, UserIP, UserLog.WordSearched, UserLog.SearchDate, Words.Word AS 'Anagram' " +
                            "FROM UserLog " +
@@ -74,7 +74,7 @@ namespace AnagramLogic
                         string userIp = reader.GetString(1);
                         string wordSearched = reader.GetString(2);
                         DateTime searchDate = reader.GetDateTime(3);
-                        UserLog userLog = new UserLog(userIP, wordSearched, searchId);
+                        UserSearchLogModel userLog = new UserSearchLogModel(userIP, wordSearched, searchId);
                         userLog.Anagrams.Add(anagram);
                         userLog.SeachDate = searchDate;
                         userLogs.Add(userLog);

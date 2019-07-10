@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Contracts
 {
-    public class Word
+    public class WordModel
     {
         public string word;
 
         public Dictionary<char, int> letterRegistry = new Dictionary<char, int>();
 
-        public Word(string word)
+        public WordModel(string word)
         {
             this.word = word;
 

@@ -11,11 +11,11 @@ namespace WebApp.Controllers
 {
     public class HistoryController : Controller
     {
-        private HistoryModel _historyModel;
+        private HistoryViewModel _historyModel;
         private IUsersRepository _usersRepository;
         public HistoryController(IUsersRepository usersRepository)
         {
-            _historyModel = new HistoryModel();
+            _historyModel = new HistoryViewModel();
             _usersRepository = usersRepository;
         }
         public IActionResult Index()

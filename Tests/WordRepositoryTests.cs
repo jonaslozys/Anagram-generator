@@ -21,7 +21,7 @@ namespace Tests
         public void Should_Return_Not_Empy_Hashset()
         {
             wordsRepository = new WordsRepository();
-            Assert.IsTrue(wordsRepository.GetWords().GetType() == typeof(HashSet<Word>) && wordsRepository.GetWords().Count > 0);
+            Assert.IsTrue(wordsRepository.GetWords().GetType() == typeof(HashSet<WordModel>) && wordsRepository.GetWords().Count > 0);
         }
 
         [Test]

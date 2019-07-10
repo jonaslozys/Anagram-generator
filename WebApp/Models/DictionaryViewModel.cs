@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.Models
 {
-    public class DictionaryModel
+    public class DictionaryViewModel
     {
         public List<string> wordsDictionary { get; set; }
         public string SearchString { get; set; }

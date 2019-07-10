@@ -1,5 +1,5 @@
 ﻿@using Contracts;
-@model  WebApp.Models.HistoryModel
+@model  WebApp.Models.HistoryViewModel
 @{
     ViewData["Title"] = "History";
 }
@@ -9,7 +9,7 @@
 
     @if (Model.HistoryLogs != null)
     {
-        @foreach (UserLog historyLog in Model.HistoryLogs)
+        @foreach (UserSearchLogModel historyLog in Model.HistoryLogs)
         {
             var parameters = new Dictionary<string, string> { { "word", historyLog.WordSearched } };
             <li class="list-group-item">

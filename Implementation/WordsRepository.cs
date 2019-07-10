@@ -15,7 +15,7 @@ namespace AnagramLogic
     public class WordsRepository : IWordsRepository
     {
         private Connection _connection;
-        private HashSet<Word> _wordList;
+        private HashSet<WordModel> _wordList;
         private string target = @"C:\Users\jonas\Desktop\tasks\Anagram Generator";
         private string _connectionString;
 
@@ -28,9 +28,9 @@ namespace AnagramLogic
         {
             _connection = optionsAccessor.CurrentValue;
             _connectionString = _connection.ConnectionString;
-            _wordList = new HashSet<Word>();
+            _wordList = new HashSet<WordModel>();
         }
-        public HashSet<Word> GetWords()
+        public HashSet<WordModel> GetWords()
         {
             if (_wordList.Count > 1)
             {
@@ -38,7 +38,7 @@ namespace AnagramLogic
 
             } else
             {
-                _wordList = new HashSet<Word>();
+                _wordList = new HashSet<WordModel>();
 
                 string query = "SELECT Word FROM Words;";
 
@@ -51,7 +51,7 @@ namespace AnagramLogic
 
                     while (reader.Read())
                     {
-                        _wordList.Add(new Word(reader.GetString(0)));
+                        _wordList.Add(new WordModel(reader.GetString(0)));
                     }
 
                     reader.Close();

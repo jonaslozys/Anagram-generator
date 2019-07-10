@@ -19,7 +19,7 @@ namespace WebApp.Controllers
         private IAnagramSolver _anagramSolver;
         private ICacheService _cacheService;
         private AnagramConfiguration _anagramConfiguration;
-        private AnagramsModel _anagramsModel;
+        private AnagramsViewModel _anagramsModel;
         private List<string> _anagrams;
 
         public HomeController(
@@ -41,13 +41,13 @@ namespace WebApp.Controllers
         }
         public ActionResult Index(string word)
         {
-            _anagramsModel = new AnagramsModel();
+            _anagramsModel = new AnagramsViewModel();
 
             if (word != null)
             {
                 _anagramsModel.Word = word;
                 string ip = HttpContext.Connection.RemoteIpAddress.ToString();
-                UserLog userLog = new UserLog(ip, word, null);
+                UserSearchLogModel userLog = new UserSearchLogModel(ip, word, null);
 
                 _usersRepository.AddUserLog(userLog);
 

@@ -13,9 +13,9 @@ namespace AnagramLogic
 
         private AnagramConfiguration _configuration;
 
-        private HashSet<Word> _words;
+        private HashSet<WordModel> _words;
 
-        private Word _userInput;
+        private WordModel _userInput;
 
         private List<string> _anagrams;
         public AnagramSolver(IWordsRepository wordsRepository)
@@ -25,7 +25,7 @@ namespace AnagramLogic
             _anagrams = new List<string>();
         }
 
-        private bool CompareWords(Word word1, Word word2)
+        private bool CompareWords(WordModel word1, WordModel word2)
         {
             if (word1.letterRegistry.Count != word2.letterRegistry.Count)
             {
@@ -48,7 +48,7 @@ namespace AnagramLogic
 
         private void FindAnagrams()
         {
-            foreach(Word word in _words)
+            foreach(WordModel word in _words)
             {
                 if(CompareWords(_userInput, word) && word.word.Length >= _configuration.minWordLength && _anagrams.Count < _configuration.maxResultsLength)
                 {
@@ -65,7 +65,7 @@ namespace AnagramLogic
 
             _configuration = configuration;
 
-            _userInput = new Word(userInput);
+            _userInput = new WordModel(userInput);
 
             FindAnagrams();
 

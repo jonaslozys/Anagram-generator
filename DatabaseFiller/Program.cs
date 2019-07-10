@@ -13,13 +13,13 @@ namespace DatabaseFiller
         {
             string connectionString = "Data Source=LT-LIT-SC-0166;Initial Catalog=Anagrams;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             IWordsRepository wordsRepository = new WordsRepository();
-            HashSet<Word> words = wordsRepository.GetWords();
+            HashSet<WordModel> words = wordsRepository.GetWords();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                foreach (Word word in words)
+                foreach (WordModel word in words)
                 {
                     if (word.word.Contains("'"))
                     {

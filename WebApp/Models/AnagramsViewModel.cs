@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.Models
 {
-    public class AnagramsModel
+    public class AnagramsViewModel
     {
         public List<string> Anagrams { get; set; }
 

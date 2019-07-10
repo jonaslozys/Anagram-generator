@@ -6,9 +6,9 @@ using Contracts;
 
 namespace WebApp.Models
 {
-    public class HistoryModel
+    public class HistoryViewModel
     {
         public List<string> SearchHistory {get;set;}
-        public List<UserLog> HistoryLogs { get; set; }
+        public List<UserSearchLogModel> HistoryLogs { get; set; }
     }
 }

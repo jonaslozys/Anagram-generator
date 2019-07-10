@@ -18,14 +18,14 @@ namespace WebApp.Controllers
     {
         private Dictionary _dictionaryConfiguration;
         private IWordsRepository _wordsRepository;
-        private DictionaryModel _dictionaryModel;
+        private DictionaryViewModel _dictionaryModel;
         private int _pageSize;
 
         public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, IWordsRepository wordsRepository)
         {
             _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
             _wordsRepository = wordsRepository;
-            _dictionaryModel = new DictionaryModel();
+            _dictionaryModel = new DictionaryViewModel();
 
         }
         [HttpGet, Route("")]

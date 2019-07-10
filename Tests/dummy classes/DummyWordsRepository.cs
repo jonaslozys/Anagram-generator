@@ -7,18 +7,18 @@ namespace Tests.dummy_classes
 {
     public class DummyWordsRepository : IWordsRepository
     {
-        public HashSet<Word> GetWords()
+        public HashSet<WordModel> GetWords()
         {
             string[] words = new string[] {
                 "pakeleivingas", "pakeleivingos", "pakeleivingos", "žvilgsnis", "seminaras", "Semionovičiumi",
                 "menas", "nesam", "senam"
             };
 
-            HashSet<Word> wordObjects= new HashSet<Word>();
+            HashSet<WordModel> wordObjects= new HashSet<WordModel>();
 
             foreach(string word in words)
             {
-                wordObjects.Add(new Word(word));
+                wordObjects.Add(new WordModel(word));
             }
 
             return wordObjects;
