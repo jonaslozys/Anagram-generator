@@ -50,7 +50,7 @@ namespace WebApp.Controllers
             {
                 _anagramsModel.Word = word;
                 string ip = _accessor.HttpContext.Connection.RemoteIpAddress.ToString();
-                UserLog userLog = new UserLog(ip, word);
+                UserLog userLog = new UserLog(ip, word, null);
 
                 _usersRepository.AddUserLog(userLog);
 
