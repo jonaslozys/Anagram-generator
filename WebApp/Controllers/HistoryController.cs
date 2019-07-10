@@ -13,12 +13,10 @@ namespace WebApp.Controllers
     {
         private HistoryModel _historyModel;
         private IUsersRepository _usersRepository;
-        private IHttpContextAccessor _accessor;
-        public HistoryController(IUsersRepository usersRepository, IHttpContextAccessor accessor)
+        public HistoryController(IUsersRepository usersRepository)
         {
             _historyModel = new HistoryModel();
             _usersRepository = usersRepository;
-            _accessor = accessor;
         }
         public IActionResult Index()
         {
@@ -29,7 +27,7 @@ namespace WebApp.Controllers
                 _historyModel.SearchHistory = searchHistory.Split(',').ToList();
 
             }*/
-            string ip = _accessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            string ip = HttpContext.Connection.RemoteIpAddress.ToString();
 
             _historyModel.HistoryLogs = _usersRepository.GetUserLogs(ip);
 

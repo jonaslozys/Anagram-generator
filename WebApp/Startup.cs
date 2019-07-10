@@ -37,7 +37,6 @@ namespace WebApp
             });
             services.Configure<Connection>(Configuration);
             services.AddSingleton(Configuration);
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IWordsRepository, WordsRepository>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddSingleton<ICacheService, CacheService>();
