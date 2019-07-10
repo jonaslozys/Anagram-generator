@@ -6,7 +6,7 @@ namespace Contracts
 {
     public interface ICacheRepository
     {
-        List<string> GetCachedAnagrams(string word);
-        void UpdateAnagramsCache(string word, List<string> anagrams);
+        List<WordModel> GetCachedAnagrams(string word);
+        void UpdateAnagramsCache(string word, List<WordModel> anagrams);
     }
 }

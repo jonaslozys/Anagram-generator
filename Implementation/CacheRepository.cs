@@ -24,9 +24,9 @@ namespace AnagramLogic
         }
 
 
-        public List<string> GetCachedAnagrams(string word)
+        public List<WordModel> GetCachedAnagrams(string word)
         {
-            List<string> anagrams = new List<string>();
+            List<WordModel> anagrams = new List<WordModel>();
 
             List<int> anagramIndexes = new List<int>();
 
@@ -56,7 +56,7 @@ namespace AnagramLogic
 
                         while (reader.Read())
                         {
-                            anagrams.Add(reader.GetString(1));
+                            anagrams.Add(new WordModel(reader.GetString(1)));
                         }
 
                         reader.Close();
@@ -71,38 +71,19 @@ namespace AnagramLogic
 
         }
 
-        public void UpdateAnagramsCache(string word, List<string> anagrams)
+        public void UpdateAnagramsCache(string word, List<WordModel> anagrams)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
-                foreach (string anagram in anagrams)
+                foreach (WordModel anagram in anagrams)
                 {
-                    string query = $"SELECT Id FROM Words WHERE Word = '{anagram}'";
+                    string query = $"INSERT INTO CachedWords VALUES ('{word}', '{anagram.Id}');";
 
                     SqlCommand command = new SqlCommand(query, connection);
 
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    int? anagramId = null;
-
-                    while (reader.Read())
-                    {
-                        anagramId = reader.GetInt32(0);
-                    }
-
-                    reader.Close();
-
-                    if (anagramId != null)
-                    {
-                        query = $"INSERT INTO CachedWords VALUES ('{word}', '{anagramId}');";
-
-                        command = new SqlCommand(query, connection);
-
-                        command.ExecuteNonQuery();
-
-                    }
+                    command.ExecuteNonQuery();
                 }
 
             }

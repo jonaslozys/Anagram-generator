@@ -36,7 +36,7 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.Configure<Connection>(Configuration);
-            services.Configure<AnagramConfiguration>(Configuration);
+            services.Configure<AnagramConfiguration>(Configuration.GetSection("AnagramConfiguration"));
             services.AddSingleton(Configuration);
             services.AddSingleton<IWordsRepository, WordsRepository>();
             services.AddSingleton<ICacheRepository, CacheRepository>();

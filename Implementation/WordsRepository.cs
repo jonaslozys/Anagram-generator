@@ -40,7 +40,7 @@ namespace AnagramLogic
             {
                 _wordList = new HashSet<WordModel>();
 
-                string query = "SELECT Word FROM Words;";
+                string query = "SELECT Word, Id FROM Words;";
 
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
@@ -51,7 +51,7 @@ namespace AnagramLogic
 
                     while (reader.Read())
                     {
-                        _wordList.Add(new WordModel(reader.GetString(0)));
+                        _wordList.Add(new WordModel(reader.GetString(0), reader.GetInt32(1)));
                     }
 
                     reader.Close();

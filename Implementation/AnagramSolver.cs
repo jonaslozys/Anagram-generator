@@ -19,12 +19,11 @@ namespace AnagramLogic
 
         private WordModel _userInput;
 
-        private List<string> _anagrams;
+        private List<WordModel> _anagrams;
         public AnagramSolver(IWordsRepository wordsRepository, IOptionsMonitor<AnagramConfiguration> configuration)
         {
             _wordsRepository = wordsRepository;
             _words = wordsRepository.GetWords();
-            _anagrams = new List<string>();
             _configuration = configuration.CurrentValue;
         }
 
@@ -57,14 +56,14 @@ namespace AnagramLogic
                 {
                     if(_userInput.word != word.word)
                     {
-                        _anagrams.Add(word.word);
+                        _anagrams.Add(word);
                     }
                 }
             }
         }
-        public List<string> GetAnagrams(string userInput)
+        public List<WordModel> GetAnagrams(string userInput)
         {
-            _anagrams.Clear();
+            _anagrams = new List<WordModel>();
 
             _userInput = new WordModel(userInput);
 

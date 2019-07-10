@@ -10,6 +10,8 @@ namespace Contracts
 
         public Dictionary<char, int> letterRegistry = new Dictionary<char, int>();
 
+        public int Id { get; set; }
+
         public WordModel(string word)
         {
             this.word = word;
@@ -24,6 +26,25 @@ namespace Contracts
                     letterRegistry[letter] = 1;
                 }
             }
+        }
+
+        public WordModel(string word, int id)
+        {
+            this.word = word;
+
+            foreach (char letter in word)
+            {
+                if (letterRegistry.ContainsKey(letter))
+                {
+                    letterRegistry[letter] += 1;
+                }
+                else
+                {
+                    letterRegistry[letter] = 1;
+                }
+            }
+
+            Id = id;
         }
 
         public override bool Equals(object obj)

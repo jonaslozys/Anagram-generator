@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using Contracts;
+using System.Linq;
 
 namespace AnagramLogic
 {
     public class AnagramsService : IAnagramsService
     {
-        private IWordsRepository _wordsRepository;
         private ICacheRepository _cacheRepository;
         private IAnagramSolver _anagramSolver;
 
-        private List<string> _cachedAnagrams;
+        private List<WordModel> _cachedAnagrams;
 
-        public AnagramsService(IWordsRepository wordsRepository, ICacheRepository cacheRepository, IAnagramSolver anagramSolver)
+        public AnagramsService(ICacheRepository cacheRepository, IAnagramSolver anagramSolver)
         {
-            _wordsRepository = wordsRepository;
             _cacheRepository = cacheRepository;
             _anagramSolver = anagramSolver;
         }
@@ -30,7 +29,7 @@ namespace AnagramLogic
 
         public List<string> GetAnagrams(string word)
         {
-            List<string> anagrams = new List<string>();
+            List<WordModel> anagrams;
 
             if (IsCached(word))
             {
@@ -40,10 +39,10 @@ namespace AnagramLogic
                 anagrams = _anagramSolver.GetAnagrams(word);
                 UpdateAnagramsCache(word, anagrams);
             }
-            return anagrams;
+            return anagrams.Select(w => w.word).ToList();
         }
 
-        private void UpdateAnagramsCache(string word, List<string> anagrams) 
+        private void UpdateAnagramsCache(string word, List<WordModel> anagrams) 
         {
             _cacheRepository.UpdateAnagramsCache(word, anagrams);
         }
