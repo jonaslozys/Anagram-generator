@@ -6,7 +6,7 @@ namespace Contracts
 {
     public interface IUsersRepository
     {
-        void AddUserSearch(UserLog userLog);
+        void AddUserLog(UserLog userLog);
         List<UserLog> GetUserLogs(string UserIP);
     }
 }

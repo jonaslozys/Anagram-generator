@@ -14,17 +14,27 @@ namespace WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly AnagramSettings _anagramSettings;
+        private IHttpContextAccessor _accessor;
         private IWordsRepository _wordsRepository;
+        private IUsersRepository _usersRepository;
         private IAnagramSolver _anagramSolver;
         private ICacheService _cacheService;
         private AnagramConfiguration _anagramConfiguration;
         private AnagramsModel _anagramsModel;
         private List<string> _anagrams;
 
-        public HomeController(IOptionsMonitor<AnagramSettings> anagramSettings, IWordsRepository wordsRepository, IAnagramSolver anagramSolver, ICacheService cacheService)
+        public HomeController(
+            IHttpContextAccessor accessor,
+            IOptionsMonitor<AnagramSettings> anagramSettings, 
+            IWordsRepository wordsRepository,
+            IUsersRepository usersRepository,
+            IAnagramSolver anagramSolver,
+            ICacheService cacheService)
         {
+            _accessor = accessor;
             _anagramSettings = anagramSettings.CurrentValue;
             _wordsRepository = wordsRepository;
+            _usersRepository = usersRepository;
             _cacheService = cacheService;
             _anagramConfiguration = new AnagramConfiguration(
                 _anagramSettings.minWordLength,
@@ -39,6 +49,10 @@ namespace WebApp.Controllers
             if (word != null)
             {
                 _anagramsModel.Word = word;
+                string ip = _accessor.HttpContext.Connection.RemoteIpAddress.ToString();
+                UserLog userLog = new UserLog(ip, word);
+
+                _usersRepository.AddUserLog(userLog);
 
                 if (_cacheService.IsCached(word))
                 {

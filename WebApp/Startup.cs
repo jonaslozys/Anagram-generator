@@ -35,7 +35,9 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddSingleton(Configuration);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IWordsRepository>(new WordsRepository(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<IUsersRepository>(new UsersRepository(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<ICacheService, CacheService>();
             services.AddSingleton<IAnagramSolver>(
                 new AnagramSolver(

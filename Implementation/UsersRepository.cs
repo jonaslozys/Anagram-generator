@@ -16,9 +16,9 @@ namespace AnagramLogic
             _connectionString = connectionString;
         }
 
-        public void AddUserSearch(UserLog userLog)
+        public void AddUserLog(UserLog userLog)
         {
-            string query = "INSERT INTO UserLog VALUES (@UserIP, @WordSearched);";
+            string query = "INSERT INTO UserLog (UserIP, WordSearched) VALUES (@UserIP, @WordSearched);";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -29,7 +29,7 @@ namespace AnagramLogic
                 command.Parameters["@UserIP"].Value = userLog.UserIP;
 
                 command.Parameters.Add("@WordSearched", SqlDbType.NVarChar);
-                command.Parameters["@UserIP"].Value = userLog.UserIP;
+                command.Parameters["@WordSearched"].Value = userLog.WordSearched;
 
                 command.ExecuteNonQuery();
 

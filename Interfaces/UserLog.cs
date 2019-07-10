@@ -8,6 +8,11 @@ namespace Contracts
     {
         public string UserIP { get; set; }
         public string WordSearched { get; set; }
-        public DateTime SearchTime { get; set; }
+
+        public UserLog(string userIP, string wordSerched)
+        {
+            UserIP = userIP;
+            WordSearched = wordSerched;
+        }
     }
 }
