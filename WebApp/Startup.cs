@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Configuration;
 using Contracts;
+using Contracts.configurations;
 using AnagramLogic;
 using Microsoft.Extensions.Options;
 
@@ -34,16 +35,13 @@ namespace WebApp
                 options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.Configure<Connection>(Configuration);
             services.AddSingleton(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IWordsRepository>(new WordsRepository(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton<IUsersRepository>(new UsersRepository(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<IWordsRepository, WordsRepository>();
+            services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddSingleton<ICacheService, CacheService>();
-            services.AddSingleton<IAnagramSolver>(
-                new AnagramSolver(
-                    new WordsRepository(Configuration.GetConnectionString("DefaultConnection"))
-                    )
-                );
+            services.AddSingleton<IAnagramSolver, AnagramSolver>();
             services.Configure<Dictionary>(Configuration.GetSection("Dictionary"));
             services.Configure<AnagramSettings>(Configuration.GetSection("AnagramSettings"));
 

@@ -5,23 +5,25 @@ using System.Text;
 using Contracts;
 using System.Data;
 using System.Linq;
+using Microsoft.Extensions.Options;
+using Contracts.configurations;
 
 namespace AnagramLogic
 {
     public class UsersRepository : IUsersRepository
     {
-        private string _connectionString;
+        private Connection _connection;
 
-        public UsersRepository(string connectionString)
+        public UsersRepository(IOptionsMonitor<Connection> optionsAccessor)
         {
-            _connectionString = connectionString;
+            _connection = optionsAccessor.CurrentValue;
         }
 
         public void AddUserLog(UserLog userLog)
         {
             string query = "INSERT INTO UserLog (UserIP, WordSearched) VALUES (@UserIP, @WordSearched);";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(_connection.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
@@ -48,7 +50,7 @@ namespace AnagramLogic
                            "LEFT JOIN Words ON(Words.Id = CachedWords.Id) " +
                            "WHERE UserLog.UserIP = @UserIP";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(_connection.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();

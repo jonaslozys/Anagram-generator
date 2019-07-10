@@ -7,11 +7,14 @@ using Contracts;
 using System.Linq;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.Extensions.Options;
+using Contracts.configurations;
 
 namespace AnagramLogic
 {
     public class WordsRepository : IWordsRepository
     {
+        private Connection _connection;
         private HashSet<Word> _wordList;
         private string target = @"C:\Users\jonas\Desktop\tasks\Anagram Generator";
         private string _connectionString;
@@ -21,9 +24,10 @@ namespace AnagramLogic
 
         }
 
-        public WordsRepository(string connectionString)
+        public WordsRepository(IOptionsMonitor<Connection> optionsAccessor)
         {
-            _connectionString = connectionString;
+            _connection = optionsAccessor.CurrentValue;
+            _connectionString = _connection.ConnectionString;
             _wordList = new HashSet<Word>();
         }
         public HashSet<Word> GetWords()

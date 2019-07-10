@@ -63,8 +63,6 @@ namespace AnagramLogic
         {
             _anagrams.Clear();
 
-            _anagrams = _wordsRepository.GetCachedAnagrams(userInput);
-
             _configuration = configuration;
 
             _userInput = new Word(userInput);
