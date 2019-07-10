@@ -45,7 +45,7 @@ namespace AnagramLogic
             string query = "SELECT UserLog.Id, UserIP, UserLog.WordSearched, UserLog.SearchDate, Words.Word AS 'Anagram' " +
                            "FROM UserLog " +
                            "LEFT JOIN CachedWords ON(CachedWords.Word = UserLog.WordSearched) " +
-                           "RIGHT JOIN Words ON(Words.Id = CachedWords.Id) " +
+                           "LEFT JOIN Words ON(Words.Id = CachedWords.Id) " +
                            "WHERE UserLog.UserIP = @UserIP";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -61,7 +61,7 @@ namespace AnagramLogic
                 while (reader.Read())
                 {
                     int searchId = reader.GetInt32(0);
-                    string anagram = reader.GetString(3);
+                    string anagram = (!reader.IsDBNull(4)) ? reader.GetString(4) : "";
 
                     if (userLogs.Where(log => log.SeachId == searchId).Count() > 0)
                     {
@@ -70,9 +70,11 @@ namespace AnagramLogic
                     else
                     {
                         string userIp = reader.GetString(1);
-                        string wordSearcged = reader.GetString(2);
-                        UserLog userLog = new UserLog(userIP, wordSearcged, searchId);
+                        string wordSearched = reader.GetString(2);
+                        DateTime searchDate = reader.GetDateTime(3);
+                        UserLog userLog = new UserLog(userIP, wordSearched, searchId);
                         userLog.Anagrams.Add(anagram);
+                        userLog.SeachDate = searchDate;
                         userLogs.Add(userLog);
                     }
                 }
