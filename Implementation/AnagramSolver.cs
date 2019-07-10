@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using Contracts;
+using Contracts.configurations;
 using System.Linq;
+using Microsoft.Extensions.Options;
 
 namespace AnagramLogic
 {
@@ -18,11 +20,12 @@ namespace AnagramLogic
         private WordModel _userInput;
 
         private List<string> _anagrams;
-        public AnagramSolver(IWordsRepository wordsRepository)
+        public AnagramSolver(IWordsRepository wordsRepository, IOptionsMonitor<AnagramConfiguration> configuration)
         {
             _wordsRepository = wordsRepository;
             _words = wordsRepository.GetWords();
             _anagrams = new List<string>();
+            _configuration = configuration.CurrentValue;
         }
 
         private bool CompareWords(WordModel word1, WordModel word2)
@@ -59,11 +62,9 @@ namespace AnagramLogic
                 }
             }
         }
-        public List<string> GetAnagrams(string userInput, AnagramConfiguration configuration)
+        public List<string> GetAnagrams(string userInput)
         {
             _anagrams.Clear();
-
-            _configuration = configuration;
 
             _userInput = new WordModel(userInput);
 

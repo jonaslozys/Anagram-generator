@@ -4,10 +4,9 @@ using System.Text;
 
 namespace Contracts
 {
-    public interface ICacheService
+    public interface ICacheRepository
     {
-        bool IsCached(string word);
-        List<string> GetCachedAnagrams();
+        List<string> GetCachedAnagrams(string word);
         void UpdateAnagramsCache(string word, List<string> anagrams);
     }
 }

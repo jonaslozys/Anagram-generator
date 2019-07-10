@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Contracts
 {
-    public interface IAnagramSolver
+    public interface IAnagramsService
     {
-        List<string> GetAnagrams(string userInput);
-
+        List<string> GetAnagrams(string word);
     }
 }

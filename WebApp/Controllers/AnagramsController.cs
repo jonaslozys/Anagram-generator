@@ -16,24 +16,18 @@ namespace WebApp.Controllers
     [ApiController]
     public class AnagramsController : ControllerBase
     {
-        private readonly AnagramSettings _anagramSettings;
-        private IWordsRepository _wordsRepository;
-        private IAnagramSolver _anagramSolver;
-        private AnagramConfiguration _anagramConfiguration;
+        private IAnagramsService _anagramsService;
 
-        public AnagramsController(IOptionsMonitor<AnagramSettings> anagramSettings, IWordsRepository wordsRepository)
+        public AnagramsController(IAnagramsService anagramsService)
         {
-            this._anagramSettings = anagramSettings.CurrentValue;
-            this._wordsRepository = wordsRepository;
-            this._anagramConfiguration = new AnagramConfiguration(_anagramSettings.minWordLength, _anagramSettings.maxResultsLength);
+            _anagramsService = anagramsService;
         }
 
         [HttpGet("{word}")]
         public async Task<ActionResult<List<string>>> GetAnagrams(string word)
         {
-            this._anagramSolver = new AnagramSolver(_wordsRepository);
 
-            List<string> anagrams = this._anagramSolver.GetAnagrams(word, _anagramConfiguration);
+            List<string> anagrams = _anagramsService.GetAnagrams(word);
 
             if (anagrams.Count > 0)
             {

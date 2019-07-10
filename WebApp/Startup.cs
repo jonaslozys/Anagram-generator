@@ -36,10 +36,12 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.Configure<Connection>(Configuration);
+            services.Configure<AnagramConfiguration>(Configuration);
             services.AddSingleton(Configuration);
             services.AddSingleton<IWordsRepository, WordsRepository>();
+            services.AddSingleton<ICacheRepository, CacheRepository>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
-            services.AddSingleton<ICacheService, CacheService>();
+            services.AddSingleton<IAnagramsService, AnagramsService>();
             services.AddSingleton<IAnagramSolver, AnagramSolver>();
             services.Configure<Dictionary>(Configuration.GetSection("Dictionary"));
             services.Configure<AnagramSettings>(Configuration.GetSection("AnagramSettings"));

@@ -13,31 +13,16 @@ namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly AnagramSettings _anagramSettings;
-        private IWordsRepository _wordsRepository;
         private IUsersRepository _usersRepository;
-        private IAnagramSolver _anagramSolver;
-        private ICacheService _cacheService;
-        private AnagramConfiguration _anagramConfiguration;
+        private IAnagramsService _anagramsService;
         private AnagramsViewModel _anagramsModel;
-        private List<string> _anagrams;
 
         public HomeController(
-            IOptionsMonitor<AnagramSettings> anagramSettings, 
-            IWordsRepository wordsRepository,
             IUsersRepository usersRepository,
-            IAnagramSolver anagramSolver,
-            ICacheService cacheService)
+            IAnagramsService anagramsService)
         {
-            _anagramSettings = anagramSettings.CurrentValue;
-            _wordsRepository = wordsRepository;
             _usersRepository = usersRepository;
-            _cacheService = cacheService;
-            _anagramConfiguration = new AnagramConfiguration(
-                _anagramSettings.minWordLength,
-                _anagramSettings.maxResultsLength
-            );
-            _anagramSolver = anagramSolver;
+            _anagramsService = anagramsService;
         }
         public ActionResult Index(string word)
         {
@@ -51,15 +36,8 @@ namespace WebApp.Controllers
 
                 _usersRepository.AddUserLog(userLog);
 
-                if (_cacheService.IsCached(word))
-                {
-                    _anagramsModel.Anagrams = _cacheService.GetCachedAnagrams();
-                } else
-                {
-                    _anagrams = _anagramSolver.GetAnagrams(word, _anagramConfiguration);
-                    _anagramsModel.Anagrams = _anagrams;
-                    _cacheService.UpdateAnagramsCache(word, _anagrams);
-                }
+
+                _anagramsModel.Anagrams = _anagramsService.GetAnagrams(word);
 
                 CookieOptions cookieOptions = new CookieOptions();
                 cookieOptions.Expires = DateTime.Now.AddMinutes(10);
