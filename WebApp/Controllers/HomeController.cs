@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
-using AnagramLogic;
+using AnagramGenerator.BusinessLogic;
 using Contracts;
 using WebApp.Configuration;
 using Microsoft.Extensions.Options;

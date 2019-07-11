@@ -7,7 +7,7 @@ using Contracts.configurations;
 using System.Linq;
 using Microsoft.Extensions.Options;
 
-namespace AnagramLogic
+namespace AnagramGenerator.BusinessLogic
 {
     public class AnagramSolver : IAnagramSolver
     {

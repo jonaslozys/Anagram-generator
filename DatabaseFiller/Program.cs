@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using Contracts;
-using AnagramLogic;
+using AnagramGenerator.BusinessLogic;
 using System.Collections.Generic;
 using System.Threading;
 

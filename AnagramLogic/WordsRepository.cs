@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using AnagramLogic;
+using AnagramGenerator.BusinessLogic;
 using Contracts;
 
 namespace AnagramLogic

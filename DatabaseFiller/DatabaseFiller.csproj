@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Implementation\AnagramLogic.csproj" />
+    <ProjectReference Include="..\Implementation\AnagramGenerator.BusinessLogic.csproj" />
     <ProjectReference Include="..\Interfaces\Contracts.csproj" />
   </ItemGroup>
 

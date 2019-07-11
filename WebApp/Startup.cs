@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using WebApp.Configuration;
 using Contracts;
 using Contracts.configurations;
-using AnagramLogic;
+using AnagramGenerator.BusinessLogic;
 using Anagram_Generator.EF.DatabaseFirst.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;

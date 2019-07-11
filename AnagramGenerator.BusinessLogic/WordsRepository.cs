@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using AnagramLogic;
 using Contracts;
 using System.Linq;
 using System.Data.SqlClient;
@@ -10,7 +9,7 @@ using System.Data;
 using Microsoft.Extensions.Options;
 using Contracts.configurations;
 
-namespace AnagramLogic
+namespace AnagramGenerator.BusinessLogic
 {
     public class WordsRepository : IWordsRepository
     {

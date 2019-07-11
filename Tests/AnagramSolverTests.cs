@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Contracts;
-using AnagramLogic;
+using AnagramGenerator.BusinessLogic;
 using System.Configuration;
 using System.Linq;
 using Tests.dummy_classes;

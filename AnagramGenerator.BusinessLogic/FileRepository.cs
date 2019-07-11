@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Contracts;
 
-namespace AnagramLogic
+namespace AnagramGenerator.BusinessLogic
 {
     public class FileRepository : IFileRepository
     {

@@ -50,10 +50,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Implementation\AnagramLogic.csproj">
-      <Project>{869cc936-4ad6-426c-b553-b2e379244228}</Project>
-      <Name>AnagramLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Interfaces\Contracts.csproj">
       <Project>{3cc125c0-7eed-420f-9838-3f0ee64bd04f}</Project>
       <Name>Contracts</Name>

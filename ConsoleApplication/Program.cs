@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using AnagramLogic;
+using AnagramGenerator.BusinessLogic;
 using Contracts;
 
 namespace ConsoleApplication

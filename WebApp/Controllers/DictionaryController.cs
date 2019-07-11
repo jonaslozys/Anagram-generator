@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
 using Contracts;
-using AnagramLogic;
+using AnagramGenerator.BusinessLogic;
 using Microsoft.Extensions.Configuration;
 using WebApp.Configuration;
 using Microsoft.Extensions.Options;

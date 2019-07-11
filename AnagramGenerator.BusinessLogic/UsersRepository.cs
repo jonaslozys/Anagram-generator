@@ -8,7 +8,7 @@ using System.Linq;
 using Microsoft.Extensions.Options;
 using Contracts.configurations;
 
-namespace AnagramLogic
+namespace AnagramGenerator.BusinessLogic
 {
     public class UsersRepository : IUsersRepository
     {

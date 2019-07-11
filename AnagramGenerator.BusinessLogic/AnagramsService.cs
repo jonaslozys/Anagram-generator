@@ -4,7 +4,7 @@ using System.Text;
 using Contracts;
 using System.Linq;
 
-namespace AnagramLogic
+namespace AnagramGenerator.BusinessLogic
 {
     public class AnagramsService : IAnagramsService
     {

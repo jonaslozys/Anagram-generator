@@ -6,7 +6,7 @@ using Anagram_Generator.EF.DatabaseFirst.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace AnagramLogic
+namespace AnagramGenerator.BusinessLogic
 {
     public class EfWordsRepository : IEfWordsRepository
     {
