@@ -64,7 +64,7 @@ namespace WebApp.Controllers
         public IActionResult Delete(IFormCollection colletion)
         {
             string wordToDelete = colletion["word"];
-            _wordsRepository.DeleteWord(wordToDelete);
+            _efWordsRepository.DeleteWord(wordToDelete);
             return RedirectToAction("Index");
         }
     }

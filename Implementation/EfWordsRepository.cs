@@ -20,7 +20,9 @@ namespace AnagramLogic
 
         public void DeleteWord(string word)
         {
-            throw new NotImplementedException();
+            Words wordToDelete = _anagramsContext.Words.SingleOrDefault(w => w.Word == word);
+            _anagramsContext.Remove<Words>(wordToDelete);
+            _anagramsContext.SaveChanges();
         }
 
         public List<string> GetPageOfWords(int pageSize, int pageNumber)
