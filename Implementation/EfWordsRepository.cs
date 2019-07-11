@@ -4,6 +4,7 @@ using System.Text;
 using Contracts;
 using Anagram_Generator.EF.DatabaseFirst.Models;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnagramLogic
 {
@@ -62,6 +63,7 @@ namespace AnagramLogic
                 _wordList = new HashSet<WordModel>();
 
                 _anagramsContext.Words
+                    .AsNoTracking()
                     .ToList()
                     .ForEach(word => _wordList.Add(new WordModel(word.Word, word.Id)));
 

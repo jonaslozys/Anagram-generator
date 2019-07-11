@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Contracts
 {
-    public interface IWordsRepository
+    public interface IFileRepository
     {
         HashSet<WordModel> GetWords();
-
         List<string> GetPageOfWords(int pageSize, int pageNumber);
-        List<string> GetSearchedWords(string searchString);
-        void DeleteWord(string word);
-
+        byte[] GetDictionaryFile();
     }
 }

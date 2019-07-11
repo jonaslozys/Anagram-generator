@@ -56,7 +56,9 @@ namespace WebApp.Controllers
         [HttpGet, Route("download")]
         public IActionResult Download()
         {
-            byte[] fileBytes = _wordsRepository.GetDictionaryFile();
+            IFileRepository fileRepository = new FileRepository();
+
+            byte[] fileBytes = fileRepository.GetDictionaryFile();
             return File(fileBytes, "text/plain");
         }
 

@@ -85,13 +85,6 @@ namespace AnagramLogic
             return pageOfWords;
         }
 
-        public byte[] GetDictionaryFile()
-        {
-            byte[] fileBytes = System.IO.File.ReadAllBytes($@"{target}/zodynas.txt");
-            return fileBytes;
-
-        }
-
         public List<string> GetSearchedWords(string searchString)
         {
             List<string> searchResults = new List<string>();
