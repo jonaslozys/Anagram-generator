@@ -13,7 +13,9 @@ using WebApp.Configuration;
 using Contracts;
 using Contracts.configurations;
 using AnagramLogic;
+using Anagram_Generator.EF.DatabaseFirst.Models;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApp
 {
@@ -36,13 +38,15 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.Configure<Connection>(Configuration);
+            services.AddDbContext<AnagramsContext>(options => options.UseSqlServer(Configuration.GetSection("ConnectionString").Value));
             services.Configure<AnagramConfiguration>(Configuration.GetSection("AnagramConfiguration"));
             services.AddSingleton(Configuration);
             services.AddSingleton<IWordsRepository, WordsRepository>();
+            services.AddScoped<IEfWordsRepository, EfWordsRepository>();
             services.AddSingleton<ICacheRepository, CacheRepository>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
-            services.AddSingleton<IAnagramsService, AnagramsService>();
-            services.AddSingleton<IAnagramSolver, AnagramSolver>();
+            services.AddScoped<IAnagramsService, AnagramsService>();
+            services.AddScoped<IAnagramSolver, AnagramSolver>();
             services.Configure<Dictionary>(Configuration.GetSection("Dictionary"));
             services.Configure<AnagramSettings>(Configuration.GetSection("AnagramSettings"));
 

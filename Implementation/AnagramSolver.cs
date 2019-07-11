@@ -13,6 +13,8 @@ namespace AnagramLogic
     {
         private IWordsRepository _wordsRepository;
 
+        private IEfWordsRepository _efWordsRepository;
+
         private AnagramConfiguration _configuration;
 
         private HashSet<WordModel> _words;
@@ -20,10 +22,11 @@ namespace AnagramLogic
         private WordModel _userInput;
 
         private List<WordModel> _anagrams;
-        public AnagramSolver(IWordsRepository wordsRepository, IOptionsMonitor<AnagramConfiguration> configuration)
+        public AnagramSolver(IWordsRepository wordsRepository, IEfWordsRepository efWordsRepository,IOptionsMonitor<AnagramConfiguration> configuration)
         {
             _wordsRepository = wordsRepository;
-            _words = wordsRepository.GetWords();
+            _efWordsRepository = efWordsRepository;
+            _words = _efWordsRepository.GetWords();
             _configuration = configuration.CurrentValue;
         }
 

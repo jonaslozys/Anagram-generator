@@ -18,13 +18,15 @@ namespace WebApp.Controllers
     {
         private Dictionary _dictionaryConfiguration;
         private IWordsRepository _wordsRepository;
+        private IEfWordsRepository _efWordsRepository;
         private DictionaryViewModel _dictionaryModel;
         private int _pageSize;
 
-        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, IWordsRepository wordsRepository)
+        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, IWordsRepository wordsRepository, IEfWordsRepository efWordsRepository)
         {
             _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
             _wordsRepository = wordsRepository;
+            _efWordsRepository = efWordsRepository;
             _dictionaryModel = new DictionaryViewModel();
 
         }
@@ -44,7 +46,7 @@ namespace WebApp.Controllers
         {
             if (search != null)
             {
-                _dictionaryModel.wordsDictionary = _wordsRepository.GetSearchedWords(search);
+                _dictionaryModel.wordsDictionary = _efWordsRepository.GetSearchedWords(search);
                 _dictionaryModel.SearchString = search;
             }
 

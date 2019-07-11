@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Anagram Generator.EF.DatabaseFirst\Anagram Generator.EF.DatabaseFirst.csproj" />
+  </ItemGroup>
+
 </Project>

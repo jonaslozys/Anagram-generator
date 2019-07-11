@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Anagram Generator.EF.DatabaseFirst\Anagram Generator.EF.DatabaseFirst.csproj" />
     <ProjectReference Include="..\Interfaces\Contracts.csproj" />
   </ItemGroup>
 

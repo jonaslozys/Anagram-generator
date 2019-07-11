@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientConsoleApp", "ClientConsoleApp\ClientConsoleApp.csproj", "{0349876D-F674-4613-99AB-A959F13F6A1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseFiller", "DatabaseFiller\DatabaseFiller.csproj", "{28EF5D5F-F0E9-4064-A354-58F1D669AB8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFiller", "DatabaseFiller\DatabaseFiller.csproj", "{28EF5D5F-F0E9-4064-A354-58F1D669AB8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anagram Generator.EF.DatabaseFirst", "Anagram Generator.EF.DatabaseFirst\Anagram Generator.EF.DatabaseFirst.csproj", "{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{28EF5D5F-F0E9-4064-A354-58F1D669AB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28EF5D5F-F0E9-4064-A354-58F1D669AB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28EF5D5F-F0E9-4064-A354-58F1D669AB8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
