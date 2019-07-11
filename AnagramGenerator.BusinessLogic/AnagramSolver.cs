@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using Contracts;
-using Contracts.configurations;
+using AnagramGenerator.Contracts;
+using AnagramGenerator.Contracts.configurations;
 using System.Linq;
 using Microsoft.Extensions.Options;
 

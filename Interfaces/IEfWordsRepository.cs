@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Anagram_Generator.EF.DatabaseFirst.Models;
 
-namespace Contracts
+namespace AnagramGenerator.Contracts
 {
     public interface IEfWordsRepository
     {

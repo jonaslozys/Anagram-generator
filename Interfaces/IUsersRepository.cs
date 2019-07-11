@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Contracts
+namespace AnagramGenerator.Contracts
 {
     public interface IUsersRepository
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Contracts.configurations
+namespace AnagramGenerator.Contracts.configurations
 {
     public class AnagramConfiguration
     {

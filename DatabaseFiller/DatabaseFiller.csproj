@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Implementation\AnagramGenerator.BusinessLogic.csproj" />
-    <ProjectReference Include="..\Interfaces\Contracts.csproj" />
+    <ProjectReference Include="..\Interfaces\AnagramGenerator.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

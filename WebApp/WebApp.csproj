@@ -13,7 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Anagram Generator.EF.DatabaseFirst\Anagram Generator.EF.DatabaseFirst.csproj" />
     <ProjectReference Include="..\AnagramGenerator.BusinessLogic\AnagramGenerator.BusinessLogic.csproj" />
-    <ProjectReference Include="..\Interfaces\Contracts.csproj" />
+    <ProjectReference Include="..\Interfaces\AnagramGenerator.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using Contracts;
+using AnagramGenerator.Contracts;
 using System.Data;
 using System.Linq;
 using Microsoft.Extensions.Options;
-using Contracts.configurations;
+using AnagramGenerator.Contracts.configurations;
 
 namespace AnagramGenerator.BusinessLogic
 {

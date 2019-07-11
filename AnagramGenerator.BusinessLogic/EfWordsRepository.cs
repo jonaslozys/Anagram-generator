@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Contracts;
+using AnagramGenerator.Contracts;
 using Anagram_Generator.EF.DatabaseFirst.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;

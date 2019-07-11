@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Contracts;
+using AnagramGenerator.Contracts;
 using AnagramGenerator.BusinessLogic;
 using System.Configuration;
 using System.Linq;

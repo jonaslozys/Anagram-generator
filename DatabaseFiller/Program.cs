@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
-using Contracts;
+using AnagramGenerator.Contracts;
 using AnagramGenerator.BusinessLogic;
 using System.Collections.Generic;
 using System.Threading;

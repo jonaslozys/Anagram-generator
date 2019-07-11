@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Interfaces\Contracts.csproj">
+    <ProjectReference Include="..\Interfaces\AnagramGenerator.Contracts.csproj">
       <Project>{3cc125c0-7eed-420f-9838-3f0ee64bd04f}</Project>
-      <Name>Contracts</Name>
+      <Name>AnagramGenerator.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
 using AnagramGenerator.BusinessLogic;
-using Contracts;
+using AnagramGenerator.Contracts;
 using WebApp.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http;

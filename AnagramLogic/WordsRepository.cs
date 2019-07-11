@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using AnagramGenerator.BusinessLogic;
-using Contracts;
+using AnagramGenerator.Contracts;
 
 namespace AnagramLogic
 {
