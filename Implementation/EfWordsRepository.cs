@@ -25,22 +25,17 @@ namespace AnagramLogic
 
         public List<string> GetPageOfWords(int pageSize, int pageNumber)
         {
+            int startIndex = (pageNumber - 1) * pageSize;
+            int endIndex = (pageNumber) * pageSize;
+
+            if (startIndex < 0) startIndex = 0;
 
             List<string> res = _anagramsContext.Words
+                .Where(word => (word.Id > startIndex) && (word.Id < endIndex))
                 .Select(word => word.Word)
-                //.Select((word, index) => new { word, index })
-                //.Select(word => word.word)
                 .ToList();
-                //.Where(p => (p.index > pageSize * pageNumber) && (p.index < (pageSize * pageNumber) + pageSize))
 
-
-            foreach (string word in res)
-            {
-                int i = 5;
-            }
-
-            List<string> results = new List<string>() { "sa", "das" };
-            return results;
+            return res;
         }
 
         public List<string> GetSearchedWords(string searchString)

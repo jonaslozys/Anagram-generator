@@ -35,7 +35,7 @@ namespace WebApp.Controllers
         public IActionResult Index(int page = 1)
         {
             _pageSize = _dictionaryConfiguration.pageSize;
-            _dictionaryModel.wordsDictionary = _wordsRepository.GetPageOfWords(_pageSize, page);
+            _dictionaryModel.wordsDictionary = _efWordsRepository.GetPageOfWords(_pageSize, page);
             _dictionaryModel.page = page;
             
             return View(_dictionaryModel);

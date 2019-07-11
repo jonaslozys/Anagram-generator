@@ -18,6 +18,7 @@ IF NOT EXISTS (SELECT * FROM sysobjects where name = 'CachedWords')
 	CREATE TABLE CachedWords
 		(
 			Word VARCHAR(255) NOT NULL,
-			Id INT NOT NULL
+			Id INT NOT NULL,
+			PRIMARY KEY(Word, Id)
 		);
 
