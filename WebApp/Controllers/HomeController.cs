@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
-using AnagramGenerator.BusinessLogic;
 using AnagramGenerator.Contracts;
-using WebApp.Configuration;
-using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http;
+using AnagramGenerator.EF.DatabaseFirst;
+using AnagramGenerator.EF.DatabaseFirst.Models;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private IUsersRepository _usersRepository;
+        //private IUsersRepository _usersRepository;
+        private EfUsersRepository _efUsersRepository;
         private IAnagramsService _anagramsService;
         private AnagramsViewModel _anagramsModel;
 
         public HomeController(
-            IUsersRepository usersRepository,
+            EfUsersRepository efUsersRepository,
             IAnagramsService anagramsService)
         {
-            _usersRepository = usersRepository;
+            //_usersRepository = usersRepository;
+            _efUsersRepository = efUsersRepository;
             _anagramsService = anagramsService;
         }
         public ActionResult Index(string word)
@@ -32,10 +33,9 @@ namespace WebApp.Controllers
             {
                 _anagramsModel.Word = word;
                 string ip = HttpContext.Connection.RemoteIpAddress.ToString();
-                UserSearchLogModel userLog = new UserSearchLogModel(ip, word, null);
-
-                _usersRepository.AddUserLog(userLog);
-
+                //UserSearchLogModel userLog = new UserSearchLogModel(ip, word, null);
+                UserLog userLog = new UserLog() { UserIp = ip, WordSearched = word };
+                _efUsersRepository.AddUserLog(userLog);
 
                 _anagramsModel.Anagrams = _anagramsService.GetAnagrams(word);
 
