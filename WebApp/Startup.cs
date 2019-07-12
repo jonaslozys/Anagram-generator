@@ -13,6 +13,7 @@ using WebApp.Configuration;
 using AnagramGenerator.Contracts;
 using AnagramGenerator.Contracts.configurations;
 using AnagramGenerator.BusinessLogic;
+using AnagramGenerator.EF.DatabaseFirst;
 using AnagramGenerator.EF.DatabaseFirst.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
@@ -42,7 +43,7 @@ namespace WebApp
             services.Configure<AnagramConfiguration>(Configuration.GetSection("AnagramConfiguration"));
             services.AddSingleton(Configuration);
             services.AddSingleton<IWordsRepository, WordsRepository>();
-            services.AddScoped<IEfWordsRepository, EfWordsRepository>();
+            services.AddScoped<EfWordsRepository>();
             services.AddSingleton<ICacheRepository, CacheRepository>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddScoped<IAnagramsService, AnagramsService>();

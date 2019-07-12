@@ -6,9 +6,9 @@ using AnagramGenerator.EF.DatabaseFirst.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace AnagramGenerator.BusinessLogic
+namespace AnagramGenerator.EF.DatabaseFirst
 {
-    public class EfWordsRepository : IEfWordsRepository
+    public class EfWordsRepository 
     {
         private AnagramsContext _anagramsContext;
         private HashSet<WordModel> _wordList;

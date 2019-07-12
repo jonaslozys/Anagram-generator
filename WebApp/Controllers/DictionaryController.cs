@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using WebApp.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http;
+using AnagramGenerator.EF.DatabaseFirst;
 
 namespace WebApp.Controllers
 {
@@ -18,11 +19,11 @@ namespace WebApp.Controllers
     {
         private Dictionary _dictionaryConfiguration;
         private IWordsRepository _wordsRepository;
-        private IEfWordsRepository _efWordsRepository;
+        private EfWordsRepository _efWordsRepository;
         private DictionaryViewModel _dictionaryModel;
         private int _pageSize;
 
-        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, IWordsRepository wordsRepository, IEfWordsRepository efWordsRepository)
+        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, IWordsRepository wordsRepository, EfWordsRepository efWordsRepository)
         {
             _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
             _wordsRepository = wordsRepository;

@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using AnagramGenerator.Contracts;
 using AnagramGenerator.Contracts.configurations;
+using AnagramGenerator.EF.DatabaseFirst;
 using System.Linq;
 using Microsoft.Extensions.Options;
 
@@ -13,7 +14,7 @@ namespace AnagramGenerator.BusinessLogic
     {
         private IWordsRepository _wordsRepository;
 
-        private IEfWordsRepository _efWordsRepository;
+        private EfWordsRepository _efWordsRepository;
 
         private AnagramConfiguration _configuration;
 
@@ -22,7 +23,7 @@ namespace AnagramGenerator.BusinessLogic
         private WordModel _userInput;
 
         private List<WordModel> _anagrams;
-        public AnagramSolver(IWordsRepository wordsRepository, IEfWordsRepository efWordsRepository,IOptionsMonitor<AnagramConfiguration> configuration)
+        public AnagramSolver(IWordsRepository wordsRepository, EfWordsRepository efWordsRepository,IOptionsMonitor<AnagramConfiguration> configuration)
         {
             _wordsRepository = wordsRepository;
             _efWordsRepository = efWordsRepository;
