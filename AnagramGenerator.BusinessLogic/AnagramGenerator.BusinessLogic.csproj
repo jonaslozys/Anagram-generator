@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Anagram Generator.EF.DatabaseFirst\Anagram Generator.EF.DatabaseFirst.csproj" />
-    <ProjectReference Include="..\Interfaces\AnagramGenerator.Contracts.csproj" />
+    <ProjectReference Include="..\AnagramGenerator.Contracts\AnagramGenerator.Contracts.csproj" />
+    <ProjectReference Include="..\AnagramGenerator.EF.DatabaseFirst\AnagramGenerator.EF.DatabaseFirst.csproj" />
   </ItemGroup>
 
   <ItemGroup>

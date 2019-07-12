@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "Anagram Generator\ConsoleApplication.csproj", "{C508A4D9-EB5A-4029-A414-A453AB28E956}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.Contracts", "AnagramGenerator.Contracts\AnagramGenerator.Contracts.csproj", "{3CC125C0-7EED-420F-9838-3F0EE64BD04F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{A2A9521A-5EB6-4706-B130-DC1525132004}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{AC014659-62B7-483F-9160-670746898E6F}"
@@ -15,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientConsoleApp", "ClientC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFiller", "DatabaseFiller\DatabaseFiller.csproj", "{28EF5D5F-F0E9-4064-A354-58F1D669AB8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anagram Generator.EF.DatabaseFirst", "AnagramGenerator.EF.DatabaseFirst\AnagramGenerator.EF.DatabaseFirst.csproj", "{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.BusinessLogic", "AnagramGenerator.BusinessLogic\AnagramGenerator.BusinessLogic.csproj", "{2FDC7062-1495-437F-8CE3-CAA7082F3665}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.Contracts", "AnagramGenerator.Contracts\AnagramGenerator.Contracts.csproj", "{AE2C0FEC-B860-409D-B462-1277542582E2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.EF.DatabaseFirst", "AnagramGenerator.EF.DatabaseFirst\AnagramGenerator.EF.DatabaseFirst.csproj", "{81997FDB-CB25-47FC-A8B2-953C0276767A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,6 @@ Global
 		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CC125C0-7EED-420F-9838-3F0EE64BD04F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CC125C0-7EED-420F-9838-3F0EE64BD04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CC125C0-7EED-420F-9838-3F0EE64BD04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CC125C0-7EED-420F-9838-3F0EE64BD04F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2A9521A-5EB6-4706-B130-DC1525132004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2A9521A-5EB6-4706-B130-DC1525132004}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2A9521A-5EB6-4706-B130-DC1525132004}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,14 +45,18 @@ Global
 		{28EF5D5F-F0E9-4064-A354-58F1D669AB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28EF5D5F-F0E9-4064-A354-58F1D669AB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28EF5D5F-F0E9-4064-A354-58F1D669AB8B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC17AC30-0F22-4ED5-B1DA-E21DB79ADCA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2FDC7062-1495-437F-8CE3-CAA7082F3665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2FDC7062-1495-437F-8CE3-CAA7082F3665}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FDC7062-1495-437F-8CE3-CAA7082F3665}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FDC7062-1495-437F-8CE3-CAA7082F3665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE2C0FEC-B860-409D-B462-1277542582E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE2C0FEC-B860-409D-B462-1277542582E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE2C0FEC-B860-409D-B462-1277542582E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE2C0FEC-B860-409D-B462-1277542582E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81997FDB-CB25-47FC-A8B2-953C0276767A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81997FDB-CB25-47FC-A8B2-953C0276767A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81997FDB-CB25-47FC-A8B2-953C0276767A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81997FDB-CB25-47FC-A8B2-953C0276767A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

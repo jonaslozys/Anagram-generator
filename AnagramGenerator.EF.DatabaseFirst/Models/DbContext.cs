@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Anagram_Generator.EF.DatabaseFirst.Models
+namespace AnagramGenerator.EF.DatabaseFirst.Models
 {
     public partial class AnagramsContext : DbContext
     {

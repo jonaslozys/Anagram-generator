@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Anagram_Generator.EF.DatabaseFirst.Models;
+using AnagramGenerator.EF.DatabaseFirst.Models;
 
 namespace AnagramGenerator.Contracts
 {

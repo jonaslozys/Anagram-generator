@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.Contracts;
-using Anagram_Generator.EF.DatabaseFirst.Models;
+using AnagramGenerator.EF.DatabaseFirst.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
