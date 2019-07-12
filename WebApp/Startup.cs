@@ -42,8 +42,9 @@ namespace WebApp
             services.AddDbContext<AnagramsContext>(options => options.UseSqlServer(Configuration.GetSection("ConnectionString").Value));
             services.Configure<AnagramConfiguration>(Configuration.GetSection("AnagramConfiguration"));
             services.AddSingleton(Configuration);
-            services.AddSingleton<IWordsRepository, WordsRepository>();
+            //services.AddSingleton<IWordsRepository, WordsRepository>();
             services.AddScoped<EfWordsRepository>();
+            services.AddScoped<EfCacheRepository>();
             services.AddSingleton<ICacheRepository, CacheRepository>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddScoped<IAnagramsService, AnagramsService>();

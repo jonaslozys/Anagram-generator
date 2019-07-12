@@ -18,15 +18,15 @@ namespace WebApp.Controllers
     public class DictionaryController : Controller
     {
         private Dictionary _dictionaryConfiguration;
-        private IWordsRepository _wordsRepository;
+        //private IWordsRepository _wordsRepository;
         private EfWordsRepository _efWordsRepository;
         private DictionaryViewModel _dictionaryModel;
         private int _pageSize;
 
-        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, IWordsRepository wordsRepository, EfWordsRepository efWordsRepository)
+        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, EfWordsRepository efWordsRepository)
         {
             _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
-            _wordsRepository = wordsRepository;
+            //_wordsRepository = wordsRepository;
             _efWordsRepository = efWordsRepository;
             _dictionaryModel = new DictionaryViewModel();
 

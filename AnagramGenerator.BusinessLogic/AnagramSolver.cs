@@ -12,7 +12,7 @@ namespace AnagramGenerator.BusinessLogic
 {
     public class AnagramSolver : IAnagramSolver
     {
-        private IWordsRepository _wordsRepository;
+        //private IWordsRepository _wordsRepository;
 
         private EfWordsRepository _efWordsRepository;
 
@@ -23,9 +23,9 @@ namespace AnagramGenerator.BusinessLogic
         private WordModel _userInput;
 
         private List<WordModel> _anagrams;
-        public AnagramSolver(IWordsRepository wordsRepository, EfWordsRepository efWordsRepository,IOptionsMonitor<AnagramConfiguration> configuration)
+        public AnagramSolver( EfWordsRepository efWordsRepository,IOptionsMonitor<AnagramConfiguration> configuration)
         {
-            _wordsRepository = wordsRepository;
+            //_wordsRepository = wordsRepository;
             _efWordsRepository = efWordsRepository;
             _words = _efWordsRepository.GetWords();
             _configuration = configuration.CurrentValue;

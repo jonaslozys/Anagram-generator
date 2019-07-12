@@ -2,26 +2,29 @@
 using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.Contracts;
+using AnagramGenerator.EF.DatabaseFirst;
 using System.Linq;
 
 namespace AnagramGenerator.BusinessLogic
 {
     public class AnagramsService : IAnagramsService
     {
-        private ICacheRepository _cacheRepository;
+        //private ICacheRepository _cacheRepository;
         private IAnagramSolver _anagramSolver;
+        private EfCacheRepository _efCacheRepository;
 
         private List<WordModel> _cachedAnagrams;
 
-        public AnagramsService(ICacheRepository cacheRepository, IAnagramSolver anagramSolver)
+        public AnagramsService(EfCacheRepository cacheRepository, IAnagramSolver anagramSolver)
         {
-            _cacheRepository = cacheRepository;
+            //_cacheRepository = cacheRepository;
+            _efCacheRepository = cacheRepository;
             _anagramSolver = anagramSolver;
         }
 
         private bool IsCached(string word)
         {
-            _cachedAnagrams = _cacheRepository.GetCachedAnagrams(word);
+            _cachedAnagrams = _efCacheRepository.GetCachedAnagrams(word);
 
             return _cachedAnagrams.Count > 0;
 
@@ -44,7 +47,7 @@ namespace AnagramGenerator.BusinessLogic
 
         private void UpdateAnagramsCache(string word, List<WordModel> anagrams) 
         {
-            _cacheRepository.UpdateAnagramsCache(word, anagrams);
+            _efCacheRepository.UpdateAnagramsCache(word, anagrams);
         }
 
 
