@@ -17,7 +17,7 @@ namespace AnagramGenerator.Ef.CodeFirst
         }
         public void DeleteWord(string word)
         {
-            Word wordToDelete = new Word() { WordValue = word };
+            Word wordToDelete = _dbContext.Words.SingleOrDefault(w => w.WordValue == word);
             _dbContext.Words.Remove(wordToDelete);
             _dbContext.SaveChanges();
         }
