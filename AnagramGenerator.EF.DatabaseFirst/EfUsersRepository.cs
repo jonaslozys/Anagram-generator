@@ -30,7 +30,7 @@ namespace AnagramGenerator.EF.DatabaseFirst
             List<UserSearchLogModel> historyLogs = _dbContext.UserLog.Select(x => new UserSearchLogModel(x.UserIp, x.WordSearched, x.Id)
             {
                 Anagrams = _dbContext.CachedWords.Where(c => c.Word == x.WordSearched).Select(c => c.IdNavigation.Word).ToList(),
-                SeachDate = x.SearchDate
+                SearchDate = x.SearchDate
             })
                 .Where(x => x.UserIP == userIP)
                 .ToList();

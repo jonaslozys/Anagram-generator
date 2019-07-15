@@ -6,7 +6,7 @@ namespace AnagramGenerator.Contracts
 {
     public interface IUsersRepository
     {
-        void AddUserLog(UserSearchLogModel userLog);
+        void AddUserLog(UserSearchLogModel userLog, string word);
         List<UserSearchLogModel> GetUserLogs(string UserIP);
     }
 }

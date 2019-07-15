@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.Contracts;
 using AnagramGenerator.EF.DatabaseFirst;
+using AnagramGenerator.Ef.CodeFirst;
 using System.Linq;
 
 namespace AnagramGenerator.BusinessLogic
 {
     public class AnagramsService : IAnagramsService
     {
-        //private ICacheRepository _cacheRepository;
         private IAnagramSolver _anagramSolver;
-        private EfWordsRepository _efWordsRepository;
-        private EfCacheRepository _efCacheRepository;
+        private IWordsRepository _wordsRepository;
+        private ICacheRepository _cacheRepository;
 
         private List<WordModel> _cachedAnagrams;
 
-        public AnagramsService(EfWordsRepository efWordsRepository, EfCacheRepository cacheRepository, IAnagramSolver anagramSolver)
+        public AnagramsService(IWordsRepository wordsRepository, ICacheRepository cacheRepository, IAnagramSolver anagramSolver)
         {
-            //_cacheRepository = cacheRepository;
-            _efCacheRepository = cacheRepository;
-            _efWordsRepository = efWordsRepository;
+            _wordsRepository = wordsRepository;
+            _cacheRepository = cacheRepository;
             _anagramSolver = anagramSolver;
         }
 
         private bool IsCached(string word)
         {
-            _cachedAnagrams = _efCacheRepository.GetCachedAnagrams(word);
+            _cachedAnagrams = _cacheRepository.GetCachedAnagrams(word);
 
             return _cachedAnagrams.Count > 0;
 
@@ -41,7 +40,7 @@ namespace AnagramGenerator.BusinessLogic
                 anagrams = _cachedAnagrams;
             } else
             {
-                anagrams = _anagramSolver.GetAnagrams(word, _efWordsRepository.GetWords());
+                anagrams = _anagramSolver.GetAnagrams(word, _wordsRepository.GetWords());
                 UpdateAnagramsCache(word, anagrams);
             }
             return anagrams.Select(w => w.word).ToList();
@@ -49,7 +48,7 @@ namespace AnagramGenerator.BusinessLogic
 
         private void UpdateAnagramsCache(string word, List<WordModel> anagrams) 
         {
-            _efCacheRepository.UpdateAnagramsCache(word, anagrams);
+            _cacheRepository.UpdateAnagramsCache(word, anagrams);
         }
 
 

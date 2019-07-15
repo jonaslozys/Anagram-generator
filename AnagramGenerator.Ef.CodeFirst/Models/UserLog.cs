@@ -9,6 +9,6 @@ namespace AnagramGenerator.Ef.CodeFirst.Models
         public int Id { get; set; }
         public string UserIP { get; set; }
         public DateTime SearchDate { get; set; }
-        public Word WordSearched { get; set; }
+        public string WordSearched { get; set; }
     }
 }

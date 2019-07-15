@@ -14,7 +14,7 @@
             var parameters = new Dictionary<string, string> { { "word", historyLog.WordSearched } };
             <li class="list-group-item">
                 <p>User's IP: <b>@historyLog.UserIP</b></p>
-                <p>Search date: <b>@historyLog.SeachDate</b></p>
+                <p>Search date: <b>@historyLog.SearchDate</b></p>
                 <p>
                     Word searched:
                     <b><a asp-controller="home" asp-all-route-data="parameters" target="_blank">@historyLog.WordSearched</a></b>

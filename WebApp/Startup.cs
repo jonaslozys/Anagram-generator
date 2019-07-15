@@ -47,14 +47,10 @@ namespace WebApp
             services.Configure<AnagramConfiguration>(Configuration.GetSection("AnagramConfiguration"));
             services.AddSingleton(Configuration);
 
-            //services.AddSingleton<IWordsRepository, WordsRepository>();
-            //services.AddScoped<EfWordsRepository>();
             services.AddScoped<IWordsRepository, WordsEfCodeFirstRepository>();
+            services.AddScoped<ICacheRepository, CacheEfCodeFirstRepository>();
+            services.AddScoped<IUsersRepository, UsersEfCodeFirstRepository>();
 
-            services.AddScoped<EfCacheRepository>();
-            services.AddScoped<EfUsersRepository>();
-            //services.AddSingleton<ICacheRepository, CacheRepository>();
-            //services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddScoped<IAnagramsService, AnagramsService>();
             services.AddScoped<IAnagramSolver, AnagramSolver>();
             services.Configure<Dictionary>(Configuration.GetSection("Dictionary"));

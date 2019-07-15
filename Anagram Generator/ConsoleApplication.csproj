@@ -49,5 +49,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnagramGenerator.BusinessLogic\AnagramGenerator.BusinessLogic.csproj">
+      <Project>{2fdc7062-1495-437f-8ce3-caa7082f3665}</Project>
+      <Name>AnagramGenerator.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnagramGenerator.Contracts\AnagramGenerator.Contracts.csproj">
+      <Project>{ae2c0fec-b860-409d-b462-1277542582e2}</Project>
+      <Name>AnagramGenerator.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

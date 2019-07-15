@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using AnagramGenerator.Contracts;
 using AnagramGenerator.Contracts.configurations;
-using AnagramGenerator.EF.DatabaseFirst;
+using AnagramGenerator.Ef.CodeFirst;
 using System.Linq;
 using Microsoft.Extensions.Options;
 

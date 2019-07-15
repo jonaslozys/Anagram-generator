@@ -19,7 +19,7 @@ namespace AnagramGenerator.BusinessLogic
             _connection = optionsAccessor.CurrentValue;
         }
 
-        public void AddUserLog(UserSearchLogModel userLog)
+        public void AddUserLog(UserSearchLogModel userLog, string word)
         {
             string query = "INSERT INTO UserLog (UserIP, WordSearched) VALUES (@UserIP, @WordSearched);";
 
@@ -76,7 +76,7 @@ namespace AnagramGenerator.BusinessLogic
                         DateTime searchDate = reader.GetDateTime(3);
                         UserSearchLogModel userLog = new UserSearchLogModel(userIP, wordSearched, searchId);
                         userLog.Anagrams.Add(anagram);
-                        userLog.SeachDate = searchDate;
+                        userLog.SearchDate = searchDate;
                         userLogs.Add(userLog);
                     }
                 }

@@ -19,11 +19,11 @@ namespace WebApp.Controllers
     public class DictionaryController : Controller
     {
         private Dictionary _dictionaryConfiguration;
-        private WordsEfCodeFirstRepository _wordsRepository;
+        private IWordsRepository _wordsRepository;
         private DictionaryViewModel _dictionaryModel;
         private int _pageSize;
 
-        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, WordsEfCodeFirstRepository wordsRepository)
+        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, IWordsRepository wordsRepository)
         {
             _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
             _wordsRepository = wordsRepository;
