@@ -13,12 +13,11 @@ namespace WebApp.Controllers
     public class HistoryController : Controller
     {
         private HistoryViewModel _historyModel;
-        //private IUsersRepository _usersRepository;
-        private EfUsersRepository _efUsersRepository;
-        public HistoryController(EfUsersRepository efUsersRepository)
+        private IUsersRepository _usersRepository;
+        public HistoryController(IUsersRepository usersRepository)
         {
             _historyModel = new HistoryViewModel();
-            _efUsersRepository = efUsersRepository;
+            _usersRepository = usersRepository;
         }
         public IActionResult Index()
         {
@@ -31,7 +30,7 @@ namespace WebApp.Controllers
             }*/
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
 
-            _historyModel.HistoryLogs = _efUsersRepository.GetUserLogs(ip);
+            _historyModel.HistoryLogs = _usersRepository.GetUserLogs(ip);
 
             return View(_historyModel);
         }

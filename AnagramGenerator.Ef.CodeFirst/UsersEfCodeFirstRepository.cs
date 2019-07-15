@@ -30,9 +30,17 @@ namespace AnagramGenerator.Ef.CodeFirst
             _dbContext.SaveChanges();
         }
 
-        public List<UserSearchLogModel> GetUserLogs(string UserIP)
+        public List<UserSearchLogModel> GetUserLogs(string userIP)
         {
-            throw new NotImplementedException();
+            List<UserSearchLogModel> historyLogs = _dbContext.UserLogs.Select(x => new UserSearchLogModel(x.UserIP, x.WordSearched, x.Id)
+            {
+                    Anagrams = _dbContext.CachedWords.Where(c => c.Word == x.WordSearched).Select(c => c.AnagramWord.WordValue).ToList(),
+                    SearchDate = x.SearchDate
+                })
+            .Where(x => x.UserIP == userIP)
+            .ToList();
+
+            return historyLogs;
         }
     }
 }
