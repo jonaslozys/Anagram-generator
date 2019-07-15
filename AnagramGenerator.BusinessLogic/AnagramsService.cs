@@ -11,14 +11,16 @@ namespace AnagramGenerator.BusinessLogic
     {
         //private ICacheRepository _cacheRepository;
         private IAnagramSolver _anagramSolver;
+        private EfWordsRepository _efWordsRepository;
         private EfCacheRepository _efCacheRepository;
 
         private List<WordModel> _cachedAnagrams;
 
-        public AnagramsService(EfCacheRepository cacheRepository, IAnagramSolver anagramSolver)
+        public AnagramsService(EfWordsRepository efWordsRepository, EfCacheRepository cacheRepository, IAnagramSolver anagramSolver)
         {
             //_cacheRepository = cacheRepository;
             _efCacheRepository = cacheRepository;
+            _efWordsRepository = efWordsRepository;
             _anagramSolver = anagramSolver;
         }
 
@@ -39,7 +41,7 @@ namespace AnagramGenerator.BusinessLogic
                 anagrams = _cachedAnagrams;
             } else
             {
-                anagrams = _anagramSolver.GetAnagrams(word);
+                anagrams = _anagramSolver.GetAnagrams(word, _efWordsRepository.GetWords());
                 UpdateAnagramsCache(word, anagrams);
             }
             return anagrams.Select(w => w.word).ToList();

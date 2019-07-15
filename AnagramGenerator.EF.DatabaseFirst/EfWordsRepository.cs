@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AnagramGenerator.EF.DatabaseFirst
 {
-    public class EfWordsRepository 
+    public class EfWordsRepository
     {
         private AnagramsContext _anagramsContext;
         private HashSet<WordModel> _wordList;
@@ -53,22 +53,16 @@ namespace AnagramGenerator.EF.DatabaseFirst
 
         public HashSet<WordModel> GetWords()
         {
-            if (_wordList.Count > 1)
-            {
-                return _wordList;
 
-            }
-            else
-            {
-                _wordList = new HashSet<WordModel>();
+            _wordList = new HashSet<WordModel>();
 
-                _anagramsContext.Words
-                    .AsNoTracking()
-                    .ToList()
-                    .ForEach(word => _wordList.Add(new WordModel(word.Word, word.Id)));
+            _anagramsContext.Words
+                .AsNoTracking()
+                .ToList()
+                .ForEach(word => _wordList.Add(new WordModel(word.Word, word.Id)));
 
-                return _wordList;
-            }
+            return _wordList;
         }
     }
 }
+

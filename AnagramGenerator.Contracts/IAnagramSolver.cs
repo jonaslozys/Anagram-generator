@@ -6,7 +6,7 @@ namespace AnagramGenerator.Contracts
 {
     public interface IAnagramSolver
     {
-        List<WordModel> GetAnagrams(string userInput);
+        List<WordModel> GetAnagrams(string userInput, HashSet<WordModel> words);
 
     }
 }

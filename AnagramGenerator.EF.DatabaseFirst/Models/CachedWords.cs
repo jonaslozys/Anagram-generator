@@ -7,5 +7,7 @@ namespace AnagramGenerator.EF.DatabaseFirst.Models
     {
         public string Word { get; set; }
         public int Id { get; set; }
+
+        public Words IdNavigation { get; set; }
     }
 }

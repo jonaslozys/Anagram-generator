@@ -37,21 +37,20 @@ namespace AnagramGenerator.EF.DatabaseFirst.Models
                 entity.Property(e => e.Word)
                     .HasMaxLength(255)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithMany(p => p.CachedWords)
+                    .HasForeignKey(d => d.Id)
+                    .HasConstraintName("CachedWordsId");
             });
 
             modelBuilder.Entity<UserLog>(entity =>
             {
-                entity.Property(e => e.SearchDate)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.SearchDate).HasColumnType("datetime");
 
                 entity.Property(e => e.UserIp)
                     .IsRequired()
                     .HasColumnName("UserIP")
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.WordSearched)
-                    .IsRequired()
                     .HasMaxLength(255);
             });
 

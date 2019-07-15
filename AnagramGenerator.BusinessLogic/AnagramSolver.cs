@@ -14,7 +14,7 @@ namespace AnagramGenerator.BusinessLogic
     {
         //private IWordsRepository _wordsRepository;
 
-        private EfWordsRepository _efWordsRepository;
+        //private EfWordsRepository _efWordsRepository;
 
         private AnagramConfiguration _configuration;
 
@@ -23,11 +23,11 @@ namespace AnagramGenerator.BusinessLogic
         private WordModel _userInput;
 
         private List<WordModel> _anagrams;
-        public AnagramSolver( EfWordsRepository efWordsRepository,IOptionsMonitor<AnagramConfiguration> configuration)
+        public AnagramSolver(IOptionsMonitor<AnagramConfiguration> configuration)
         {
             //_wordsRepository = wordsRepository;
-            _efWordsRepository = efWordsRepository;
-            _words = _efWordsRepository.GetWords();
+            //_efWordsRepository = efWordsRepository;
+            //_words = efWordsRepository.GetWords();
             _configuration = configuration.CurrentValue;
         }
 
@@ -65,9 +65,10 @@ namespace AnagramGenerator.BusinessLogic
                 }
             }
         }
-        public List<WordModel> GetAnagrams(string userInput)
+        public List<WordModel> GetAnagrams(string userInput, HashSet<WordModel> words)
         {
             _anagrams = new List<WordModel>();
+            _words = words;
 
             _userInput = new WordModel(userInput);
 
