@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Implementation\AnagramGenerator.BusinessLogic.csproj" />
-    <ProjectReference Include="..\Interfaces\AnagramGenerator.Contracts.csproj" />
+    <ProjectReference Include="..\AnagramGenerator.BusinessLogic\AnagramGenerator.BusinessLogic.csproj" />
+    <ProjectReference Include="..\AnagramGenerator.Contracts\AnagramGenerator.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
