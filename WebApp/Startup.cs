@@ -15,6 +15,7 @@ using AnagramGenerator.Contracts.configurations;
 using AnagramGenerator.BusinessLogic;
 using AnagramGenerator.EF.DatabaseFirst;
 using AnagramGenerator.EF.DatabaseFirst.Models;
+using AnagramGenerator.Ef.CodeFirst;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,8 +39,10 @@ namespace WebApp
                 options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
             services.Configure<Connection>(Configuration);
-            services.AddDbContext<AnagramsContext>(options => options.UseSqlServer(Configuration.GetSection("ConnectionString").Value));
+            //services.AddDbContext<AnagramsContext>(options => options.UseSqlServer(Configuration.GetSection("ConnectionString").Value));
+            services.AddDbContext<AnagramContext>(options => options.UseSqlServer(Configuration.GetSection("ConnectionString").Value));
             services.Configure<AnagramConfiguration>(Configuration.GetSection("AnagramConfiguration"));
             services.AddSingleton(Configuration);
             //services.AddSingleton<IWordsRepository, WordsRepository>();
