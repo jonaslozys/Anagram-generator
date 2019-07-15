@@ -17,6 +17,7 @@ using AnagramGenerator.EF.DatabaseFirst;
 using AnagramGenerator.EF.DatabaseFirst.Models;
 using AnagramGenerator.Ef.CodeFirst;
 using Microsoft.Extensions.Options;
+using AnagramGenerator.Ef.CodeFirst;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApp
@@ -45,8 +46,11 @@ namespace WebApp
             services.AddDbContext<AnagramContext>(options => options.UseSqlServer(Configuration.GetSection("ConnectionString").Value));
             services.Configure<AnagramConfiguration>(Configuration.GetSection("AnagramConfiguration"));
             services.AddSingleton(Configuration);
+
             //services.AddSingleton<IWordsRepository, WordsRepository>();
-            services.AddScoped<EfWordsRepository>();
+            //services.AddScoped<EfWordsRepository>();
+            services.AddScoped<IWordsRepository, WordsEfCodeFirstRepository>();
+
             services.AddScoped<EfCacheRepository>();
             services.AddScoped<EfUsersRepository>();
             //services.AddSingleton<ICacheRepository, CacheRepository>();
