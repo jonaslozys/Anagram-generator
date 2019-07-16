@@ -8,5 +8,7 @@ namespace AnagramGenerator.Contracts
     {
         void AddUserLog(UserSearchLogModel userLog, string word);
         List<UserSearchLogModel> GetUserLogs(string UserIP);
+        void IncreaseAvailabeUserSearches(string UserIP);
+        void DecreaseAvailabeUserSearches(string UserIP);
     }
 }

@@ -54,9 +54,38 @@ namespace AnagramGenerator.Ef.CodeFirst
             return searchLogs;
         }
 
-        public void IncreaseUserSearchsCount(string userIP)
+        public void IncreaseAvailabeUserSearches(string userIP)
         {
-            
+            try
+            {
+                User userResult = _dbContext.Users.Single(user => user.UserIP == userIP);
+                userResult.AvailableSearches += 1;
+                _dbContext.Users.Update(userResult);
+            } catch
+            {
+                User user = new User() { UserIP = userIP };
+                _dbContext.Users.Add(user);
+            }
+
+            _dbContext.SaveChanges();
+
+        }
+
+        public void DecreaseAvailabeUserSearches(string userIP)
+        {
+            try
+            {
+                User userResult = _dbContext.Users.Single(user => user.UserIP == userIP);
+                userResult.AvailableSearches -= 1;
+                _dbContext.Users.Update(userResult);
+            }
+            catch
+            {
+                User user = new User() { UserIP = userIP };
+                _dbContext.Users.Add(user);
+            }
+
+            _dbContext.SaveChanges();
         }
     }
 }

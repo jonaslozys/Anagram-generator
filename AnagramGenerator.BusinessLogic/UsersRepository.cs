@@ -40,6 +40,11 @@ namespace AnagramGenerator.BusinessLogic
             }
         }
 
+        public void DecreaseAvailabeUserSearches(string UserIP)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<UserSearchLogModel> GetUserLogs(string userIP)
         {
             List<UserSearchLogModel> userLogs = new List<UserSearchLogModel>();
@@ -87,6 +92,11 @@ namespace AnagramGenerator.BusinessLogic
             }
 
             return userLogs;
+        }
+
+        public void IncreaseAvailabeUserSearches(string UserIP)
+        {
+            throw new NotImplementedException();
         }
     }
 }
