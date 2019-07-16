@@ -20,13 +20,18 @@ namespace WebApp.Controllers
     {
         private Dictionary _dictionaryConfiguration;
         private IWordsRepository _wordsRepository;
+        private IUsersRepository _usersRepository;
         private DictionaryViewModel _dictionaryModel;
         private int _pageSize;
 
-        public DictionaryController(IOptionsMonitor<Dictionary> dictionaryConfiguration, IWordsRepository wordsRepository)
+        public DictionaryController(
+            IOptionsMonitor<Dictionary> dictionaryConfiguration,
+            IWordsRepository wordsRepository,
+            IUsersRepository usersRepository)
         {
             _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
             _wordsRepository = wordsRepository;
+            _usersRepository = usersRepository;
             _dictionaryModel = new DictionaryViewModel();
 
         }
@@ -65,8 +70,12 @@ namespace WebApp.Controllers
         [HttpPost, Route("delete")]
         public IActionResult Delete(IFormCollection colletion)
         {
+            string ip = HttpContext.Connection.RemoteIpAddress.ToString();
             string wordToDelete = colletion["word"];
+
             _wordsRepository.DeleteWord(wordToDelete);
+            _usersRepository.DecreaseAvailabeUserSearches(ip);
+
             return RedirectToAction("Index");
         }
     }
