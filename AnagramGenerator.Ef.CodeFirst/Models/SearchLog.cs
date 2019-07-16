@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AnagramGenerator.Ef.CodeFirst.Models
 {
-    public class UserLog
+    public class SearchLog
     {
         public int Id { get; set; }
         public string UserIP { get; set; }

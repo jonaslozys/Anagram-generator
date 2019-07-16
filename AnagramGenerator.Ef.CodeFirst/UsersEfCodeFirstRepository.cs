@@ -20,7 +20,7 @@ namespace AnagramGenerator.Ef.CodeFirst
         {
             _dbContext.UserLogs
                 .Add(
-                    new UserLog()
+                    new SearchLog()
                     {
                         SearchDate = userLog.SearchDate,
                         UserIP = userLog.UserIP,
