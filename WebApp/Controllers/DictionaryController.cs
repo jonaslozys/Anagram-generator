@@ -79,7 +79,7 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost, Route("AddWord")]
+        [HttpPost("AddWord")]
         public IActionResult AddWord(IFormCollection collection)
         {
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
@@ -88,6 +88,17 @@ namespace WebApp.Controllers
             _wordsRepository.AddNewWord(wordToAdd);
             _usersRepository.IncreaseAvailabeUserSearches(ip);
 
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost("UpdateWord")]
+        public IActionResult UpdateWord(IFormCollection collection)
+        {
+            string ip = HttpContext.Connection.RemoteIpAddress.ToString();
+            int wordIndex = Convert.ToInt32(collection["id"]);
+            string wordToUpdate = collection["word"];
+
+            _wordsRepository.UpdateWord(wordIndex, wordToUpdate);
             return RedirectToAction("Index");
         }
     }
