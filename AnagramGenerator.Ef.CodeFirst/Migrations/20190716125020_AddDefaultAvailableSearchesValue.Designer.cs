@@ -4,14 +4,16 @@ using AnagramGenerator.Ef.CodeFirst;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnagramGenerator.Ef.CodeFirst.Migrations
 {
     [DbContext(typeof(AnagramContext))]
-    partial class AnagramContextModelSnapshot : ModelSnapshot
+    [Migration("20190716125020_AddDefaultAvailableSearchesValue")]
+    partial class AddDefaultAvailableSearchesValue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +62,7 @@ namespace AnagramGenerator.Ef.CodeFirst.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AvailableSearches")
-                        .ValueGeneratedOnAdd()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasDefaultValue(20);
 
                     b.Property<string>("UserIP");

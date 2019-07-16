@@ -31,7 +31,9 @@ namespace WebApp.Controllers
                 _anagramsModel.Word = word;
                 string ip = HttpContext.Connection.RemoteIpAddress.ToString();
                 UserSearchLogModel userLog = new UserSearchLogModel(ip, word, null) { UserIP = ip, SearchDate = DateTime.Now };
+
                 _usersRepository.AddUserLog(userLog, word);
+                _usersRepository.DecreaseAvailabeUserSearches(ip);
 
                 _anagramsModel.Anagrams = _anagramsService.GetAnagrams(word);
 
