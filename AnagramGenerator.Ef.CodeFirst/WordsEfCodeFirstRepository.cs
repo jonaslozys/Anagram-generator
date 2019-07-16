@@ -22,26 +22,26 @@ namespace AnagramGenerator.Ef.CodeFirst
             _dbContext.SaveChanges();
         }
 
-        public List<string> GetPageOfWords(int pageSize, int pageNumber)
+        public List<WordModel> GetPageOfWords(int pageSize, int pageNumber)
         {
             int startIndex = (pageNumber - 1) * pageSize;
             int endIndex = (pageNumber) * pageSize;
 
             if (startIndex < 0) startIndex = 0;
 
-            List<string> res = _dbContext.Words
+            List<WordModel> res = _dbContext.Words
                 .Where(word => (word.Id > startIndex) && (word.Id < endIndex))
-                .Select(word => word.WordValue)
+                .Select(word => new WordModel(word.WordValue, word.Id))
                 .ToList();
 
             return res;
         }
 
-        public List<string> GetSearchedWords(string searchString)
+        public List<WordModel> GetSearchedWords(string searchString)
         {
-            List<string> results = _dbContext.Words
+            List<WordModel> results = _dbContext.Words
                 .Where(word => word.WordValue.StartsWith(searchString))
-                .Select(word => word.WordValue)
+                .Select(word => new WordModel(word.WordValue, word.Id))
                 .ToList();
 
             return results;

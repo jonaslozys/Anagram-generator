@@ -132,5 +132,15 @@ namespace AnagramGenerator.BusinessLogic
         {
             throw new NotImplementedException();
         }
+
+        List<WordModel> IWordsRepository.GetPageOfWords(int pageSize, int pageNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<WordModel> IWordsRepository.GetSearchedWords(string searchString)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

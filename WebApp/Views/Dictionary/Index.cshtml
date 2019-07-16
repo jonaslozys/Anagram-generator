@@ -30,13 +30,13 @@
 </div>
 <br />
 <ul class="list-group">
-    @foreach (string word in Model.wordsDictionary)
+    @foreach (var word in Model.wordsDictionary)
     {
-        var parameters = new Dictionary<string, string> { { "word", word } };
+        var parameters = new Dictionary<string, string> { { "word", word.word } };
     <li class="list-group-item">
-        <a asp-controller="home" asp-all-route-data="parameters" target="_blank">@word</a>
+        <a asp-controller="home" asp-all-route-data="parameters" target="_blank">@word.word</a>
         <form asp-action="delete" method="post" class="form-group-lg">
-            <input type="hidden" name="word" value=@word />
+            <input type="hidden" name="word" value=@word.word />
             <input type="submit" class="btn btn-danger" value="Delete" />
         </form>
 
