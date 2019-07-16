@@ -127,5 +127,10 @@ namespace AnagramGenerator.BusinessLogic
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateWord(int wordId, string word)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace AnagramGenerator.Contracts
         List<string> GetSearchedWords(string searchString);
         void DeleteWord(string word);
         void AddNewWord(string word);
+        void UpdateWord(int wordId, string word);
     }
 }
