@@ -32,15 +32,26 @@ namespace AnagramGenerator.Ef.CodeFirst
 
         public List<UserSearchLogModel> GetUserLogs(string userIP)
         {
-            List<UserSearchLogModel> historyLogs = _dbContext.UserLogs.Select(x => new UserSearchLogModel(x.UserIP, x.WordSearched, x.Id)
-            {
-                    Anagrams = _dbContext.CachedWords.Where(c => c.Word == x.WordSearched).Select(c => c.AnagramWord.WordValue).ToList(),
-                    SearchDate = x.SearchDate
+            List<UserSearchLogModel> searchLogs = _dbContext.UserLogs
+                .Where(l => l.UserIP == userIP)
+                .GroupJoin(
+                    _dbContext.CachedWords,
+                    log => log.WordSearched,
+                    cache => cache.Word,
+                    (log, cache) => new
+                    {
+                        SearchId = log.Id,
+                        Anagrams = cache,
+                        UserIP = log.UserIP,
+                        WordSearched = log.WordSearched,
+                        SearchDate = log.SearchDate
+                    })
+                .Select(res => new UserSearchLogModel(res.UserIP, res.WordSearched, res.SearchId) {
+                    SearchDate = res.SearchDate, Anagrams = res.Anagrams.Select(c => c.AnagramWord.WordValue).ToList()
                 })
-            .Where(x => x.UserIP == userIP)
-            .ToList();
+                .ToList();
 
-            return historyLogs;
+            return searchLogs;
         }
     }
 }
