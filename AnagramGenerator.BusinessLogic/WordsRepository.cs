@@ -123,5 +123,9 @@ namespace AnagramGenerator.BusinessLogic
             }
         }
 
+        public void AddNewWord(string word)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

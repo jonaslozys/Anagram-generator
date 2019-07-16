@@ -10,6 +10,6 @@ namespace AnagramGenerator.Contracts
         List<string> GetPageOfWords(int pageSize, int pageNumber);
         List<string> GetSearchedWords(string searchString);
         void DeleteWord(string word);
-
+        void AddNewWord(string word);
     }
 }

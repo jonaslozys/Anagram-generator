@@ -58,5 +58,13 @@ namespace AnagramGenerator.Ef.CodeFirst
 
             return _wordList;
         }
+
+        void IWordsRepository.AddNewWord(string word)
+        {
+            Word newWord = new Word() { WordValue = word };
+
+            _dbContext.Add(newWord);
+            _dbContext.SaveChangesAsync();
+        }
     }
 }
