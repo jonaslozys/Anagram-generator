@@ -64,7 +64,7 @@ namespace AnagramGenerator.Ef.CodeFirst
             Word newWord = new Word() { WordValue = word };
 
             _dbContext.Add(newWord);
-            _dbContext.SaveChangesAsync();
+            _dbContext.SaveChanges();
         }
     }
 }

@@ -7,6 +7,14 @@
 
 <h2>Dictionary</h2>
 <div>
+    <form asp-action="AddWord" method="POST" class="form-inline">
+        <div class="form-group">
+            <input type="text" name="word" placeholder="New Word" class="form-control" />
+            <button type="submit" class="btn btn-primary">Add new word</button>
+        </div>
+    </form>
+</div>
+<div>
     <form method="POST" class="form-inline">
         <div class="form-group">
             <input type="text" name="search" placeholder="word" class="form-control" />

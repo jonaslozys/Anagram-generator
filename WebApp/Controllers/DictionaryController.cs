@@ -68,13 +68,25 @@ namespace WebApp.Controllers
         }
 
         [HttpPost, Route("delete")]
-        public IActionResult Delete(IFormCollection colletion)
+        public IActionResult Delete(IFormCollection collection)
         {
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
-            string wordToDelete = colletion["word"];
+            string wordToDelete = collection["word"];
 
             _wordsRepository.DeleteWord(wordToDelete);
             _usersRepository.DecreaseAvailabeUserSearches(ip);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, Route("AddWord")]
+        public IActionResult AddWord(IFormCollection collection)
+        {
+            string ip = HttpContext.Connection.RemoteIpAddress.ToString();
+            string wordToAdd = collection["word"];
+
+            _wordsRepository.AddNewWord(wordToAdd);
+            _usersRepository.IncreaseAvailabeUserSearches(ip);
 
             return RedirectToAction("Index");
         }
