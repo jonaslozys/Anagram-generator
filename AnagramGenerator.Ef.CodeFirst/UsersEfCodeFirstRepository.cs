@@ -18,7 +18,7 @@ namespace AnagramGenerator.Ef.CodeFirst
 
         public void AddUserLog(UserSearchLogModel userLog, string wordSearched)
         {
-            _dbContext.UserLogs
+            _dbContext.SearchLogs
                 .Add(
                     new SearchLog()
                     {
@@ -32,7 +32,7 @@ namespace AnagramGenerator.Ef.CodeFirst
 
         public List<UserSearchLogModel> GetUserLogs(string userIP)
         {
-            List<UserSearchLogModel> searchLogs = _dbContext.UserLogs
+            List<UserSearchLogModel> searchLogs = _dbContext.SearchLogs
                 .Where(l => l.UserIP == userIP)
                 .GroupJoin(
                     _dbContext.CachedWords,
@@ -52,6 +52,11 @@ namespace AnagramGenerator.Ef.CodeFirst
                 .ToList();
 
             return searchLogs;
+        }
+
+        public void IncreaseUserSearchsCount(string userIP)
+        {
+            
         }
     }
 }

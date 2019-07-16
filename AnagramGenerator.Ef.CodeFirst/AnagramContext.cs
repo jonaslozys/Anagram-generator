@@ -12,6 +12,8 @@ namespace AnagramGenerator.Ef.CodeFirst
 
         public DbSet<Word> Words { get; set; }
         public DbSet<CachedWord> CachedWords { get; set; }
-        public DbSet<SearchLog> UserLogs { get; set; }
+        public DbSet<SearchLog> SearchLogs { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }
