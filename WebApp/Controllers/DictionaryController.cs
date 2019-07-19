@@ -99,6 +99,7 @@ namespace WebApp.Controllers
             string wordToUpdate = collection["word"];
 
             _wordsRepository.UpdateWord(wordIndex, wordToUpdate);
+            _usersRepository.IncreaseAvailabeUserSearches(ip);
             return RedirectToAction("Index");
         }
     }

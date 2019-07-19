@@ -16,6 +16,10 @@ namespace AnagramGenerator.Ef.CodeFirst
                 .Property(b => b.AvailableSearches)
                 .HasDefaultValue(20)
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Word>()
+                .HasIndex(w => w.WordValue);
+
         }
         public DbSet<Word> Words { get; set; }
         public DbSet<CachedWord> CachedWords { get; set; }
