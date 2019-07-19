@@ -20,18 +20,19 @@ namespace WebApp.Controllers
     {
         private Dictionary _dictionaryConfiguration;
         private IWordsRepository _wordsRepository;
-        private IUsersRepository _usersRepository;
         private DictionaryViewModel _dictionaryModel;
+
+        private IDictionaryService _dictionaryService;
         private int _pageSize;
 
         public DictionaryController(
             IOptionsMonitor<Dictionary> dictionaryConfiguration,
             IWordsRepository wordsRepository,
-            IUsersRepository usersRepository)
+            IDictionaryService dictionaryService)
         {
             _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
+            _dictionaryService = dictionaryService;
             _wordsRepository = wordsRepository;
-            _usersRepository = usersRepository;
             _dictionaryModel = new DictionaryViewModel();
 
         }
@@ -73,8 +74,7 @@ namespace WebApp.Controllers
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
             string wordToDelete = collection["word"];
 
-            _wordsRepository.DeleteWord(wordToDelete);
-            _usersRepository.DecreaseAvailabeUserSearches(ip);
+            _dictionaryService.DeleteWord(wordToDelete, ip);
 
             return RedirectToAction("Index");
         }
@@ -85,8 +85,7 @@ namespace WebApp.Controllers
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
             string wordToAdd = collection["word"];
 
-            _wordsRepository.AddNewWord(wordToAdd);
-            _usersRepository.IncreaseAvailabeUserSearches(ip);
+            _dictionaryService.AddWord(wordToAdd, ip);
 
             return RedirectToAction("Index");
         }
@@ -97,8 +96,7 @@ namespace WebApp.Controllers
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
             string wordToUpdate = collection["word"];
 
-            _wordsRepository.UpdateWord(wordIndex, wordToUpdate);
-            _usersRepository.IncreaseAvailabeUserSearches(ip);
+            _dictionaryService.UpdateWord(wordToUpdate, ip, wordIndex);
             return RedirectToAction("Index");
         }
     }

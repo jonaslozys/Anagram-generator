@@ -52,6 +52,8 @@ namespace WebApp
             services.AddScoped<IUsersRepository, UsersEfCodeFirstRepository>();
 
             services.AddScoped<IAnagramsService, AnagramsService>();
+            services.AddScoped<IDictionaryService, DictionaryService>();
+
             services.AddScoped<IAnagramSolver, AnagramSolver>();
             services.Configure<Dictionary>(Configuration.GetSection("Dictionary"));
             services.Configure<AnagramSettings>(Configuration.GetSection("AnagramSettings"));
