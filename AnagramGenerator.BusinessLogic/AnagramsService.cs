@@ -13,13 +13,15 @@ namespace AnagramGenerator.BusinessLogic
         private IAnagramSolver _anagramSolver;
         private IWordsRepository _wordsRepository;
         private ICacheRepository _cacheRepository;
+        private IUsersRepository _usersRepository;
 
         private List<WordModel> _cachedAnagrams;
 
-        public AnagramsService(IWordsRepository wordsRepository, ICacheRepository cacheRepository, IAnagramSolver anagramSolver)
+        public AnagramsService(IWordsRepository wordsRepository, ICacheRepository cacheRepository, IUsersRepository usersRepository, IAnagramSolver anagramSolver)
         {
             _wordsRepository = wordsRepository;
             _cacheRepository = cacheRepository;
+            _usersRepository = usersRepository;
             _anagramSolver = anagramSolver;
         }
 
@@ -31,8 +33,17 @@ namespace AnagramGenerator.BusinessLogic
 
         }
 
-        public List<string> GetAnagrams(string word)
+        public List<string> GetAnagrams(string word, string ip)
         {
+            try
+            {
+                _usersRepository.DecreaseAvailabeUserSearches(ip);
+
+            } catch (Exception ex)
+            {
+                throw;
+            }
+
             List<WordModel> anagrams;
 
             if (IsCached(word))

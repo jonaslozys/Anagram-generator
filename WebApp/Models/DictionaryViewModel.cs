@@ -11,6 +11,7 @@ namespace WebApp.Models
         public List<WordModel> wordsDictionary { get; set; }
         public string SearchString { get; set; }
         public int page { get; set; }
+        public string ErrorMessage { get; set; }
 
     }
 }

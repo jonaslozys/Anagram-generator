@@ -9,7 +9,7 @@ namespace WebApp.Models
     public class AnagramsViewModel
     {
         public List<string> Anagrams { get; set; }
-
         public string Word { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

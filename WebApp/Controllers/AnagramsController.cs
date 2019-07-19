@@ -27,7 +27,7 @@ namespace WebApp.Controllers
         public async Task<ActionResult<List<string>>> GetAnagrams(string word)
         {
 
-            List<string> anagrams = _anagramsService.GetAnagrams(word);
+            List<string> anagrams = _anagramsService.GetAnagrams(word, null);
 
             if (anagrams.Count > 0)
             {

@@ -33,9 +33,14 @@ namespace WebApp.Controllers
                 UserSearchLogModel userLog = new UserSearchLogModel(ip, word, null) { UserIP = ip, SearchDate = DateTime.Now };
 
                 _usersRepository.AddUserLog(userLog, word);
-                _usersRepository.DecreaseAvailabeUserSearches(ip);
 
-                _anagramsModel.Anagrams = _anagramsService.GetAnagrams(word);
+                try
+                {
+                    _anagramsModel.Anagrams = _anagramsService.GetAnagrams(word, ip);
+                } catch (Exception ex)
+                {
+                    _anagramsModel.ErrorMessage = ex.Message;
+                }
 
                 CookieOptions cookieOptions = new CookieOptions();
                 cookieOptions.Expires = DateTime.Now.AddMinutes(10);

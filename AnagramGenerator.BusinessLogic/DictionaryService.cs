@@ -18,23 +18,45 @@ namespace AnagramGenerator.BusinessLogic
 
         public void DeleteWord(string wordToDelete, string ip)
         {
-            _wordsRepository.DeleteWord(wordToDelete);
 
-            _usersRepository.DecreaseAvailabeUserSearches(ip);
+            try
+            {
+                _usersRepository.DecreaseAvailabeUserSearches(ip);
+                _wordsRepository.DeleteWord(wordToDelete);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public void AddWord(string wordToAdd, string ip)
         {
-            _wordsRepository.AddNewWord(wordToAdd);
+            try
+            {
+                _wordsRepository.AddNewWord(wordToAdd);
+                _usersRepository.IncreaseAvailabeUserSearches(ip);
 
-            _usersRepository.IncreaseAvailabeUserSearches(ip);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
         public void UpdateWord(string wordToUpdate, string ip, int wordIndex = -1)
         {
-            _wordsRepository.UpdateWord(wordIndex, wordToUpdate);
+            try
+            {
+                _wordsRepository.UpdateWord(wordIndex, wordToUpdate);
+                _usersRepository.IncreaseAvailabeUserSearches(ip);
 
-            _usersRepository.IncreaseAvailabeUserSearches(ip);
+            } catch (Exception ex)
+            {
+                throw;
+            }
+
         }
     }
 }

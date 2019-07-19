@@ -38,8 +38,12 @@ namespace WebApp.Controllers
         }
         [HttpGet, Route("")]
         [HttpGet, Route("{page:int?}")]
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int page = 1, string ErrorMessage = null)
         {
+            if (ErrorMessage != null)
+            {
+                _dictionaryModel.ErrorMessage = ErrorMessage;
+            }
             _pageSize = _dictionaryConfiguration.pageSize;
             _dictionaryModel.wordsDictionary = _wordsRepository.GetPageOfWords(_pageSize, page);
             _dictionaryModel.page = page;
@@ -74,7 +78,15 @@ namespace WebApp.Controllers
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
             string wordToDelete = collection["word"];
 
-            _dictionaryService.DeleteWord(wordToDelete, ip);
+            try
+            {
+                _dictionaryService.DeleteWord(wordToDelete, ip);
+
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", new { ErrorMessage = ex.Message });
+            }
 
             return RedirectToAction("Index");
         }
@@ -85,7 +97,14 @@ namespace WebApp.Controllers
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
             string wordToAdd = collection["word"];
 
-            _dictionaryService.AddWord(wordToAdd, ip);
+            try
+            {
+                _dictionaryService.AddWord(wordToAdd, ip);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", new { ErrorMessage = ex.Message });
+            }
 
             return RedirectToAction("Index");
         }
@@ -96,7 +115,15 @@ namespace WebApp.Controllers
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
             string wordToUpdate = collection["word"];
 
-            _dictionaryService.UpdateWord(wordToUpdate, ip, wordIndex);
+
+            try
+            {
+                _dictionaryService.UpdateWord(wordToUpdate, ip, wordIndex);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", new { ErrorMessage = ex.Message });
+            }
             return RedirectToAction("Index");
         }
     }

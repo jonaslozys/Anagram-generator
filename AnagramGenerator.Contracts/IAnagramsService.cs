@@ -6,6 +6,6 @@ namespace AnagramGenerator.Contracts
 {
     public interface IAnagramsService
     {
-        List<string> GetAnagrams(string word);
+        List<string> GetAnagrams(string word, string ip);
     }
 }

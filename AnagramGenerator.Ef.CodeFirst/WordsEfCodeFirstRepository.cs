@@ -59,24 +59,59 @@ namespace AnagramGenerator.Ef.CodeFirst
             return _wordList;
         }
 
-        public void UpdateWord(int wordId, string word)
+        public void UpdateWord(int wordId, string newValue)
         {
-            Word wordToUpdate = _dbContext.Words.FirstOrDefault(w => w.Id == wordId);
-            if (wordToUpdate != null)
+            try
             {
-                wordToUpdate.WordValue = word;
-                _dbContext.Update(wordToUpdate);
-                _dbContext.SaveChanges();
+                Word wordToUpdate = _dbContext.Words.FirstOrDefault(w => w.Id == wordId);
+                if (wordToUpdate != null)
+                {
+                    if (!_dbContext.Words.Any(w => w.WordValue == newValue))
+                    {
+                        wordToUpdate.WordValue = newValue;
+                        _dbContext.Update(wordToUpdate);
+                        _dbContext.SaveChanges();
+                    } else
+                    {
+                        throw new InvalidOperationException("Word already exists.");
+                    }
+
+
+                } else
+                {
+                    throw new IndexOutOfRangeException("No word with ID provided was found.");
+                }
             }
+            catch (IndexOutOfRangeException ex)
+            {
+                throw;
+            }
+            catch(InvalidOperationException ex)
+            {
+                throw;
+            }
+
         }
 
         void IWordsRepository.AddNewWord(string word)
         {
-            if (!_dbContext.Words.Any(w => w.WordValue == word)) {
-                Word newWord = new Word() { WordValue = word };
-                _dbContext.Add(newWord);
-                _dbContext.SaveChanges();
+            try
+            {
+                if (!_dbContext.Words.Any(w => w.WordValue == word))
+                {
+                    Word newWord = new Word() { WordValue = word };
+                    _dbContext.Add(newWord);
+                    _dbContext.SaveChanges();
+                } else
+                {
+                    throw new InvalidOperationException("Unable to add already existing word.");
+                }
             }
+            catch (InvalidOperationException ex)
+            {
+                throw;
+            }
+
         }
     }
 }

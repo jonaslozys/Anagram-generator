@@ -73,16 +73,28 @@ namespace AnagramGenerator.Ef.CodeFirst
 
         public void DecreaseAvailabeUserSearches(string userIP)
         {
-            try
-            {
+            try {
                 User userResult = _dbContext.Users.Single(user => user.UserIP == userIP);
-                userResult.AvailableSearches -= 1;
-                _dbContext.Users.Update(userResult);
+
+                if (userResult.AvailableSearches < 1)
+                {
+                    throw new Exception("Unable to coplete operation, user score too low.");
+                }
+                else
+                {
+                    userResult.AvailableSearches -= 1;
+                    _dbContext.Users.Update(userResult);
+                }
+
             }
-            catch
+            catch (InvalidOperationException ex)
             {
                 User user = new User() { UserIP = userIP };
                 _dbContext.Users.Add(user);
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
 
             _dbContext.SaveChanges();
