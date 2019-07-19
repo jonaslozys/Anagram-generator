@@ -40,7 +40,29 @@
             <input type="submit" class="btn btn-danger" value="Delete" />
         </form>
 
+        <div class="modal fade" id="modalLoginForm@(word.Id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <form action="/dictionary/updateword/@(word.Id)" method="POST" class="form-inline">
+                                <div class="form-group">
+                                    <input type="text" name="word" value=@word.word placeholder="word" class="form-control" />
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm@(word.Id)">
+            Edit
+        </a>
+
     </li>
+
     }
 </ul>
 

@@ -91,11 +91,10 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost("UpdateWord")]
-        public IActionResult UpdateWord(IFormCollection collection)
+        [HttpPost("UpdateWord/{wordIndex:int?}")]
+        public IActionResult UpdateWord(IFormCollection collection, int wordIndex = -1)
         {
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
-            int wordIndex = Convert.ToInt32(collection["id"]);
             string wordToUpdate = collection["word"];
 
             _wordsRepository.UpdateWord(wordIndex, wordToUpdate);

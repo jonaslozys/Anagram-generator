@@ -62,9 +62,12 @@ namespace AnagramGenerator.Ef.CodeFirst
         public void UpdateWord(int wordId, string word)
         {
             Word wordToUpdate = _dbContext.Words.FirstOrDefault(w => w.Id == wordId);
-            wordToUpdate.WordValue = word;
-            _dbContext.Update(wordToUpdate);
-            _dbContext.SaveChanges();
+            if (wordToUpdate != null)
+            {
+                wordToUpdate.WordValue = word;
+                _dbContext.Update(wordToUpdate);
+                _dbContext.SaveChanges();
+            }
         }
 
         void IWordsRepository.AddNewWord(string word)
