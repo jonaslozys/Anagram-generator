@@ -69,10 +69,11 @@ namespace AnagramGenerator.Ef.CodeFirst
 
         void IWordsRepository.AddNewWord(string word)
         {
-            Word newWord = new Word() { WordValue = word };
-
-            _dbContext.Add(newWord);
-            _dbContext.SaveChanges();
+            if (!_dbContext.Words.Any(w => w.WordValue == word)) {
+                Word newWord = new Word() { WordValue = word };
+                _dbContext.Add(newWord);
+                _dbContext.SaveChanges();
+            }
         }
     }
 }
