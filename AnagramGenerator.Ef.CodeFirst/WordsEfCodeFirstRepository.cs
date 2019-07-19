@@ -25,12 +25,12 @@ namespace AnagramGenerator.Ef.CodeFirst
         public List<WordModel> GetPageOfWords(int pageSize, int pageNumber)
         {
             int startIndex = (pageNumber - 1) * pageSize;
-            int endIndex = (pageNumber) * pageSize;
-
             if (startIndex < 0) startIndex = 0;
 
             List<WordModel> res = _dbContext.Words
-                .Where(word => (word.Id > startIndex) && (word.Id < endIndex))
+                .OrderBy(word => word.WordValue)
+                .Skip(startIndex)
+                .Take(pageSize)
                 .Select(word => new WordModel(word.WordValue, word.Id))
                 .ToList();
 
