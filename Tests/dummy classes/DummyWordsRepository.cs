@@ -7,6 +7,26 @@ namespace Tests.dummy_classes
 {
     public class DummyWordsRepository : IWordsRepository
     {
+        public void AddNewWord(string word)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteWord(string word)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<WordModel> GetPageOfWords(int pageSize, int pageNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<WordModel> GetSearchedWords(string searchString)
+        {
+            throw new NotImplementedException();
+        }
+
         public HashSet<WordModel> GetWords()
         {
             string[] words = new string[] {
@@ -22,6 +42,11 @@ namespace Tests.dummy_classes
             }
 
             return wordObjects;
+        }
+
+        public void UpdateWord(int wordId, string word)
+        {
+            throw new NotImplementedException();
         }
     }
 }

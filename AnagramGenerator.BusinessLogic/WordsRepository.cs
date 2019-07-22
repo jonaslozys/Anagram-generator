@@ -23,9 +23,9 @@ namespace AnagramGenerator.BusinessLogic
 
         }
 
-        public WordsRepository(IOptionsMonitor<Connection> optionsAccessor)
+        public WordsRepository(IOptions<Connection> optionsAccessor)
         {
-            _connection = optionsAccessor.CurrentValue;
+            _connection = optionsAccessor.Value;
             _connectionString = _connection.ConnectionString;
             _wordList = new HashSet<WordModel>();
         }

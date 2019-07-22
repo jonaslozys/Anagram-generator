@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -13,9 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Anagram Generator\ConsoleApplication.csproj" />
-    <ProjectReference Include="..\Implementation\AnagramGenerator.BusinessLogic.csproj" />
-    <ProjectReference Include="..\Interfaces\AnagramGenerator.Contracts.csproj" />
+    <ProjectReference Include="..\AnagramGenerator.BusinessLogic\AnagramGenerator.BusinessLogic.csproj" />
+    <ProjectReference Include="..\AnagramGenerator.Contracts\AnagramGenerator.Contracts.csproj" />
+    <ProjectReference Include="..\AnagramGenerator.Ef.CodeFirst\AnagramGenerator.Ef.CodeFirst.csproj" />
+    <ProjectReference Include="..\AnagramGenerator.EF.DatabaseFirst\AnagramGenerator.EF.DatabaseFirst.csproj" />
   </ItemGroup>
 
 </Project>

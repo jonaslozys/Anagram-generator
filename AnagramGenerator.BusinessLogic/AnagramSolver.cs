@@ -23,12 +23,12 @@ namespace AnagramGenerator.BusinessLogic
         private WordModel _userInput;
 
         private List<WordModel> _anagrams;
-        public AnagramSolver(IOptionsMonitor<AnagramConfiguration> configuration)
+        public AnagramSolver(IOptions<AnagramConfiguration> configuration)
         {
             //_wordsRepository = wordsRepository;
             //_efWordsRepository = efWordsRepository;
             //_words = efWordsRepository.GetWords();
-            _configuration = configuration.CurrentValue;
+            _configuration = configuration.Value;
         }
 
         private bool CompareWords(WordModel word1, WordModel word2)

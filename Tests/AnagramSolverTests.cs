@@ -7,20 +7,24 @@ using AnagramGenerator.BusinessLogic;
 using System.Configuration;
 using System.Linq;
 using Tests.dummy_classes;
+using Microsoft.Extensions.Options;
+using AnagramGenerator.Contracts.configurations;
+
 
 namespace Tests
 {
     class AnagramSolverTests
     {
 
-        private AnagramConfiguration anagramConfiguration;
         private IWordsRepository wordsRepository;
+        private IOptions<AnagramConfiguration> config;
+
 
         [SetUp]
         public void SetUp()
         {
-            anagramConfiguration = new AnagramConfiguration(5, 15);
             wordsRepository = new DummyWordsRepository();
+            config = Options.Create<AnagramConfiguration>(new AnagramConfiguration() { minWordLength = 3, maxResultsLength = 15 });
         }
 
         [Test]
@@ -29,8 +33,8 @@ namespace Tests
         [TestCase("senam")]
         public void Should_Return_Two_Anagrams(string userInput)
         {
-            AnagramSolver anagramSolver = new AnagramSolver(wordsRepository, anagramConfiguration);
-            List<string> anagrams = anagramSolver.GetAnagrams(userInput);
+            AnagramSolver anagramSolver = new AnagramSolver(config);
+            List<WordModel> anagrams = anagramSolver.GetAnagrams(userInput ,wordsRepository.GetWords());
             Assert.IsTrue(anagrams.Count() == 2);
         }
 
@@ -38,12 +42,11 @@ namespace Tests
         [TestCase("menas")]
         [TestCase("nesam")]
         [TestCase("senam")]
-        public void Should_Not_Return_Anagrams_Longer_Then_Specified_By_Config(string userInput)
+        public void Should_Not_Return_Anagrams_Shorter_Then_Specified_By_Config(string userInput)
         {
-            anagramConfiguration = new AnagramConfiguration(6, 15);
-            AnagramSolver anagramSolver = new AnagramSolver(wordsRepository, anagramConfiguration);
-            List<string> anagrams = anagramSolver.GetAnagrams(userInput);
-            Assert.IsTrue(anagrams.All(anagram => anagram.Length > 6));
+            AnagramSolver anagramSolver = new AnagramSolver(config);
+            List<WordModel> anagrams = anagramSolver.GetAnagrams(userInput, wordsRepository.GetWords());
+            Assert.IsTrue(anagrams.All(anagram => anagram.word.Length > config.Value.minWordLength));
 
         }
     }
