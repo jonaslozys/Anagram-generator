@@ -4,13 +4,13 @@ using System.Text;
 using AnagramGenerator.Contracts;
 using AnagramGenerator.Contracts.configurations;
 using AnagramGenerator.BusinessLogic.Services;
-using Tests.DummyRepositories;
+using AnagramGenerator.Tests.DummyRepositories;
 using NUnit;
 using NUnit.Framework;
 using NSubstitute;
 using Microsoft.Extensions.Options;
 
-namespace Tests.Services
+namespace AnagramGenerator.Tests.Services
 {
     public class AnagramServiceTests
     {

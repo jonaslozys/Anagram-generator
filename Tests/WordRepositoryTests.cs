@@ -8,7 +8,7 @@ using System.Linq;
 using Microsoft.Extensions.Options;
 using AnagramGenerator.Contracts.configurations;
 
-namespace Tests
+namespace AnagramGenerator.Tests
 {
     class WordRepositoryTests
     {

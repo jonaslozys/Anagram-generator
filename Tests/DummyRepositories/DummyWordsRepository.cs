@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.Contracts;
 
-namespace Tests.DummyRepositories
+namespace AnagramGenerator.Tests.DummyRepositories
 {
     public class DummyWordsRepository : IWordsRepository
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.Contracts;
 
-namespace Tests
+namespace AnagramGenerator.Tests
 {
     class WordTests
     {

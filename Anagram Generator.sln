@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "Anagram Generator\ConsoleApplication.csproj", "{C508A4D9-EB5A-4029-A414-A453AB28E956}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{A2A9521A-5EB6-4706-B130-DC1525132004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.Tests", "Tests\AnagramGenerator.Tests.csproj", "{A2A9521A-5EB6-4706-B130-DC1525132004}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{AC014659-62B7-483F-9160-670746898E6F}"
 EndProject
@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.EF.Databas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.Ef.CodeFirst", "AnagramGenerator.Ef.CodeFirst\AnagramGenerator.Ef.CodeFirst.csproj", "{10CA9182-17E1-475D-B50F-FA9D19AF697F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generics", "Generics\Generics.csproj", "{97612713-D0B0-4656-A5A0-3B4924DEF275}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generics", "Generics\Generics.csproj", "{97612713-D0B0-4656-A5A0-3B4924DEF275}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

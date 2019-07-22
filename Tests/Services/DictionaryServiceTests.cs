@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.BusinessLogic.Services;
-using Tests.DummyRepositories;
+using AnagramGenerator.Tests.DummyRepositories;
 using NUnit;
 using NSubstitute;
 using AnagramGenerator.Contracts;
 using NUnit.Framework;
 using NSubstitute.ExceptionExtensions;
 
-namespace Tests.Services
+namespace AnagramGenerator.Tests.Services
 {
     public class DictionaryServiceTests
     {
