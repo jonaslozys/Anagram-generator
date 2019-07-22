@@ -69,5 +69,68 @@ namespace Tests.Services
 
             Assert.DoesNotThrow(() => _dictionaryService.DeleteWord(word, userIp));
         }
+
+        [Test]
+        [TestCase("qwerty123456789", "::1")]
+        [TestCase("aluss", "::1")]
+        [TestCase("rrrrrrrrr", "::1")]
+        public void Does_Not_Decrease_Available_Searches_When_Failing_TO_Delete_Word(string word, string userIp)
+        {
+            _wordsRepository.GetWords().Returns(_dummyWordsRepository.GetWords());
+
+            _wordsRepository
+                .When(x => x.DeleteWord(word))
+                .Do(x => {
+                    if (!_wordsRepository.GetWords().Contains(new WordModel(word)))
+                    {
+                        throw new Exception();
+                    }
+                });
+
+            Assert.Throws<Exception>(() => _dictionaryService.DeleteWord(word, userIp));
+
+            _usersRepository.DidNotReceive().DecreaseAvailabeUserSearches(userIp);
+        }
+
+        [Test]
+        [TestCase("nesam", "::1")]
+        [TestCase("alus", "::1")]
+        [TestCase("asla", "::1")]
+        public void Should_Throw_Exception_Trying_To_Add_Existing_Word(string word, string userIp)
+        {
+
+            _wordsRepository
+                .When(x => x.AddNewWord(word))
+                .Do(x => {
+                    if (_dummyWordsRepository.GetWords().Contains(new WordModel(word)))
+                    {
+                        throw new Exception();
+                    }
+                });
+
+            Assert.Throws<Exception>(() => _dictionaryService.AddWord(word, userIp));
+        }
+
+        [Test]
+        [TestCase("qwerty123456789", "::1")]
+        [TestCase("aluss", "::1")]
+        [TestCase("rrrrrrrrr", "::1")]
+        public void Should_Not_Throw_Exception_Trying_To_New_Word(string word, string userIp)
+        {
+            _wordsRepository.GetWords().Returns(_dummyWordsRepository.GetWords());
+
+            _wordsRepository
+                .When(x => x.AddNewWord(word))
+                .Do(x => {
+                    if (_dummyWordsRepository.GetWords().Contains(new WordModel(word)))
+                    {
+                        throw new Exception();
+                    }
+                });
+
+            Assert.DoesNotThrow(() => _dictionaryService.AddWord(word, userIp));
+        }
+
+
     }
 }
