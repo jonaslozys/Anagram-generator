@@ -13,6 +13,7 @@ using WebApp.Configuration;
 using AnagramGenerator.Contracts;
 using AnagramGenerator.Contracts.configurations;
 using AnagramGenerator.BusinessLogic;
+using AnagramGenerator.BusinessLogic.Services;
 using AnagramGenerator.EF.DatabaseFirst;
 using AnagramGenerator.EF.DatabaseFirst.Models;
 using AnagramGenerator.Ef.CodeFirst;

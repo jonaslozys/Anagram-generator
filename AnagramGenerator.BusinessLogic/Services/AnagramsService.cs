@@ -6,7 +6,7 @@ using AnagramGenerator.EF.DatabaseFirst;
 using AnagramGenerator.Ef.CodeFirst;
 using System.Linq;
 
-namespace AnagramGenerator.BusinessLogic
+namespace AnagramGenerator.BusinessLogic.Services
 {
     public class AnagramsService : IAnagramsService
     {

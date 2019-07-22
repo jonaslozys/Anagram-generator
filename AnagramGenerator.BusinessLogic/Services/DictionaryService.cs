@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.Contracts;
 
-namespace AnagramGenerator.BusinessLogic 
+namespace AnagramGenerator.BusinessLogic.Services 
 {
     public class DictionaryService : IDictionaryService
     {
