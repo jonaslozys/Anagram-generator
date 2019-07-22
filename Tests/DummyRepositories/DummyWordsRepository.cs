@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.Contracts;
 
-namespace Tests.dummy_classes
+namespace Tests.DummyRepositories
 {
     public class DummyWordsRepository : IWordsRepository
     {
@@ -35,10 +35,12 @@ namespace Tests.dummy_classes
             };
 
             HashSet<WordModel> wordObjects= new HashSet<WordModel>();
+            int index = 0;
 
             foreach(string word in words)
             {
-                wordObjects.Add(new WordModel(word));
+                wordObjects.Add(new WordModel(word, index));
+                index ++;
             }
 
             return wordObjects;

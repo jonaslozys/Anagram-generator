@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.BusinessLogic.Services;
-using Tests.dummy_classes;
+using Tests.DummyRepositories;
 using NUnit;
 using NSubstitute;
 using AnagramGenerator.Contracts;

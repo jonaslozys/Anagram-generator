@@ -4,7 +4,7 @@ using System.Text;
 using AnagramGenerator.Contracts;
 using AnagramGenerator.Contracts.configurations;
 using AnagramGenerator.BusinessLogic.Services;
-using Tests.dummy_classes;
+using Tests.DummyRepositories;
 using NUnit;
 using NUnit.Framework;
 using NSubstitute;

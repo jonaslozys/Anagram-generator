@@ -6,7 +6,7 @@ using AnagramGenerator.Contracts;
 using AnagramGenerator.BusinessLogic;
 using System.Configuration;
 using System.Linq;
-using Tests.dummy_classes;
+using Tests.DummyRepositories;
 using Microsoft.Extensions.Options;
 using AnagramGenerator.Contracts.configurations;
 
