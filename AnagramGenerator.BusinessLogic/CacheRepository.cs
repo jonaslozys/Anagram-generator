@@ -17,9 +17,9 @@ namespace AnagramGenerator.BusinessLogic
         private Connection _connection;
         private string _connectionString;
 
-        public CacheRepository(IOptionsMonitor<Connection> optionsAccessor)
+        public CacheRepository(IOptions<Connection> optionsAccessor)
         {
-            _connection = optionsAccessor.CurrentValue;
+            _connection = optionsAccessor.Value;
             _connectionString = _connection.ConnectionString;
         }
 

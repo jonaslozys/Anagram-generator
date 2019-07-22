@@ -14,9 +14,9 @@ namespace AnagramGenerator.BusinessLogic
     {
         private Connection _connection;
 
-        public UsersRepository(IOptionsMonitor<Connection> optionsAccessor)
+        public UsersRepository(IOptions<Connection> optionsAccessor)
         {
-            _connection = optionsAccessor.CurrentValue;
+            _connection = optionsAccessor.Value;
         }
 
         public void AddUserLog(UserSearchLogModel userLog, string word)

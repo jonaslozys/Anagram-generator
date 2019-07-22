@@ -26,11 +26,11 @@ namespace WebApp.Controllers
         private int _pageSize;
 
         public DictionaryController(
-            IOptionsMonitor<Dictionary> dictionaryConfiguration,
+            IOptions<Dictionary> dictionaryConfiguration,
             IWordsRepository wordsRepository,
             IDictionaryService dictionaryService)
         {
-            _dictionaryConfiguration = dictionaryConfiguration.CurrentValue;
+            _dictionaryConfiguration = dictionaryConfiguration.Value;
             _dictionaryService = dictionaryService;
             _wordsRepository = wordsRepository;
             _dictionaryModel = new DictionaryViewModel();
