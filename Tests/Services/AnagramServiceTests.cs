@@ -70,5 +70,6 @@ namespace Tests.Services
             _anagramSolver.Received().GetAnagrams(word, _wordsRepository.GetWords());
 
         }
+
     }
 }

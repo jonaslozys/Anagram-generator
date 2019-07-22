@@ -74,7 +74,7 @@ namespace Tests.Services
         [TestCase("qwerty123456789", "::1")]
         [TestCase("aluss", "::1")]
         [TestCase("rrrrrrrrr", "::1")]
-        public void Does_Not_Decrease_Available_Searches_When_Failing_TO_Delete_Word(string word, string userIp)
+        public void Does_Not_Decrease_Available_Searches_When_Failing_To_Delete_Word(string word, string userIp)
         {
             _wordsRepository.GetWords().Returns(_dummyWordsRepository.GetWords());
 
@@ -129,6 +129,45 @@ namespace Tests.Services
                 });
 
             Assert.DoesNotThrow(() => _dictionaryService.AddWord(word, userIp));
+        }
+
+        [Test]
+        [TestCase("nesam", 7, "::1")]
+        [TestCase("alus", 2, "::1")]
+        [TestCase("asla", 11, "::1")]
+        public void Should_Throw_Exception_Trying_To_Update_Word_To_Existing_Word(string word, int wordIndex, string userIp)
+        {
+
+            _wordsRepository
+                .When(x => x.UpdateWord(wordIndex, word))
+                .Do(x => {
+                    if (_dummyWordsRepository.GetWords().Contains(new WordModel(word)))
+                    {
+                        throw new Exception();
+                    }
+                });
+
+            Assert.Throws<Exception>(() => _dictionaryService.UpdateWord(word, userIp, wordIndex));
+        }
+
+        [Test]
+        [TestCase("sulcda", 45, "::1")]
+        [TestCase("alcdsus", 12, "::1")]
+        [TestCase("rrrrrrrrr", 4, "::1")]
+        public void Should_Not_Throw_Exception_Trying_To_Update_Word_To_New_Word(string word, int wordIndex, string userIp)
+        {
+            _wordsRepository.GetWords().Returns(_dummyWordsRepository.GetWords());
+
+            _wordsRepository
+                .When(x => x.UpdateWord(wordIndex, word))
+                .Do(x => {
+                    if (_dummyWordsRepository.GetWords().Contains(new WordModel(word)))
+                    {
+                        throw new Exception();
+                    }
+                });
+
+            Assert.DoesNotThrow(() => _dictionaryService.UpdateWord(word, userIp, wordIndex));
         }
 
 
