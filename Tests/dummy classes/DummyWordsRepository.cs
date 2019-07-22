@@ -31,7 +31,7 @@ namespace Tests.dummy_classes
         {
             string[] words = new string[] {
                 "pakeleivingas", "pakeleivingos", "pakeleivingos", "žvilgsnis", "seminaras", "Semionovičiumi",
-                "menas", "nesam", "senam", "sala", "sula", "asla", ""
+                "menas", "nesam", "senam", "sala", "sula", "asla", "alus"
             };
 
             HashSet<WordModel> wordObjects= new HashSet<WordModel>();

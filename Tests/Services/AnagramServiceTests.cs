@@ -22,8 +22,6 @@ namespace Tests.Services
 
         private AnagramsService _anagramsService;
 
-        private List<WordModel> _cachedAnagrams;
-
         [SetUp]
         public void Setup()
         {
