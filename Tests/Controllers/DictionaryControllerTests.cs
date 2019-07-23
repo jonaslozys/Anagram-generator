@@ -10,6 +10,8 @@ using NUnit.Framework;
 using NSubstitute;
 using WebApp.Controllers;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
+using WebApp.Models;
 
 namespace AnagramGenerator.Tests.Controllers
 {
@@ -57,6 +59,22 @@ namespace AnagramGenerator.Tests.Controllers
             _dictionaryController.Search(searchValue);
 
             _wordsRepository.DidNotReceive().GetSearchedWords(searchValue);
+        }
+
+        [Test]
+        [TestCase("randomWord")]
+        [TestCase("otherWord")]
+
+        public void Should_Return_View_With_Model_Containing_Some_Words(string searchValue)
+        {
+            _wordsRepository.GetSearchedWords(searchValue).Returns(new List<WordModel> { new WordModel(searchValue), new WordModel(searchValue) });
+
+            ViewResult result = (ViewResult)_dictionaryController.Search(searchValue);
+
+
+            DictionaryViewModel model = (DictionaryViewModel)result.Model;
+
+            Assert.IsTrue(model.wordsDictionary.Count > 1);
         }
     }
 }
