@@ -13,10 +13,13 @@ const html = (literal, ...cooked) => {
 const homePage = html
     `
     <section>
-        <form action="localhost:3000">
-            <label>Enter word</label>
-            <input name="word" type="text" placeholder="word" id="userInput">
-            <button type="submit">Get anagrams</button>
+        <form action="http://google.com">
+            <div class="form-group"> 
+                <label for="wordInput">Enter word</label>
+                <input name="word" type="text" placeholder="word" id="wordInput" class="form-control col-md-2">
+            <div>
+            <br/>
+            <button type="submit" class="btn btn-primary">Get anagrams</button>
         </form>
     </section>
     `

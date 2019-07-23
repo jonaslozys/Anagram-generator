@@ -3,18 +3,32 @@
     <head>
         <meta charset="utf-8">
         <title>Anagram Generator</title>
+        <link rel="stylesheet" href="./styles/styles.css">
     </head>
     <body>
         <header>
-            <button id="homeLink">Home</button>
-            <button id="dictionaryLink">Dictionay</button>
-            <button id="historyLink">History</button>
+                <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+                        <button class="btn btn-success btn-lg" id="homeLink">Home</button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                          <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <button class="btn btn-success" id="dictionaryLink">Dictionay</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="btn btn-success" id="historyLink">History</button>
+                            </li>
+                          </ul>
+                        </div>
+                      </nav>
         </header>
         <br/>
-        <div id="target"></div>
-        <footer>
-            <h5>2019 Anagram Generator</h5>
+        <div id="target" class="app"></div>
+        <footer class="footer">
+                <div class=" text-center py-3">© 2019 Copyright:
+                        <a href=""> Anagram Generator</a>
+                </div>
         </footer>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script type="module" src="js/index.js"></script>
 
     </body>
