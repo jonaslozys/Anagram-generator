@@ -1,4 +1,5 @@
 import View from "./view.js";
+import homeView from './views/homeView.js';
 
 class App {
     constructor() {
@@ -7,7 +8,7 @@ class App {
 
     init() {
         this.view.render();
-        this.view.changePage("Home page");
+        this.view.changePage(homeView);
     }
 }
 
@@ -16,7 +17,7 @@ app.init()
 
 const view = new View();
 
-document.getElementById("homeLink").addEventListener("click", () => view.changePage("Home page"));
+document.getElementById("homeLink").addEventListener("click", () => view.changePage(homeView));
 document.getElementById("dictionaryLink").addEventListener("click", () => view.changePage("Dictionary page"));
 document.getElementById("historyLink").addEventListener("click", () => view.changePage("History page"));
 
