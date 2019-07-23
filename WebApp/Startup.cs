@@ -42,6 +42,16 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAny",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                    }
+                );
+            });
+
             services.Configure<Connection>(Configuration);
             //services.AddDbContext<AnagramsContext>(options => options.UseSqlServer(Configuration.GetSection("ConnectionString").Value));
             services.AddDbContext<AnagramContext>(options => options.UseSqlServer(Configuration.GetSection("ConnectionString").Value));
@@ -76,6 +86,7 @@ namespace WebApp
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowAny");
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -85,6 +96,7 @@ namespace WebApp
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

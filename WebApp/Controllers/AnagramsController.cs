@@ -24,18 +24,29 @@ namespace WebApp.Controllers
         }
 
         [HttpGet("{word}")]
-        public async Task<ActionResult<List<string>>> GetAnagrams(string word)
+        public async Task<ActionResult<List<string>>> Anagrams(string word)
         {
+            string ip = HttpContext.Connection.RemoteIpAddress.ToString();
 
-            List<string> anagrams = _anagramsService.GetAnagrams(word, null);
+            try
+            {
+                List<string> anagrams = _anagramsService.GetAnagrams(word, ip);
+                if (anagrams.Count > 0)
+                {
+                    return Ok(anagrams);
+                }
+                else
+                {
+                    return NotFound();
+                }
 
-            if (anagrams.Count > 0)
-            {
-                return Ok(anagrams);
-            } else
-            {
-                return NotFound();
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+
         } 
     }
 }
