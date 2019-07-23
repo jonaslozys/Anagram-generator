@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-">
+        <meta charset="utf-8">
         <title>Anagram Generator</title>
     </head>
     <body>
         <header>
-            <a href="">Home</a>
-            <a href="dictionary">Dictionary</a>
-            <a href="history">History</a>
+            <button id="homeLink">Home</button>
+            <button id="dictionaryLink">Dictionay</button>
+            <button id="historyLink">History</button>
+
         </header>
-        <section>
-            <form action="localhost:3000">
-                <label>Enter word</label>
-                <input name="word" type="text" placeholder="word">
-                <button type="submit">Get anagrams</button>
-            </form>
-        </section>
+
+        <div id="target"></div>
         <footer>
             <h5>2019 Anagram Generator</h5>
         </footer>
+        <script type="module" src="js/index.js"></script>
+
     </body>
 </html>
