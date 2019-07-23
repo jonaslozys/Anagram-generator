@@ -1,5 +1,6 @@
 import View from "./view.js";
 import homeView from './views/homeView.js';
+import getAnagrams from './services/getAnagrams.js';
 
 class App {
     constructor() {
@@ -20,6 +21,16 @@ const view = new View();
 document.getElementById("homeLink").addEventListener("click", () => view.changePage(homeView));
 document.getElementById("dictionaryLink").addEventListener("click", () => view.changePage("Dictionary page"));
 document.getElementById("historyLink").addEventListener("click", () => view.changePage("History page"));
+
+document.getElementById("buttonGetAnagrams").addEventListener("click", (e) => {
+    e.preventDefault();
+    const word = document.getElementById("wordInput").value;
+    getAnagrams(word);
+});
+
+
+
+
 
 
 
