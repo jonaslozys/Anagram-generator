@@ -1,6 +1,6 @@
 const getAnagrams = (word) => {
     if (word.length > 0) {
-        axios.get(`http://localhost:5001?word=${word}`)
+        axios.get(`https://localhost:8001?word=${word}`)
             .then(res => console.log(res))
             .catch(err => console.log(err));
     }
