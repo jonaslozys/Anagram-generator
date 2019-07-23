@@ -1,32 +1,43 @@
-import View from "./view.js";
+import Renderer from "./renderer.js";
 import homeView from './views/homeView.js';
 import getAnagrams from './services/getAnagrams.js';
 
 class App {
     constructor() {
-        this.view = new View();
+        this.view = new Renderer();
     }
 
     init() {
         this.view.render();
-        this.view.changePage(homeView);
+        this.view.changePage(homeView());
     }
 }
 
 const app = new App();
-app.init()
+const view = new Renderer();
 
-const view = new View();
+let submitButton;
 
-document.getElementById("homeLink").addEventListener("click", () => view.changePage(homeView));
+window.addEventListener('load', () => {
+    app.init()
+    submitButton = document.getElementById("buttonGetAnagrams").addEventListener("click", (e) => {
+        e.preventDefault();
+        const word = document.getElementById("wordInput").value;
+        document.getElementById("wordInput").value = "";
+    
+        getAnagrams(word)
+            .then(anagrams => view.changePage(homeView(anagrams.data)))
+            .catch(err => console.log(err));
+    });
+
+});
+
+
+document.getElementById("homeLink").addEventListener("click", () => view.changePage(homeView()));
 document.getElementById("dictionaryLink").addEventListener("click", () => view.changePage("Dictionary page"));
 document.getElementById("historyLink").addEventListener("click", () => view.changePage("History page"));
 
-document.getElementById("buttonGetAnagrams").addEventListener("click", (e) => {
-    e.preventDefault();
-    const word = document.getElementById("wordInput").value;
-    getAnagrams(word);
-});
+
 
 
 

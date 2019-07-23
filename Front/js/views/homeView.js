@@ -1,7 +1,7 @@
 import html from '../services/stringToHtmlParser.js';
 
-const homePage = html
-    `
+function homePage(anagrams = []){
+    const result =  html`
     <section>
         <form>
             <div class="form-group"> 
@@ -11,7 +11,15 @@ const homePage = html
             <br/>
             <button type="submit" class="btn btn-primary" id="buttonGetAnagrams">Get anagrams</button>
         </form>
+        <div id="anagrams">
+            <ul>
+                ${anagrams.map(anagram => `<li>${anagram}</li>`)}
+            <ul>
+        </div>
     </section>
     `
+    return result;
+}
+
 
 export default homePage;

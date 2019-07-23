@@ -1,4 +1,4 @@
-class View {
+class Renderer {
     constructor() {
         this.pageContent = "";
         this.el = document.getElementById("target");
@@ -14,4 +14,4 @@ class View {
     }
 }
 
-export default View;
+export default Renderer;
