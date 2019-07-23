@@ -54,7 +54,7 @@ namespace WebApp.Controllers
         [HttpPost, Route("{page:int?}")]
         public IActionResult Search(string search)
         {
-            if (search != null)
+            if (search != null && search.Length > 0)
             {
                 _dictionaryModel.wordsDictionary = _wordsRepository.GetSearchedWords(search);
                 _dictionaryModel.SearchString = search;
