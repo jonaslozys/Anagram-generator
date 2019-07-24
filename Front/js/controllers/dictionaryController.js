@@ -7,12 +7,10 @@ class DictionaryController{
     constructor() {
         this.renderer = new Renderer();
         this.currentPage = 1;
-        this.eventListeners = null;
         this.dictionaryModel = DictionaryModel;
     }
 
     setupEventListeners() {
-        this.eventListeners = [];
         const buttons = document.querySelectorAll(".page-item");
         buttons.forEach(button => {
             button.addEventListener("click", (e) => {
@@ -50,6 +48,7 @@ class DictionaryController{
                 });
         } else {
             this.renderer.changePage(dictionaryView(this.dictionaryModel));
+            this.setupEventListeners();
         }
     }
     

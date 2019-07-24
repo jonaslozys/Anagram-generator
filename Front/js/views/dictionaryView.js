@@ -1,6 +1,7 @@
 import html from '../services/stringToHtmlParser.js';
 import ErrorAlert from '../components/errorAlert.js';
 import Pagination from '../components/pagination.js';
+import WordItem from '../components/wordItem.js';
 
 const dictionaryPage = (dictionaryModel) => {
     const view = html`    
@@ -26,23 +27,12 @@ const dictionaryPage = (dictionaryModel) => {
                 ? ErrorAlert(dictionaryModel.error)
                 : ''}
             ${Pagination(dictionaryModel.currentPage)}
-            <div id="anagrams">
-                <ul>
-                    ${dictionaryModel.words
-                        ? dictionaryModel.words.map(word => 
-                            {
-                                var row =  html`<li>
-                                                ${word.word}
-                                                <button class="btn btn-danger">Delete word</button>
-                                                <button class="btn btn-info">Edit word</button>
-                                            <li>`
-                                return row;
-                            }
-                        )
-                        : ''
-                    }
-                <ul>
-            </div>
+            <ul class="list-group">
+                ${dictionaryModel.words
+                    ? dictionaryModel.words.map(word => WordItem(word))
+                    : ''
+                }
+            </ul>
         </section>`;
     return view;
 }
