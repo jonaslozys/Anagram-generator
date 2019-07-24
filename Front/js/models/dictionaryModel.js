@@ -1,5 +1,5 @@
 const DictionaryModel = {
-    words: [],
+    words: null,
     currentPage: 1,
     error: ''
 }

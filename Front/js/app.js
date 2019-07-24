@@ -28,6 +28,6 @@ class App {
 const app = new App();
 
 window.addEventListener('load', () => {
-    app.init()
+    app.init();
 });
 

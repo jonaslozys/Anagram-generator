@@ -17,7 +17,8 @@ class DictionaryController{
     }
 
     changePage() {
-        getPageOfWords(this.currentPage)
+        if (!this.dictionaryModel.words) {
+            getPageOfWords(this.currentPage)
             .then(res => {
                 this.mapResponseToModel(res.data);
                 this.renderer.changePage(dictionaryView(this.dictionaryModel));
@@ -25,6 +26,10 @@ class DictionaryController{
             .catch(err => {
                 this.mapResponseToModel(err);
             });
+        } else {
+            this.renderer.changePage(dictionaryView(this.dictionaryModel));
+        }
+
     }
     
 }

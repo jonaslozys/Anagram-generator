@@ -1,7 +1,6 @@
 import html from '../services/stringToHtmlParser.js';
 
 const dictionaryPage = (dictionaryModel) => {
-    console.log(dictionaryModel);
     const view = html`    
         <section>
             <h2>Dictionary</h2>
