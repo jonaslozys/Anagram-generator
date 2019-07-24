@@ -1,5 +1,5 @@
 const Pagination = (currentPage) => {
-    const previousDisabled = currentPage < 3;
+    const previousDisabled = currentPage < 2;
     const pagination = 
     `
         <nav aria-label="...">
@@ -7,9 +7,14 @@ const Pagination = (currentPage) => {
                 <li class="page-item ${previousDisabled ? "disabled" : ''}">
                     <button class="page-link" href="#" value=${currentPage - 1} tabindex="${currentPage - 1}">Previous</button>
                 </li>
-                <li class="page-item">
-                    <button class="page-link"  ${previousDisabled ? 'disabled' : ''} value=${currentPage - 1} href="#">${currentPage - 1} </button>
-                </li>
+                ${!previousDisabled
+                    ? `
+                    <li class="page-item">
+                        <button class="page-link"  ${previousDisabled ? 'disabled' : ''} value=${currentPage - 1} href="#">${currentPage - 1} </button>
+                    </li>
+                    `
+                    : ''
+                }
                 <li class="page-item active">
                     <button class="page-link" value=${currentPage} href="#">${currentPage}<span class="sr-only">(current)</span></button>
                 </li>
