@@ -6,7 +6,7 @@ namespace AnagramGenerator.Contracts
 {
     public interface IDictionaryService
     {
-        void DeleteWord(string wordToDelete, string ip);
+        void DeleteWord(int wordId, string ip);
         void AddWord(string wordToAdd, string ip);
         void UpdateWord(string wordToUpdate, string ip, int wordIndex);
     }

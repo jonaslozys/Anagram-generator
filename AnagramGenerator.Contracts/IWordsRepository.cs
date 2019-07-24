@@ -9,7 +9,7 @@ namespace AnagramGenerator.Contracts
         HashSet<WordModel> GetWords();
         List<WordResponseModel> GetPageOfWords(int pageSize, int pageNumber);
         List<WordResponseModel> GetSearchedWords(string searchString);
-        void DeleteWord(string word);
+        void DeleteWord(int wordId);
         void AddNewWord(string word);
         void UpdateWord(int wordId, string word);
     }

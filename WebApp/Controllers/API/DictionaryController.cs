@@ -50,5 +50,21 @@ namespace WebApp.Controllers.API
                 return NotFound();
             }
         }
+
+        [HttpDelete]
+        [HttpDelete("{wordId}")]
+        public IActionResult Delte(int wordId)
+        {
+            string ip = HttpContext.Connection.RemoteIpAddress.ToString();
+
+            try
+            {
+                _dictionaryService.DeleteWord(wordId, ip);
+                return Ok();
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

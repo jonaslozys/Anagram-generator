@@ -110,13 +110,13 @@ namespace AnagramGenerator.BusinessLogic
             return searchResults;
         }
 
-        public void DeleteWord(string word)
+        public void DeleteWord(int wordId)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 SqlCommand command = new SqlCommand("deleteWord", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("Word", word));
+                command.Parameters.Add(new SqlParameter("Word", wordId));
 
                 connection.Open();
 

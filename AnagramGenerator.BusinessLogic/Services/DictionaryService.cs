@@ -16,12 +16,12 @@ namespace AnagramGenerator.BusinessLogic.Services
             _usersRepository = usersRepository;
         }
 
-        public void DeleteWord(string wordToDelete, string ip)
+        public void DeleteWord(int wordId, string ip)
         {
 
             try
             {
-                _wordsRepository.DeleteWord(wordToDelete);
+                _wordsRepository.DeleteWord(wordId);
                 _usersRepository.DecreaseAvailabeUserSearches(ip);
             }
             catch (Exception ex)

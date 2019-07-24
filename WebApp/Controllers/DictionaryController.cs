@@ -76,11 +76,11 @@ namespace WebApp.Controllers
         public IActionResult Delete(IFormCollection collection)
         {
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
-            string wordToDelete = collection["word"];
+            int wordId = Int32.Parse(collection["word"]);
 
             try
             {
-                _dictionaryService.DeleteWord(wordToDelete, ip);
+                _dictionaryService.DeleteWord(wordId, ip);
 
             }
             catch (Exception ex)

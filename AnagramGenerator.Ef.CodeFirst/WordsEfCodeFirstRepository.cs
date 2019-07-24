@@ -16,9 +16,9 @@ namespace AnagramGenerator.Ef.CodeFirst
         {
             _dbContext = dbContext;
         }
-        public void DeleteWord(string word)
+        public void DeleteWord(int wordId)
         {
-            Word wordToDelete = _dbContext.Words.SingleOrDefault(w => w.WordValue == word);
+            Word wordToDelete = _dbContext.Words.SingleOrDefault(w => w.Id == wordId);
             _dbContext.Words.Remove(wordToDelete);
             _dbContext.SaveChanges();
         }
