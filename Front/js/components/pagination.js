@@ -1,7 +1,7 @@
 const Pagination = (currentPage) => {
     const previousDisabled = currentPage < 2;
-    const pagination = 
-    `
+    
+    return `
         <nav aria-label="...">
             <ul class="pagination">
                 <li class="page-item ${previousDisabled ? "disabled" : ''}">
@@ -27,7 +27,6 @@ const Pagination = (currentPage) => {
             </ul>
         </nav>
     `;
-    return pagination;
 }
 
 export default Pagination;

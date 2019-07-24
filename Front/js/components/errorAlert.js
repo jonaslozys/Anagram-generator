@@ -1,12 +1,8 @@
-const ErrorAlert = (errorMessage) => {
-    const errorAlert = 
+const ErrorAlert = (errorMessage) =>
     `
         <div class="alert alert-danger" role="alert">
             ${errorMessage}
         </div>
-    `
-
-    return errorAlert;
-}
+    `;
 
 export default ErrorAlert;
