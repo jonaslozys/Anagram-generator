@@ -20,19 +20,26 @@ const dictionaryPage = (dictionaryModel) => {
                 <div>
             </form>
             <br/>
-
+            ${dictionaryModel.error 
+                ? `<div class="alert alert-danger" role="alert">
+                        ${dictionaryModel.error}
+                    </div>`
+                : ''}
             <div id="anagrams">
                 <ul>
-                    ${dictionaryModel.words.map(word => 
-                        {
-                            var row =  html`<li>
-                                            ${word.word}
-                                            <button class="btn btn-danger">Delete word</button>
-                                            <button class="btn btn-info">Edit word</button>
-                                        <li>`
-                            return row;
-                        }
-                    )}
+                    ${dictionaryModel.words
+                        ? dictionaryModel.words.map(word => 
+                            {
+                                var row =  html`<li>
+                                                ${word.word}
+                                                <button class="btn btn-danger">Delete word</button>
+                                                <button class="btn btn-info">Edit word</button>
+                                            <li>`
+                                return row;
+                            }
+                        )
+                        : ''
+                    }
                 <ul>
             </div>
         </section>`;
