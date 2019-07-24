@@ -6,24 +6,27 @@ import getAnagrams from './services/getAnagrams.js';
 
 class App {
     constructor() {
-        this.view = new Renderer();
+        this.renderer = new Renderer();
     }
 
     init() {
-        this.view.render();
-        this.view.changePage(homeView());
+        this.renderer.render();
+        this.renderer.changePage(homeView());
+        this.addEventListenersForNavigationalButtons();
+
+    }
+
+    addEventListenersForNavigationalButtons() {
+        document.getElementById("homeLink").addEventListener("click", () => this.renderer.changePage(homeView()));
+        document.getElementById("dictionaryLink").addEventListener("click", () => this.renderer.changePage("Dictionary page"));
+        document.getElementById("historyLink").addEventListener("click", () => this.renderer.changePage("History page"));
     }
 }
 
 const app = new App();
-const view = new Renderer();
-
 
 window.addEventListener('load', () => {
     app.init()
     new HomeController();
 });
 
-document.getElementById("homeLink").addEventListener("click", () => view.changePage(homeView()));
-document.getElementById("dictionaryLink").addEventListener("click", () => view.changePage("Dictionary page"));
-document.getElementById("historyLink").addEventListener("click", () => view.changePage("History page"));
