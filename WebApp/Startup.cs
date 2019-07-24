@@ -47,6 +47,7 @@ namespace WebApp
                 options.AddPolicy("AllowAny",
                     builder =>
                     {
+                        builder.AllowAnyMethod();
                         builder.AllowAnyOrigin();
                     }
                 );

@@ -51,9 +51,8 @@ namespace WebApp.Controllers.API
             }
         }
 
-        [HttpDelete]
         [HttpDelete("{wordId}")]
-        public IActionResult Delte(int wordId)
+        public IActionResult Delete(int wordId)
         {
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
 

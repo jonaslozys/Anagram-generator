@@ -78,7 +78,7 @@ namespace AnagramGenerator.Ef.CodeFirst
 
                 if (userResult.AvailableSearches < 1)
                 {
-                    throw new Exception("Unable to coplete operation, user score too low.");
+                    throw new Exception("Unable to complete operation, user score too low.");
                 }
                 else
                 {

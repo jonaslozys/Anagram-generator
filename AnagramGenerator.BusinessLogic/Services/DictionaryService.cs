@@ -21,8 +21,8 @@ namespace AnagramGenerator.BusinessLogic.Services
 
             try
             {
-                _wordsRepository.DeleteWord(wordId);
                 _usersRepository.DecreaseAvailabeUserSearches(ip);
+                _wordsRepository.DeleteWord(wordId);
             }
             catch (Exception ex)
             {

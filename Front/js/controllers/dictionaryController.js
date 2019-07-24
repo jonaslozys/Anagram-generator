@@ -1,5 +1,6 @@
 import Renderer from '../renderer.js';
 import getPageOfWords from '../services/getPageOfWords.js';
+import deleteWord from '../services/deleteWord.js';
 import dictionaryView from '../views/dictionaryView.js';
 import DictionaryModel from '../models/dictionaryModel.js';
 
@@ -11,13 +12,21 @@ class DictionaryController{
     }
 
     setupEventListeners() {
-        const buttons = document.querySelectorAll(".page-item");
-        buttons.forEach(button => {
+        const paginationButtons = document.querySelectorAll(".page-item");
+        paginationButtons.forEach(button => {
             button.addEventListener("click", (e) => {
                 e.preventDefault();
                 this.handlePaginationClick(e.target.value);
             });
         });
+
+        const deleteButton = document.querySelectorAll("#deleteWord");
+        deleteButton.forEach(button => {
+            button.addEventListener("click", (e) => {
+                e.preventDefault();
+                this.handleDelete(e.target.value);
+            })
+        })
     }
 
     handlePaginationClick(pageNumber) {
@@ -27,10 +36,27 @@ class DictionaryController{
         this.changePage();
     }
 
+    handleDelete(wordId) {
+        deleteWord(wordId)
+            .then(res => {
+                    this.dictionaryModel.words.forEach((word, index) => {
+                        if (word.id == wordId) {
+                            this.dictionaryModel.words.splice(index, 1);
+                        }
+                    });
+                    this.changePage();
+
+            })
+            .catch(err => {
+                this.mapResponseToModel(err);
+                this.changePage();
+            });
+    }
+
     mapResponseToModel(data) {
-        this.dictionaryModel.words = data.words;
-        this.dictionaryModel.currentPage = data.page;
-        this.dictionaryModel.error = data.response ? data.response.statusText : null;
+        this.dictionaryModel.words = data.words ? data.words : this.dictionaryModel.words;
+        this.dictionaryModel.currentPage = data.page ? data.page : this.dictionaryModel.currentPage;
+        this.dictionaryModel.error = data.response ? data.response.data : null;
     }
 
     changePage() {
