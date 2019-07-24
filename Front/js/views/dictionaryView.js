@@ -1,7 +1,7 @@
 import html from '../services/stringToHtmlParser.js';
 
-const dictionaryPage = (words = []) => {
-    
+const dictionaryPage = (dictionaryModel) => {
+    console.log(dictionaryModel);
     const view = html`    
         <section>
             <h2>Dictionary</h2>
@@ -24,7 +24,7 @@ const dictionaryPage = (words = []) => {
 
             <div id="anagrams">
                 <ul>
-                    ${words.map(word => 
+                    ${dictionaryModel.words.map(word => 
                         {
                             var row =  html`<li>
                                             ${word.word}

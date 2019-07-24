@@ -1,19 +1,30 @@
 import Renderer from '../renderer.js';
 import getPageOfWords from '../services/getPageOfWords.js';
 import dictionaryView from '../views/dictionaryView.js';
+import DictionaryModel from '../models/dictionaryModel.js';
 
 class DictionaryController{
     constructor() {
-        //this.submitButton = document.getElementById("buttongetPageOfWords")
-          //                          .addEventListener("click", (e) => this.handleSubmit(e));
         this.renderer = new Renderer();
         this.currentPage = 1;
+        this.dictionaryModel = DictionaryModel;
+    }
+
+    mapResponseToModel(data) {
+        this.dictionaryModel.words = data.words;
+        this.dictionaryModel.currentPage = data.currentPage;
+        this.dictionaryModel.error = data.response;
     }
 
     changePage() {
         getPageOfWords(this.currentPage)
-            .then(words => this.renderer.changePage(dictionaryView(words.data.words)))
-            .catch(err => console.log(err));
+            .then(res => {
+                this.mapResponseToModel(res.data);
+                this.renderer.changePage(dictionaryView(this.dictionaryModel));
+            })
+            .catch(err => {
+                this.mapResponseToModel(err);
+            });
     }
     
 }
