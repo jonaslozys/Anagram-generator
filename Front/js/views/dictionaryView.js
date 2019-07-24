@@ -1,5 +1,6 @@
 import html from '../services/stringToHtmlParser.js';
 import ErrorAlert from '../components/errorAlert.js';
+import Pagination from '../components/pagination.js';
 
 const dictionaryPage = (dictionaryModel) => {
     const view = html`    
@@ -24,6 +25,7 @@ const dictionaryPage = (dictionaryModel) => {
             ${dictionaryModel.error 
                 ? ErrorAlert(dictionaryModel.error)
                 : ''}
+            ${Pagination(dictionaryModel.currentPage)}
             <div id="anagrams">
                 <ul>
                     ${dictionaryModel.words
