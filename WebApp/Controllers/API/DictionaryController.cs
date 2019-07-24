@@ -65,5 +65,24 @@ namespace WebApp.Controllers.API
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("{searchValue}")]
+        public IActionResult Find(string searchValue)
+        {
+            try
+            {
+                List<WordResponseModel> searchResults = _wordsRepository.GetSearchedWords(searchValue);
+                if (searchResults.Count > 0)
+                {
+                    return Ok(searchResults);
+                } else
+                {
+                    return NotFound("No words matching search string were found.");
+                }
+            } catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
