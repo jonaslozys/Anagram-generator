@@ -6,14 +6,14 @@ import DictionaryModel from '../models/dictionaryModel.js';
 class DictionaryController{
     constructor() {
         this.renderer = new Renderer();
-        this.currentPage = 11321312213;
+        this.currentPage = 13165456456456456;
         this.dictionaryModel = DictionaryModel;
     }
 
     mapResponseToModel(data) {
         this.dictionaryModel.words = data.words;
         this.dictionaryModel.currentPage = data.currentPage;
-        this.dictionaryModel.error = data.response.statusText;
+        this.dictionaryModel.error = data.response ? data.response.statusText : null;
     }
 
     changePage() {

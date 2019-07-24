@@ -1,4 +1,5 @@
 import html from '../services/stringToHtmlParser.js';
+import ErrorAlert from '../components/errorAlert.js';
 
 const dictionaryPage = (dictionaryModel) => {
     const view = html`    
@@ -21,9 +22,7 @@ const dictionaryPage = (dictionaryModel) => {
             </form>
             <br/>
             ${dictionaryModel.error 
-                ? `<div class="alert alert-danger" role="alert">
-                        ${dictionaryModel.error}
-                    </div>`
+                ? ErrorAlert(dictionaryModel.error)
                 : ''}
             <div id="anagrams">
                 <ul>
