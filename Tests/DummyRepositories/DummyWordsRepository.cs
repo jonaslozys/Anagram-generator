@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AnagramGenerator.Contracts.WebAPIResponseModels;
 using AnagramGenerator.Contracts;
 
 namespace AnagramGenerator.Tests.DummyRepositories
@@ -17,12 +18,12 @@ namespace AnagramGenerator.Tests.DummyRepositories
             throw new NotImplementedException();
         }
 
-        public List<WordModel> GetPageOfWords(int pageSize, int pageNumber)
+        public List<WordResponseModel> GetPageOfWords(int pageSize, int pageNumber)
         {
             throw new NotImplementedException();
         }
 
-        public List<WordModel> GetSearchedWords(string searchString)
+        public List<WordResponseModel> GetSearchedWords(string searchString)
         {
             throw new NotImplementedException();
         }

@@ -5,6 +5,7 @@ class Renderer {
     }
 
     render() {
+        console.log(`Rendering \n${this.pageContent}`);
         this.el.innerHTML = this.pageContent;
     }
 

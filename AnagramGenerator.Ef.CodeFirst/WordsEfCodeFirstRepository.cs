@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnagramGenerator.Contracts;
+using AnagramGenerator.Contracts.WebAPIResponseModels;
 using AnagramGenerator.Ef.CodeFirst.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,26 +23,26 @@ namespace AnagramGenerator.Ef.CodeFirst
             _dbContext.SaveChanges();
         }
 
-        public List<WordModel> GetPageOfWords(int pageSize, int pageNumber)
+        public List<WordResponseModel> GetPageOfWords(int pageSize, int pageNumber)
         {
             int startIndex = (pageNumber - 1) * pageSize;
             if (startIndex < 0) startIndex = 0;
 
-            List<WordModel> res = _dbContext.Words
+            List<WordResponseModel> res = _dbContext.Words
                 .OrderBy(word => word.WordValue)
                 .Skip(startIndex)
                 .Take(pageSize)
-                .Select(word => new WordModel(word.WordValue, word.Id))
+                .Select(word => new WordResponseModel(word.WordValue, word.Id))
                 .ToList();
 
             return res;
         }
 
-        public List<WordModel> GetSearchedWords(string searchString)
+        public List<WordResponseModel> GetSearchedWords(string searchString)
         {
-            List<WordModel> results = _dbContext.Words
+            List<WordResponseModel> results = _dbContext.Words
                 .Where(word => word.WordValue.StartsWith(searchString))
-                .Select(word => new WordModel(word.WordValue, word.Id))
+                .Select(word => new WordResponseModel(word.WordValue, word.Id))
                 .ToList();
 
             return results;

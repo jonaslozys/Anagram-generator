@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using AnagramGenerator.Contracts;
+using AnagramGenerator.Contracts.WebAPIResponseModels;
 using System.Linq;
 using System.Data.SqlClient;
 using System.Data;
@@ -133,12 +134,12 @@ namespace AnagramGenerator.BusinessLogic
             throw new NotImplementedException();
         }
 
-        List<WordModel> IWordsRepository.GetPageOfWords(int pageSize, int pageNumber)
+        List<WordResponseModel> IWordsRepository.GetPageOfWords(int pageSize, int pageNumber)
         {
             throw new NotImplementedException();
         }
 
-        List<WordModel> IWordsRepository.GetSearchedWords(string searchString)
+        List<WordResponseModel> IWordsRepository.GetSearchedWords(string searchString)
         {
             throw new NotImplementedException();
         }

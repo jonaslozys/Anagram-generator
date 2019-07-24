@@ -1,6 +1,6 @@
 import html from '../services/stringToHtmlParser.js';
 
-function homePage(anagrams = []){
+const homePage = (anagrams = []) => {
     const result =  html`
     <section>
         <form>
