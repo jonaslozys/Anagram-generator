@@ -25,11 +25,14 @@ const dictionaryPage = (words = []) => {
             <div id="anagrams">
                 <ul>
                     ${words.map(word => 
-                        `<li>
-                            ${word}
-                            <button class="btn btn-danger">Delete word</button>
-                            <button class="btn btn-info">Edit word</button>
-                        <li>`
+                        {
+                            var row =  html`<li>
+                                            ${word.word}
+                                            <button class="btn btn-danger">Delete word</button>
+                                            <button class="btn btn-info">Edit word</button>
+                                        <li>`
+                            return row;
+                        }
                     )}
                 <ul>
             </div>
