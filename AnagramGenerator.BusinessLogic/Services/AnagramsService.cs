@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.Contracts;
+using AnagramGenerator.Contracts.WebAPIResponseModels;
 using AnagramGenerator.EF.DatabaseFirst;
 using AnagramGenerator.Ef.CodeFirst;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace AnagramGenerator.BusinessLogic.Services
 
         }
 
-        public List<string> GetAnagrams(string word, string ip)
+        public List<WordResponseModel> GetAnagrams(string word, string ip)
         {
             try
             {
@@ -54,7 +55,7 @@ namespace AnagramGenerator.BusinessLogic.Services
                 anagrams = _anagramSolver.GetAnagrams(word, _wordsRepository.GetWords());
                 UpdateAnagramsCache(word, anagrams);
             }
-            return anagrams.Select(w => w.word).ToList();
+            return anagrams.Select(w =>new WordResponseModel(w.word, w.Id)).ToList();
         }
 
         private void UpdateAnagramsCache(string word, List<WordModel> anagrams) 

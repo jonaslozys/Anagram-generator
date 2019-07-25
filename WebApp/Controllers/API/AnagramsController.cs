@@ -9,8 +9,9 @@ using AnagramGenerator.Contracts;
 using WebApp.Configuration;
 using WebApp.Models;
 using Microsoft.Extensions.Options;
+using AnagramGenerator.Contracts.WebAPIResponseModels;
 
-namespace WebApp.Controllers
+namespace WebApp.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,20 +25,20 @@ namespace WebApp.Controllers
         }
 
         [HttpGet("{word}")]
-        public async Task<ActionResult<List<string>>> Anagrams(string word)
+        public async Task<ActionResult> Anagrams(string word)
         {
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
 
             try
             {
-                List<string> anagrams = _anagramsService.GetAnagrams(word, ip);
+                List<WordResponseModel> anagrams = _anagramsService.GetAnagrams(word, ip);
                 if (anagrams.Count > 0)
                 {
-                    return Ok(anagrams);
+                    return Ok(new { anagrams });
                 }
                 else
                 {
-                    return NotFound();
+                    return NotFound("No anagrams were found");
                 }
 
             }
