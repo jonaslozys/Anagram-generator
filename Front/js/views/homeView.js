@@ -4,7 +4,6 @@ import AnagramItem from '../components/anagramItem.js';
 import ErrorAlert from '../components/errorAlert.js';
 
 const homePage = (homeModel) => {
-    console.log(homeModel)
     const result =  html`
     <section>
         ${getAnagarmsForm()}
