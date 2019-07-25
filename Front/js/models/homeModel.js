@@ -1,6 +1,6 @@
 const HomeModel = {
     searchWord: null,
-    error: "",
+    error: null,
     anagrams: []
 }
 

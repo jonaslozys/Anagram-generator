@@ -14,17 +14,23 @@ class HomeController{
         e.preventDefault();
         const searchValue = document.getElementById("getAnagramsFormValue").value;
         document.getElementById("getAnagramsFormValue").value = "";
+
+        this.homeModel.searchWord = searchValue;
     
         await getAnagrams(searchValue)
                 .then(res => this.mapResponseToModel(res.data))
-                .catch(err => this.mapResponseToModel(res));
+                .catch(err => this.mapResponseToModel(err));
         this.displayPage();
     }
 
     mapResponseToModel(data) {
-        console.log(data);
-        this.homeModel.anagrams = data.anagrams ? data.anagrams : this.homeModel.anagrams;
-        this.homeModel.error = data.response ? data.response : this.homeModel.error;
+        if (data.response) {
+            this.homeModel.anagrams = null;
+            this.homeModel.error = data.response.data;
+        } else {
+            this.homeModel.error = null;
+            this.homeModel.anagrams = data.anagrams ? data.anagrams : this.homeModel.anagrams;
+        }
     }
 
     setupEventListeners() {
@@ -32,7 +38,7 @@ class HomeController{
     }
 
     displayPage() {
-        this.renderer.changePage(homeView());
+        this.renderer.changePage(homeView(this.homeModel));
         this.setupEventListeners();
     }
     
