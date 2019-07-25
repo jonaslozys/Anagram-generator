@@ -74,7 +74,7 @@ namespace WebApp.Controllers.API
                 List<WordResponseModel> searchResults = _wordsRepository.GetSearchedWords(searchValue);
                 if (searchResults.Count > 0)
                 {
-                    return Ok(searchResults);
+                    return Ok(new { words = searchResults });
                 } else
                 {
                     return NotFound("No words matching search string were found.");

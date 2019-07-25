@@ -2,6 +2,7 @@ import html from '../services/stringToHtmlParser.js';
 import ErrorAlert from '../components/errorAlert.js';
 import Pagination from '../components/pagination.js';
 import WordItem from '../components/wordItem.js';
+import SearchForm from '../components/searchForm.js';
 
 const dictionaryPage = (dictionaryModel) => {
     const view = html`    
@@ -15,13 +16,7 @@ const dictionaryPage = (dictionaryModel) => {
                 <div>
             </form>
             <br/>
-
-            <form class="form-inline">
-                <div class="form-group"> 
-                    <input name="word" type="text" placeholder="Search" id="wordInput" class="form-control col-md-8">
-                    <button type="submit" class="btn btn-primary" id="buttonGetAnagrams">Find Words</button>
-                <div>
-            </form>
+            ${SearchForm()}
             <br/>
             ${dictionaryModel.error 
                 ? ErrorAlert(dictionaryModel.error)
