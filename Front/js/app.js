@@ -1,10 +1,8 @@
-import Renderer from "./renderer.js";
 import HomeController from './controllers/homeController.js';
 import DictionaryController from './controllers/dictionaryController.js';
 
 class App {
     constructor() {
-        this.renderer = new Renderer();
     }
 
     init() {

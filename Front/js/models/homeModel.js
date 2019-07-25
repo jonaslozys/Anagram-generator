@@ -1,6 +1,7 @@
 const HomeModel = {
+    searchWord: null,
     error: "",
     anagrams: []
 }
 
-export const HomeModel;
+export default HomeModel;
