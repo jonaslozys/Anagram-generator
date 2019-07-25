@@ -7,7 +7,7 @@ class App {
 
     init() {
         this.homeController = new HomeController();
-        this.dictionaryController = new DictionaryController();
+        this.dictionaryController = new DictionaryController(this.homeController);
         this.addEventListenersForNavigationalButtons();
     }
 

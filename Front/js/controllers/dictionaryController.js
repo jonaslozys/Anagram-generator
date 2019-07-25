@@ -8,10 +8,11 @@ import DictionaryModel from '../models/dictionaryModel.js';
 import searchPage from '../views/searchView.js';
 
 class DictionaryController{
-    constructor() {
+    constructor(homeController) {
         this.renderer = new Renderer();
         this.currentPage = 1;
         this.dictionaryModel = DictionaryModel;
+        this.homeController = homeController;
     }
 
     setupEventListeners() {
@@ -29,6 +30,14 @@ class DictionaryController{
                 e.preventDefault();
                 this.handleDelete(e.target.value);
             })
+        });
+
+        const linksToAnagramSearch = document.querySelectorAll(".list-group-item");
+        linksToAnagramSearch.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    this.homeController.handleSearch(e.target.innerHTML);
+                })
         })
 
         document.getElementById("searchForm").addEventListener("submit", (e) => this.handleSearch(e));

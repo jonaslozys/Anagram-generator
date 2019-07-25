@@ -10,11 +10,7 @@ class HomeController{
         this.displayPage();
     }
 
-    async handleSearch(e) {
-        e.preventDefault();
-        const searchValue = document.getElementById("getAnagramsFormValue").value;
-        document.getElementById("getAnagramsFormValue").value = "";
-
+    async handleSearch(searchValue) {
         this.homeModel.searchWord = searchValue;
     
         await getAnagrams(searchValue)
@@ -34,7 +30,12 @@ class HomeController{
     }
 
     setupEventListeners() {
-        document.getElementById("getAnagramsForm").addEventListener("submit", (e) => this.handleSearch(e));
+        document.getElementById("getAnagramsForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const searchValue = document.getElementById("getAnagramsFormValue").value;
+            document.getElementById("getAnagramsFormValue").value = "";
+            this.handleSearch(searchValue);
+        });
     }
 
     displayPage() {
