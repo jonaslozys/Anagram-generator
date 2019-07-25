@@ -2,6 +2,7 @@ import Renderer from '../renderer.js';
 import getPageOfWords from '../services/getPageOfWords.js';
 import getSearchedWords from '../services/getSearchedWords.js';
 import deleteWord from '../services/deleteWord.js';
+import addNewWord from '../services/addNewWord.js';
 import dictionaryView from '../views/dictionaryView.js';
 import DictionaryModel from '../models/dictionaryModel.js';
 import searchPage from '../views/searchView.js';
@@ -30,7 +31,9 @@ class DictionaryController{
             })
         })
 
-        const searchButton = document.getElementById("searchForm").addEventListener("submit", (e) => this.handleSearch(e));
+        document.getElementById("searchForm").addEventListener("submit", (e) => this.handleSearch(e));
+        document.getElementById("addWordForm").addEventListener("submit", (e) => this.handleAddWord(e));
+
     }
 
     handlePaginationClick(pageNumber) {
@@ -49,7 +52,6 @@ class DictionaryController{
                         }
                     });
                     this.changePage();
-
             })
             .catch(err => {
                 this.mapResponseToModel(err);
@@ -74,10 +76,25 @@ class DictionaryController{
         this.openSearchResultsPage();
     }
 
+    async handleAddWord(e) {
+        e.preventDefault();
+        const newWordField = document.getElementById("newWordValue");
+        const newWordValue = newWordField.value;
+        newWordField.value = "";
+
+        await addNewWord(newWordValue)
+            .then()
+            .catch(err => {
+                this.mapResponseToModel(err);
+            })
+        this.dictionaryModel.words = null;
+        this.changePage();
+    }
+
     mapResponseToModel(data) {
         this.dictionaryModel.words = data.words ? data.words : this.dictionaryModel.words;
         this.dictionaryModel.currentPage = data.page ? data.page : this.dictionaryModel.currentPage;
-        this.dictionaryModel.error = data.response ? data.response.data : null;
+        this.dictionaryModel.error = data.response ? data.response.data : this.dictionaryModel.error;
     }
 
     changePage() {
@@ -85,12 +102,13 @@ class DictionaryController{
             getPageOfWords(this.currentPage)
                 .then(res => {
                     this.mapResponseToModel(res.data);
-                    this.renderer.changePage(dictionaryView(this.dictionaryModel));
-                    this.setupEventListeners();
                 })
                 .catch(err => {
                     this.mapResponseToModel(err);
+                })
+                .then(() => {
                     this.renderer.changePage(dictionaryView(this.dictionaryModel));
+                    this.setupEventListeners();
                 });
         } else {
             this.renderer.changePage(dictionaryView(this.dictionaryModel));

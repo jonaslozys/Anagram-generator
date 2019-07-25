@@ -3,18 +3,13 @@ import ErrorAlert from '../components/errorAlert.js';
 import Pagination from '../components/pagination.js';
 import WordItem from '../components/wordItem.js';
 import SearchForm from '../components/searchForm.js';
+import AddWordForm from '../components/addWordForm.js';
 
 const dictionaryPage = (dictionaryModel) => {
     const view = html`    
         <section>
             <h2>Dictionary</h2>
-            
-            <form class="form-inline">
-                <div class="form-group"> 
-                    <input name="word" type="text" placeholder="New Word" id="wordInput" class="form-control col-md-6">
-                    <button type="submit" class="btn btn-primary" id="buttonGetAnagrams">Add new Word</button>
-                <div>
-            </form>
+            ${AddWordForm()}
             <br/>
             ${SearchForm()}
             <br/>
