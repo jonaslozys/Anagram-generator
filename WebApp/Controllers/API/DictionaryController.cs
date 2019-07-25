@@ -84,5 +84,20 @@ namespace WebApp.Controllers.API
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("{newWordValue}")]
+        public IActionResult Add(string newWordValue)
+        {
+            string ip = HttpContext.Connection.RemoteIpAddress.ToString();
+
+            try
+            {
+                _dictionaryService.AddWord(newWordValue, ip);
+                return Ok();
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
