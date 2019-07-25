@@ -83,18 +83,25 @@ class DictionaryController{
         newWordField.value = "";
 
         await addNewWord(newWordValue)
-            .then()
+            .then(() => {
+                this.dictionaryModel.words = null;
+            })
             .catch(err => {
                 this.mapResponseToModel(err);
-            })
-        this.dictionaryModel.words = null;
+            });
+
         this.changePage();
     }
 
     mapResponseToModel(data) {
         this.dictionaryModel.words = data.words ? data.words : this.dictionaryModel.words;
         this.dictionaryModel.currentPage = data.page ? data.page : this.dictionaryModel.currentPage;
-        this.dictionaryModel.error = data.response ? data.response.data : this.dictionaryModel.error;
+
+        if (data.response) {
+            this.dictionaryModel.error = data.response.data;
+        } else {
+            this.dictionaryModel.error = null;
+        }
     }
 
     changePage() {
