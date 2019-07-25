@@ -4,9 +4,8 @@ import homeView from '../views/homeView.js';
 
 class HomeController{
     constructor() {
-        this.submitButton = document.getElementById("buttonGetAnagrams")
-                                    .addEventListener("click", (e) => this.handleSubmit(e));
         this.renderer = new Renderer();
+        this.displayPage();
     }
 
     handleSubmit(e) {
@@ -17,6 +16,15 @@ class HomeController{
         getAnagrams(word)
             .then(anagrams => this.renderer.changePage(homeView(anagrams.data)))
             .catch(err => console.log(err));
+    }
+
+    setupEventListeners() {
+        this.submitButton = document.getElementById("buttonGetAnagrams")
+            .addEventListener("click", (e) => this.handleSubmit(e));
+    }
+
+    displayPage() {
+        this.renderer.changePage(homeView());
     }
     
 }
