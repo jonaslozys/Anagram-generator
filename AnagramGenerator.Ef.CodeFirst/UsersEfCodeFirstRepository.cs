@@ -41,13 +41,13 @@ namespace AnagramGenerator.Ef.CodeFirst
                     (log, cache) => new
                     {
                         SearchId = log.Id,
-                        Anagrams = cache,
+                        Anagrams = cache.Select(w => w.AnagramWord.WordValue),
                         UserIP = log.UserIP,
                         WordSearched = log.WordSearched,
                         SearchDate = log.SearchDate
                     })
                 .Select(res => new UserSearchLogModel(res.UserIP, res.WordSearched, res.SearchId) {
-                    SearchDate = res.SearchDate, Anagrams = res.Anagrams.Select(c => c.AnagramWord.WordValue).ToList()
+                    SearchDate = res.SearchDate, Anagrams = res.Anagrams.ToList()
                 })
                 .ToList();
 
