@@ -7,7 +7,7 @@ class Renderer {
     render() {
         this.el.innerHTML = this.pageContent;
     }
-
+    
     changePage(page) {
         this.pageContent = page;
         this.render();

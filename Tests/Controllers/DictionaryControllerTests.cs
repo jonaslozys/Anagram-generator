@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AnagramGenerator.Contracts;
+using AnagramGenerator.Contracts.WebAPIResponseModels;
 using AnagramGenerator.BusinessLogic;
 using WebApp;
 using WebApp.Configuration;
@@ -47,7 +48,7 @@ namespace AnagramGenerator.Tests.Controllers
         [TestCase(1000, 100)]
         public void Should_Call_Words_Repo_With_Correct_Arguments(int pageNumber, int pageSize)
         {
-            _wordsRepository.GetPageOfWords(pageSize, pageNumber).Returns(new List<WordModel> { });
+            _wordsRepository.GetPageOfWords(pageSize, pageNumber).Returns(new List<WordResponseModel> { });
 
             _dictionaryController.Index(pageNumber);
             _wordsRepository.Received().GetPageOfWords(_dictionaryConfiguration.Value.pageSize, pageNumber);
@@ -59,7 +60,7 @@ namespace AnagramGenerator.Tests.Controllers
         [TestCase("")]
         public void Should_Not_Call_Words_Repository_When_No_Word_Is_Received(string searchValue)
         {
-            _wordsRepository.GetSearchedWords(searchValue).Returns(new List<WordModel> { });
+            _wordsRepository.GetSearchedWords(searchValue).Returns(new List<WordResponseModel> { });
 
             _dictionaryController.Search(searchValue);
 
@@ -71,7 +72,7 @@ namespace AnagramGenerator.Tests.Controllers
         [TestCase("otherWord")]
         public void Should_Return_View_With_Model_Containing_Some_Words(string searchValue)
         {
-            _wordsRepository.GetSearchedWords(searchValue).Returns(new List<WordModel> { new WordModel(searchValue), new WordModel(searchValue) });
+            _wordsRepository.GetSearchedWords(searchValue).Returns(new List<WordResponseModel> { new WordResponseModel(searchValue, 1), new WordResponseModel(searchValue, 2) });
 
             ViewResult result = (ViewResult)_dictionaryController.Search(searchValue);
 

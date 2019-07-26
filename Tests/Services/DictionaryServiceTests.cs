@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using AnagramGenerator.BusinessLogic.Services;
 using AnagramGenerator.Tests.DummyRepositories;
 using NUnit;
@@ -31,63 +32,63 @@ namespace AnagramGenerator.Tests.Services
         }
 
         [Test]
-        [TestCase("qwerty123456789", "::1")]
-        [TestCase("aluss", "::1")]
-        [TestCase("rrrrrrrrr", "::1")]
-        public void Should_Throw_Exception_Trying_To_Delete_Non_Existing_Word(string word, string userIp)
+        [TestCase(999999, "::1")]
+        [TestCase(1000000, "::1")]
+        [TestCase(2000000, "::1")]
+        public void Should_Throw_Exception_Trying_To_Delete_Non_Existing_Word(int wordId, string userIp)
         {
             _wordsRepository.GetWords().Returns(_dummyWordsRepository.GetWords());
 
             _wordsRepository
-                .When(x => x.DeleteWord(word))
+                .When(x => x.DeleteWord(wordId))
                 .Do(x => {
-                    if(!_wordsRepository.GetWords().Contains(new WordModel(word)))
+                    if (!_wordsRepository.GetWords().Any(w => w.Id == wordId))
                     {
                         throw new Exception();
                     }
                 });
 
-            Assert.Throws<Exception>(() => _dictionaryService.DeleteWord(word, userIp));
+            Assert.Throws<Exception>(() => _dictionaryService.DeleteWord(wordId, userIp));
         }
 
         [Test]
-        [TestCase("nesam", "::1")]
-        [TestCase("alus", "::1")]
-        [TestCase("asla", "::1")]
-        public void Should_Not_Throw_Exception_Trying_To_Delete_Existing_Word(string word, string userIp)
+        [TestCase(1, "::1")]
+        [TestCase(3, "::1")]
+        [TestCase(4, "::1")]
+        public void Should_Not_Throw_Exception_Trying_To_Delete_Existing_Word(int wordId, string userIp)
         {
             _wordsRepository.GetWords().Returns(_dummyWordsRepository.GetWords());
 
             _wordsRepository
-                .When(x => x.DeleteWord(word))
+                .When(x => x.DeleteWord(wordId))
                 .Do(x => {
-                    if (!_wordsRepository.GetWords().Contains(new WordModel(word)))
+                    if (!_wordsRepository.GetWords().Any(w => w.Id == wordId))
                     {
-                        throw new Exception();
+                        throw new Exception("fsefsdf");
                     }
                 });
 
-            Assert.DoesNotThrow(() => _dictionaryService.DeleteWord(word, userIp));
+            Assert.DoesNotThrow(() => _dictionaryService.DeleteWord(wordId, userIp));
         }
 
         [Test]
-        [TestCase("qwerty123456789", "::1")]
-        [TestCase("aluss", "::1")]
-        [TestCase("rrrrrrrrr", "::1")]
-        public void Does_Not_Decrease_Available_Searches_When_Failing_To_Delete_Word(string word, string userIp)
+        [TestCase(999999, "::1")]
+        [TestCase(1000000, "::1")]
+        [TestCase(2000000, "::1")]
+        public void Does_Not_Decrease_Available_Searches_When_Failing_To_Delete_Word(int wordId, string userIp)
         {
             _wordsRepository.GetWords().Returns(_dummyWordsRepository.GetWords());
 
             _wordsRepository
-                .When(x => x.DeleteWord(word))
+                .When(x => x.DeleteWord(wordId))
                 .Do(x => {
-                    if (!_wordsRepository.GetWords().Contains(new WordModel(word)))
+                    if (!_wordsRepository.GetWords().Any(w => w.Id == wordId))
                     {
                         throw new Exception();
                     }
                 });
 
-            Assert.Throws<Exception>(() => _dictionaryService.DeleteWord(word, userIp));
+            Assert.Throws<Exception>(() => _dictionaryService.DeleteWord(wordId, userIp));
 
             _usersRepository.DidNotReceive().DecreaseAvailabeUserSearches(userIp);
         }
@@ -98,7 +99,6 @@ namespace AnagramGenerator.Tests.Services
         [TestCase("asla", "::1")]
         public void Should_Throw_Exception_Trying_To_Add_Existing_Word(string word, string userIp)
         {
-
             _wordsRepository
                 .When(x => x.AddNewWord(word))
                 .Do(x => {
@@ -115,7 +115,7 @@ namespace AnagramGenerator.Tests.Services
         [TestCase("qwerty123456789", "::1")]
         [TestCase("aluss", "::1")]
         [TestCase("rrrrrrrrr", "::1")]
-        public void Should_Not_Throw_Exception_Trying_To_New_Word(string word, string userIp)
+        public void Should_Not_Throw_Exception_Trying_To_Add_New_Word(string word, string userIp)
         {
             _wordsRepository.GetWords().Returns(_dummyWordsRepository.GetWords());
 
@@ -137,7 +137,6 @@ namespace AnagramGenerator.Tests.Services
         [TestCase("asla", 11, "::1")]
         public void Should_Throw_Exception_Trying_To_Update_Word_To_Existing_Word(string word, int wordIndex, string userIp)
         {
-
             _wordsRepository
                 .When(x => x.UpdateWord(wordIndex, word))
                 .Do(x => {

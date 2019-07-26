@@ -25,7 +25,7 @@ namespace WebApp.Controllers.API
         }
 
         [HttpGet("{word}")]
-        public async Task<ActionResult> Anagrams(string word)
+        public ActionResult Anagrams(string word)
         {
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
 

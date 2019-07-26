@@ -13,7 +13,7 @@ namespace AnagramGenerator.Tests.DummyRepositories
             throw new NotImplementedException();
         }
 
-        public void DeleteWord(string word)
+        public void DeleteWord(int wordId)
         {
             throw new NotImplementedException();
         }
