@@ -13,17 +13,25 @@ class HistoryController {
         await getHistory()
                 .then(res => this.mapResponseToModel(res.data))
                 .catch(err => this.mapResponseToModel(err));
+        this.displayHistory();
     }
 
     mapResponseToModel(data) {
-        console.log(data);
-        this.historyModel.historyLogs = data.historyLogs ? data.historyLogs : this.historyModel.historyLogs;
-        console.log(this.historyModel)
+        if (data.historyLogs) {
+            this.historyModel.historyLogs = data.historyLogs ? data.historyLogs : this.historyModel.historyLogs;
+            this.historyModel.loading = false;
+        } else {
+            this.historyModel.loading = true;
+        }
     }
 
     async displayHistory() {
-        await this.getSearchHistory();
-        this.renderer.changePage(historyView(this.historyModel));
+        if (!this.historyModel.historyLogs) {
+            this.getSearchHistory();
+            this.renderer.changePage(historyView(this.historyModel));
+        } else {
+            this.renderer.changePage(historyView(this.historyModel));
+        }
     }
 
 }
