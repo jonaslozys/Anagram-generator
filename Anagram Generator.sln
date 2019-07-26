@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "Anagram Generator\ConsoleApplication.csproj", "{C508A4D9-EB5A-4029-A414-A453AB28E956}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.Tests", "Tests\AnagramGenerator.Tests.csproj", "{A2A9521A-5EB6-4706-B130-DC1525132004}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{AC014659-62B7-483F-9160-670746898E6F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientConsoleApp", "ClientConsoleApp\ClientConsoleApp.csproj", "{0349876D-F674-4613-99AB-A959F13F6A1D}"
@@ -23,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.Ef.CodeFir
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generics", "Generics\Generics.csproj", "{97612713-D0B0-4656-A5A0-3B4924DEF275}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramGenerator.Tests", "AnagramGenerator.Tests\AnagramGenerator.Tests.csproj", "{196702E0-9A8A-4F38-AE50-3EFE7F477D44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +33,6 @@ Global
 		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C508A4D9-EB5A-4029-A414-A453AB28E956}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2A9521A-5EB6-4706-B130-DC1525132004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2A9521A-5EB6-4706-B130-DC1525132004}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2A9521A-5EB6-4706-B130-DC1525132004}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2A9521A-5EB6-4706-B130-DC1525132004}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC014659-62B7-483F-9160-670746898E6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC014659-62B7-483F-9160-670746898E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC014659-62B7-483F-9160-670746898E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +65,10 @@ Global
 		{97612713-D0B0-4656-A5A0-3B4924DEF275}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97612713-D0B0-4656-A5A0-3B4924DEF275}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97612713-D0B0-4656-A5A0-3B4924DEF275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{196702E0-9A8A-4F38-AE50-3EFE7F477D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196702E0-9A8A-4F38-AE50-3EFE7F477D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196702E0-9A8A-4F38-AE50-3EFE7F477D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196702E0-9A8A-4F38-AE50-3EFE7F477D44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
